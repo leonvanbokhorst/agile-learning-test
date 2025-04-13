@@ -22,18 +22,55 @@
 
 ## Sprint 1 Progress (Setup & Basics)
 
-- **Environment Setup:** Completed.
-  - Configured `pyproject.toml` for project dependencies and metadata.
-  - Utilized `uv` to install dependencies (including `torch` and dev tools) into the virtual environment.
-  - Implemented standard `src`-layout to resolve packaging ambiguity.
-- **Tensor Basics:** Completed exercises in `results/01_tensor_basics.py` covering creation, indexing, math, CPU/GPU movement, and reshaping/manipulation. (2025-04-13 14:53)
-- **Tensor Manipulation:**
-  - Creating tensors (various methods)
-  - Basic tensor operations (+, -, \*, /)
-  - Indexing and slicing
-  - Reshaping (`view`, `reshape`)
-  - Permuting dimensions (`permute`) - 2025-04-13 14:45
-  - Moving tensors between CPU/GPU (`.to()`, `.cuda()`, `.cpu()`) - 2025-04-13 14:45
+### Environment Setup
 
+- [x] Project configuration with `pyproject.toml` (2024-04-13 16:26)
+- [x] Dependency management with `uv` (2024-04-13 16:26)
+- [x] Implementation of `src`-layout (2024-04-13 16:26)
 
-_(Update this section as sprints are completed or significant learning occurs. Add specific skills or concepts learned under relevant headings.)_
+### Tensor Operations
+
+- [x] Tensor creation and manipulation (2024-04-13 14:45)
+- [x] CPU/GPU tensor movement (2024-04-13 14:45)
+- [x] Tensor reshaping and permutation (2024-04-13 14:45)
+- [x] Basic tensor operations (2024-04-13 14:45)
+
+### Neural Networks and Deep Learning
+
+#### Understanding Neural Networks
+
+- [x] Basic understanding of neural network architecture (2024-04-13 16:25)
+- [x] Understanding of hidden layers and their role (2024-04-13 16:25)
+- [x] Understanding of parameter counting in neural networks (2024-04-13 16:25)
+- [x] Understanding of signal flow in neural networks (2024-04-13 16:25)
+- [x] Understanding of ReLU activation function (2024-04-13 16:25)
+
+#### PyTorch and Autograd
+
+- [x] Understanding of PyTorch tensors and requires_grad (2024-04-13 16:25)
+- [x] Understanding of computation graphs (2024-04-13 16:25)
+- [x] Understanding of backpropagation and gradients (2024-04-13 16:25)
+- [x] Understanding of learning rates and weight updates (2024-04-13 16:25)
+- [x] Understanding of gradient accumulation and zero_grad (2024-04-13 16:26)
+
+#### Network Implementation
+
+- [x] Basic nn.Module implementation (2024-04-13 16:26)
+- [x] Linear layer implementation and usage (2024-04-13 16:26)
+- [x] Parameter inspection and management (2024-04-13 16:26)
+- [x] Forward pass implementation (2024-04-13 16:26)
+
+### Key Achievements
+
+1. Successfully set up development environment
+2. Mastered tensor operations and manipulation
+3. Understood and implemented autograd system
+4. Created and analyzed neural network with hidden layer
+5. Documented learning progress and findings
+
+### Areas for Further Development
+
+1. More complex network architectures
+2. Different activation functions
+3. Custom loss functions
+4. Transformer components
