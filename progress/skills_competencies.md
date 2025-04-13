@@ -26,5 +26,10 @@
   - Configured `pyproject.toml` for project dependencies and metadata.
   - Utilized `uv` to install dependencies (including `torch` and dev tools) into the virtual environment.
   - Implemented standard `src`-layout to resolve packaging ambiguity.
+- **PyTorch Tensors:** Completed basics.
+  - Practiced creating tensors (various types, shapes).
+  - Performed common operations (arithmetic, indexing, slicing).
+  - Understood and practiced moving tensors between CPU and GPU.
+  - Manipulated tensor dimensions (reshaping, viewing, etc.).
 
 _(Update this section as sprints are completed or significant learning occurs. Add specific skills or concepts learned under relevant headings.)_
