@@ -18,18 +18,45 @@
   - _Note: Successfully used `uv` for environment creation and package installation._
 - **Git / Version Control (Git/GitHub):** Proficient (User reports essential daily usage)
 
----
-
 ## Sprint 1 Progress (Setup & Basics)
 
 - **Environment Setup:** Completed.
+
   - Configured `pyproject.toml` for project dependencies and metadata.
   - Utilized `uv` to install dependencies (including `torch` and dev tools) into the virtual environment.
   - Implemented standard `src`-layout to resolve packaging ambiguity.
-- **PyTorch Tensors:** Completed basics.
-  - Practiced creating tensors (various types, shapes).
-  - Performed common operations (arithmetic, indexing, slicing).
-  - Understood and practiced moving tensors between CPU and GPU.
-  - Manipulated tensor dimensions (reshaping, viewing, etc.).
+
+- **Tensor Basics:** Completed exercises in `results/01_tensor_basics.py` covering:
+
+  - Creating tensors (various methods)
+  - Basic tensor operations (+, -, \*, /)
+  - Indexing and slicing
+  - Reshaping (`view`, `reshape`)
+  - Permuting dimensions (`permute`)
+  - Moving tensors between CPU/GPU (`.to()`, `.cuda()`, `.cpu()`)
+
+- **Autograd & Gradients:** Completed exercises in `results/02b_autograd_scalar_example.py` and `results/02c_neural_network_gradients.py`
+
+  - Understanding computation graphs and gradient tracking
+  - Using `requires_grad=True` for automatic differentiation
+  - Computing gradients with `.backward()`
+  - Managing gradient accumulation with `.zero_grad()`
+  - Understanding gradient flow in neural networks
+  - Implementing gradient descent with learning rates
+
+- **Neural Network Basics:** Completed exercises in `results/02d_hidden_layer_network.py`
+
+  - Implementing a simple network with one hidden layer
+  - Understanding parameter count and connections
+  - Working with activation functions (ReLU)
+  - Understanding signal flow through layers
+  - Documenting network architecture and concepts
+  - Creating comprehensive documentation in `notes/02d_hidden_layer_network.md`
+
+- **Documentation & Progress Tracking:**
+  - Maintaining detailed notes in the `notes/` directory
+  - Updating sprint progress in README files
+  - Tracking milestones and competencies
+  - Creating clear, educational examples with comments
 
 _(Update this section as sprints are completed or significant learning occurs. Add specific skills or concepts learned under relevant headings.)_
