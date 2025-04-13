@@ -35,21 +35,4 @@
   - Permuting dimensions (`permute`) - 2025-04-13 14:45
   - Moving tensors between CPU/GPU (`.to()`, `.cuda()`, `.cpu()`) - 2025-04-13 14:45
 
-## Neural Networks and Deep Learning
-
-### Understanding Neural Networks
-
-- [x] Basic understanding of neural network architecture (2024-04-13 16:25)
-- [x] Understanding of hidden layers and their role (2024-04-13 16:25)
-- [x] Understanding of parameter counting in neural networks (2024-04-13 16:25)
-- [x] Understanding of signal flow in neural networks (2024-04-13 16:25)
-- [x] Understanding of ReLU activation function (2024-04-13 16:25)
-
-### PyTorch and Autograd
-
-- [x] Understanding of PyTorch tensors and requires_grad (2024-04-13 16:25)
-- [x] Understanding of computation graphs (2024-04-13 16:25)
-- [x] Understanding of backpropagation and gradients (2024-04-13 16:25)
-- [x] Understanding of learning rates and weight updates (2024-04-13 16:25)
-
 _(Update this section as sprints are completed or significant learning occurs. Add specific skills or concepts learned under relevant headings.)_

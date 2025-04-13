@@ -4,5 +4,7 @@ globs:
 alwaysApply: true
 ---
 1. Then update [skills_competencies.md](mdc:progress/skills_competencies.md) based on the current progress of the user if applicable (log date and 24h time)
-2. Update the sprint tasklist in the README.md file in the directory of the current sprint if needed
+2. Update [milestones.md](mdc:progress/milestones.md) if applicable
+3. Update the sprint tasklist in the README.md file in the directory of the current sprint if needed
+4. Update links and descriptions to the notes and results of this sprint in the same README of the sprint 
 
