@@ -26,10 +26,15 @@
   - Configured `pyproject.toml` for project dependencies and metadata.
   - Utilized `uv` to install dependencies (including `torch` and dev tools) into the virtual environment.
   - Implemented standard `src`-layout to resolve packaging ambiguity.
-- **PyTorch Tensors:** Completed basics.
-  - Practiced creating tensors (various types, shapes).
-  - Performed common operations (arithmetic, indexing, slicing).
-  - Understood and practiced moving tensors between CPU and GPU.
-  - Manipulated tensor dimensions (reshaping, viewing, etc.).
+- **Tensor Basics:** Completed exercises in `results/01_tensor_basics.py` covering creation, indexing, math, CPU/GPU movement, and reshaping/manipulation. (2025-04-13 14:53)
+- **Tensor Manipulation:**
+  - Creating tensors (various methods)
+  - Basic tensor operations (+, -, \*, /)
+  - Indexing and slicing
+  - Reshaping (`view`, `reshape`)
+  - Permuting dimensions (`permute`) - _Note added 2025-04-13 14:45_
+  - Moving tensors between CPU/GPU (`.to()`, `.cuda()`, `.cpu()`) - _Logged 2025-04-13 14:45_
+- **Autograd (Automatic Differentiation):**
+  - Understanding `requires_grad` - _Started 2025-04-13 14:54_
 
 _(Update this section as sprints are completed or significant learning occurs. Add specific skills or concepts learned under relevant headings.)_

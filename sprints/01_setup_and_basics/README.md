@@ -19,7 +19,7 @@ Set up the development environment with necessary libraries (PyTorch, etc.) and 
     - [x] Understand the difference between CPU and GPU tensors and how to move them.
     - [x] Practice reshaping and manipulating tensor dimensions.
 3.  [ ] **Autograd Introduction:**
-    - [ ] Create tensors with `requires_grad=True`.
+    - [ ] Create tensors with `requires_grad=True`. <-- _Started 2025-04-13 14:54_
     - [ ] Perform operations and understand how the computation graph is built.
     - [ ] Use `.backward()` to compute gradients.
     - [ ] Understand the concept of gradient accumulation and `.zero_grad()`.

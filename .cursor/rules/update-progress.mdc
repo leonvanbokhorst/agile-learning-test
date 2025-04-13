@@ -1,0 +1,9 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+1. First get the current time with [what-is-the-time.mdc](mdc:.cursor/rules/what-is-the-time.mdc)
+2. Then update [skills_competencies.md](mdc:progress/skills_competencies.md) based on the current progress of the user if applicable (log date and 24h time)
+3. Update the tasklist in the current sprint directory if applicable
+4. report back to the user
