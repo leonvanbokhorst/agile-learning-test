@@ -39,44 +39,9 @@ Set up the development environment with necessary libraries (PyTorch, etc.) and 
 
 ## Findings & Notes
 
-### Environment Setup
+_(Record findings, challenges, code snippets, and reflections in `notes/` directory or here)_
 
-- Project setup using `pyproject.toml` and `uv` was successful
-- Encountered and resolved packaging ambiguity by implementing `src`-layout
-- Development environment is reproducible and well-documented
-
-### Tensor Operations
-
-- Mastered tensor creation and manipulation techniques
-- Understood the importance of tensor shapes and dimensions
-- Gained practical experience with CPU/GPU tensor movement
-- Learned efficient tensor reshaping and permutation methods
-
-### Autograd System
-
-- Completed understanding of computation graphs and their role in backpropagation
-- Learned how gradients flow through the network
-- Understood the importance of `.zero_grad()` for proper gradient accumulation
-- Gained practical experience with gradient computation and weight updates
-
-### Neural Network Basics
-
-- Created and analyzed a network with one hidden layer
-- Documented parameter counting and network architecture
-- Understood the role of activation functions (ReLU)
-- Learned about signal flow and weight connections
-- Created detailed documentation in `notes/02d_hidden_layer_network.md`
-
-### Key Learnings
-
-1. **Computation Graphs**: PyTorch's autograd system builds a dynamic computation graph that tracks all operations
-2. **Parameter Management**: Even simple networks can have many interconnected parameters
-3. **Gradient Flow**: Understanding how gradients propagate through the network is crucial
-4. **Activation Functions**: ReLU's role in introducing non-linearity and its impact on learning
-
-### Next Steps
-
-- Move on to more complex network architectures
-- Explore different activation functions
-- Implement custom loss functions
-- Begin work on transformer components
+- Project setup using `pyproject.toml` and `uv` was successful.
+- Encountered and resolved packaging ambiguity by implementing `src`-layout.
+- Completed understanding of neural networks with hidden layers and autograd system.
+- Created detailed documentation of network architecture and parameter counting.
