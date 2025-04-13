@@ -18,7 +18,7 @@
 - [ ] Data transformation pipelines
 - [ ] Built-in datasets exploration
 
-## Upcoming Sprints
+## Possible Upcoming Sprint Subjects
 
 ### Sprint: Advanced Neural Networks
 
