@@ -32,9 +32,8 @@
   - Basic tensor operations (+, -, \*, /)
   - Indexing and slicing
   - Reshaping (`view`, `reshape`)
-  - Permuting dimensions (`permute`) - _Note added 2025-04-13 14:45_
-  - Moving tensors between CPU/GPU (`.to()`, `.cuda()`, `.cpu()`) - _Logged 2025-04-13 14:45_
-- **Autograd (Automatic Differentiation):**
-  - Understanding `requires_grad` - _Started 2025-04-13 14:54_
+  - Permuting dimensions (`permute`) - 2025-04-13 14:45
+  - Moving tensors between CPU/GPU (`.to()`, `.cuda()`, `.cpu()`) - 2025-04-13 14:45
+
 
 _(Update this section as sprints are completed or significant learning occurs. Add specific skills or concepts learned under relevant headings.)_
