@@ -61,21 +61,41 @@
 - Deeper dive into DataLoader memory management.
 - `torchtext` dataset handling (due to library deprecation/compatibility).
 
-### Current Focus
-
-- Consolidating understanding of data handling pipeline.
-- Preparing for model building and training loop implementation in next sprint.
-
-### Next Steps
-
-- **Sprint 3: Models & Training Loops**
-  - [x] Defining `nn.Module` based models.
-  - [x] Implementing loss functions (`nn.CrossEntropyLoss`, etc.).
-  - [x] Understanding optimizers (`torch.optim.Adam`, `SGD`).
-  - [ ] Building a complete training loop (forward pass, loss calc, backward pass, optimizer step).
-  - [ ] Implementing basic evaluation metrics.
-
 ### Documentation
 
 - Created notes in [sprints/02_datasets_and_dataloaders/notes/](sprints/02_datasets_and_dataloaders/notes/)
 - Updated Sprint 2 `README.md`
+
+## Sprint 3: Models & Training Loops
+
+### Completed
+
+- [x] Defined a basic `nn.Module` (Linear Regression example).
+- [x] Understood `__init__` and `forward` methods.
+- [x] Implemented common loss functions (`nn.MSELoss`).
+- [x] Implemented optimizers (`torch.optim.Adam`).
+- [x] Built a complete training loop (forward, loss, backward, step, zero_grad).
+- [x] Integrated `tqdm` for progress visualization.
+- [x] Implemented basic evaluation loop (`model.eval()`, `torch.no_grad()`).
+- [x] Calculated validation loss to monitor generalization.
+
+### Key Insights
+
+- Mastered the fundamental PyTorch training pipeline.
+- Understood the roles and interactions of models, loss functions, and optimizers.
+- Recognized the importance of `model.train()` vs `model.eval()` modes.
+- Appreciated the efficiency gains from `torch.no_grad()` during evaluation.
+- Gained practical experience implementing and monitoring a training/validation cycle.
+
+### Next Steps
+
+- **Sprint 4: Advanced Training Techniques & MNIST Classification** (Tentative)
+  - Building a more complex CNN for image classification.
+  - Implementing techniques like learning rate scheduling, early stopping.
+  - Using TensorBoard for visualization.
+  - Training a model on the MNIST dataset.
+
+### Documentation
+
+- Created notes and results in [sprints/03_models_and_training_loops/](sprints/03_models_and_training_loops/)
+- Filled out Sprint 3 `README.md` retrospective.

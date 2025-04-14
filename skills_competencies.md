@@ -135,9 +135,26 @@
   - Cross-Entropy specifics (combines LogSoftmax and NLLLoss).
 
 - **Optimizers:** Completed work in [`sprints/03_models_and_training_loops/results/03_optimizers.py`](...) and notes in [`sprints/03_models_and_training_loops/notes/03_optimizers_notes.md`](...) covering:
+
   - Understanding the role of optimizers in updating weights based on gradients.
   - Instantiating common optimizers (`torch.optim.Adam`, `torch.optim.SGD`).
   - Understanding key hyperparameters (`lr`, `momentum`, `betas`).
   - Recognizing Adam/AdamW as common default choices.
+
+- **Training Loop:** Completed work in [`sprints/03_models_and_training_loops/results/04_training_loop.py`](...) and notes in [`sprints/03_models_and_training_loops/notes/04_training_loop_notes.md`](...) covering:
+
+  - Implementing the standard PyTorch training cycle: forward pass, loss calculation, `optimizer.zero_grad()`, `loss.backward()`, `optimizer.step()`.
+  - Iterating over a `DataLoader`.
+  - Setting the model to training mode (`model.train()`).
+  - Accumulating and logging epoch loss.
+  - Integrating `tqdm` for batch-level progress visualization.
+
+- **Basic Evaluation:** Completed work in [`sprints/03_models_and_training_loops/results/05_basic_evaluation.py`](...) and notes in [`sprints/03_models_and_training_loops/notes/05_basic_evaluation_notes.md`](...) covering:
+  - Creating a separate validation dataset and `DataLoader`.
+  - Implementing an evaluation loop.
+  - Setting the model to evaluation mode (`model.eval()`) and understanding its importance (e.g., for Dropout, BatchNorm).
+  - Disabling gradient calculation using `with torch.no_grad():` for efficiency.
+  - Calculating metrics (e.g., validation loss) on the validation set.
+  - Performing evaluation periodically during training (e.g., after each epoch).
 
 _(Update this section as sprints are completed or significant learning occurs. Add specific skills or concepts learned under relevant headings.)_
