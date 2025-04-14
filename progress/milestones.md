@@ -45,8 +45,16 @@
 - [x] Loading and using built-in datasets (`torchvision.datasets.MNIST`)
 - [x] Applying basic data transformations (`Compose`, `ToTensor`, `Normalize`)
 - [x] Documentation of Dataset and DataLoader concepts and examples
-- [x] Implemented custom transform class (`results/04_custom_transform.py`)
+- [x] Implemented custom transform class ([results/04_custom_transform.py](results/04_custom_transform.py))
 - [x] Implemented basic data augmentation (`torchvision.transforms` like `RandomRotation`)
+
+### Key Insights
+
+- Mastered the `Dataset` and `DataLoader` workflow, the core PyTorch mechanism for feeding data to models efficiently.
+- Gained practical experience with essential `DataLoader` features like batching, shuffling, and parallel loading (`num_workers`), including platform-specific considerations (`if __name__ == '__main__':`).
+- Successfully used `torchvision` to load standard datasets (MNIST) and apply crucial transformations (`ToTensor`, `Normalize`), including basic data augmentation (`RandomRotation`).
+- Learned to define custom datasets and transforms, providing flexibility for non-standard data.
+- Recognized the importance of applying appropriate transformations (especially normalization) and the distinction between training-time augmentation and validation/test-time preprocessing.
 
 ### Skipped/Deferred
 
@@ -69,5 +77,5 @@
 
 ### Documentation
 
-- Created notes in `sprints/02_datasets_and_dataloaders/notes/`
+- Created notes in [sprints/02_datasets_and_dataloaders/notes/](sprints/02_datasets_and_dataloaders/notes/)
 - Updated Sprint 2 `README.md`

@@ -61,14 +61,14 @@
 
 ## Sprint 2 Progress (Datasets & DataLoaders)
 
-- **Custom Datasets:** Completed exercises in `results/01_simple_dataset.py` covering:
+- **Custom Datasets:** Completed exercises in [results/01_simple_dataset.py](results/01_simple_dataset.py) covering:
 
   - Implementing `torch.utils.data.Dataset` interface (`__len__`, `__getitem__`).
   - Handling data generation within the dataset.
   - Basic type hinting for datasets (`Dataset[tuple[torch.Tensor, torch.Tensor]]`).
   - Applying simple transforms within `__init__` (though `transform` argument is preferred).
 
-- **DataLoaders:** Completed exercises in `results/01_simple_dataset.py` and `results/02_dataloader_features.py` covering:
+- **DataLoaders:** Completed exercises in [results/01_simple_dataset.py](results/01_simple_dataset.py) and [results/02_dataloader_features.py](results/02_dataloader_features.py) covering:
 
   - Wrapping a `Dataset` with `torch.utils.data.DataLoader`.
   - Configuring `batch_size`.
@@ -77,28 +77,36 @@
     - Recognizing performance implications (overhead vs. `__getitem__` complexity).
     - Implementing the `if __name__ == '__main__':` guard for multiprocessing compatibility (Windows/macOS).
 
-- **Built-in Datasets:** Completed exercises in `results/03_builtin_datasets.py` using `torchvision`:
+- **Built-in Datasets:** Completed exercises in [results/03_builtin_datasets.py](results/03_builtin_datasets.py) using `torchvision`:
 
   - Loading standard datasets (e.g., `torchvision.datasets.MNIST`).
   - Understanding `root`, `train`, `download` parameters.
   - Automatic dataset downloading and caching.
   - Understanding standard dataset splits (train/test).
 
-- **Data Transformations:** Used basic transforms in `results/01_simple_dataset.py` and `results/03_builtin_datasets.py`:
+- **Data Transformations:** Used basic transforms in [results/01_simple_dataset.py](results/01_simple_dataset.py) and [results/03_builtin_datasets.py](results/03_builtin_datasets.py):
 
   - Using `torchvision.transforms.Compose` to chain transforms.
   - Using `torchvision.transforms.ToTensor()` to convert image data (PIL/NumPy) to tensors and scale.
   - Using `torchvision.transforms.Normalize()` for data normalization (with dataset-specific means/stds).
   - Applying transforms via the `transform` argument in `Dataset` constructors.
-  - Implementing custom transform classes (`__call__` method) (`results/04_custom_transform.py`).
-  - Implementing basic data augmentation using `torchvision.transforms` (e.g., `RandomRotation`) (`results/03_load_mnist_with_augmentation.py`, `notes/03_data_augmentation_guide.md`).
+  - Implementing custom transform classes (`__call__` method) ([results/04_custom_transform.py](results/04_custom_transform.py)).
+  - Implementing basic data augmentation using `torchvision.transforms` (e.g., `RandomRotation`) ([results/03_load_mnist_with_augmentation.py](results/03_load_mnist_with_augmentation.py), [notes/03_data_augmentation_guide.md](notes/03_data_augmentation_guide.md)).
 
 - **Documentation:**
 
-  - Created notes on Dataset basics (`notes/01_dataset_basics.md`).
-  - Created notes on DataLoader features and built-in datasets (`notes/02_dataloader_and_builtin.md`).
-  - Created notes on Data Augmentation (`notes/03_data_augmentation_guide.md`).
+  - Created notes on Dataset basics ([notes/01_dataset_basics.md](notes/01_dataset_basics.md)).
+  - Created notes on DataLoader features and built-in datasets ([notes/02_dataloader_and_builtin.md](notes/02_dataloader_and_builtin.md)).
+  - Created notes on Data Augmentation ([notes/03_data_augmentation_guide.md](notes/03_data_augmentation_guide.md)).
   - Updated sprint `README.md` checklists.
+
+- **Key Insights:**
+
+  - Mastered the `Dataset` and `DataLoader` workflow, the core PyTorch mechanism for feeding data to models efficiently.
+  - Gained practical experience with essential `DataLoader` features like batching, shuffling, and parallel loading (`num_workers`), including platform-specific considerations (`if __name__ == '__main__':`).
+  - Successfully used `torchvision` to load standard datasets (MNIST) and apply crucial transformations (`ToTensor`, `Normalize`), including basic data augmentation (`RandomRotation`).
+  - Learned to define custom datasets and transforms, providing flexibility for non-standard data.
+  - Recognized the importance of applying appropriate transformations (especially normalization) and the distinction between training-time augmentation and validation/test-time preprocessing.
 
 - **Skipped/Deferred Topics:**
   - Advanced memory management techniques for DataLoaders.
