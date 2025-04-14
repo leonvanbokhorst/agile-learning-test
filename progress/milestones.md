@@ -46,11 +46,11 @@
 - [x] Applying basic data transformations (`Compose`, `ToTensor`, `Normalize`)
 - [x] Documentation of Dataset and DataLoader concepts and examples
 - [x] Implemented custom transform class (`results/04_custom_transform.py`)
+- [x] Implemented basic data augmentation (`torchvision.transforms` like `RandomRotation`)
 
 ### Skipped/Deferred
 
 - Deeper dive into DataLoader memory management.
-- Data augmentation techniques.
 - `torchtext` dataset handling (due to library deprecation/compatibility).
 
 ### Current Focus

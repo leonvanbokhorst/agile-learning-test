@@ -35,9 +35,6 @@ class SimpleDataset(Dataset[tuple[torch.Tensor, torch.Tensor]]):
 # Function to time the iteration over a DataLoader
 def time_dataloader_iteration(loader: DataLoader, num_epochs_to_time: int) -> float:
     start_time = time.time()
-    for epoch in range(num_epochs_to_time):
-        for _ in loader:  # Iterate through all batches
-            pass  # We only care about the time it takes
     end_time = time.time()
     return end_time - start_time
 
@@ -150,8 +147,8 @@ if __name__ == "__main__":
         f"\nNote: The time difference for num_workers might be small or even slower for this simple dataset."
     )
     print(
-        f"The benefit is more pronounced with complex data loading/preprocessing steps."
+        "The benefit is more pronounced with complex data loading/preprocessing steps."
     )
     print(
-        f"Also, the first iteration with workers might be slower due to process startup overhead."
+        "Also, the first iteration with workers might be slower due to process startup overhead."
     )

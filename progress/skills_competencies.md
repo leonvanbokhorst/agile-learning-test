@@ -91,16 +91,17 @@
   - Using `torchvision.transforms.Normalize()` for data normalization (with dataset-specific means/stds).
   - Applying transforms via the `transform` argument in `Dataset` constructors.
   - Implementing custom transform classes (`__call__` method) (`results/04_custom_transform.py`).
+  - Implementing basic data augmentation using `torchvision.transforms` (e.g., `RandomRotation`) (`results/03_load_mnist_with_augmentation.py`, `notes/03_data_augmentation_guide.md`).
 
 - **Documentation:**
 
   - Created notes on Dataset basics (`notes/01_dataset_basics.md`).
   - Created notes on DataLoader features and built-in datasets (`notes/02_dataloader_and_builtin.md`).
+  - Created notes on Data Augmentation (`notes/03_data_augmentation_guide.md`).
   - Updated sprint `README.md` checklists.
 
 - **Skipped/Deferred Topics:**
   - Advanced memory management techniques for DataLoaders.
-  - Data augmentation transforms (commonly used for images).
   - `torchtext` usage (due to deprecation and compatibility issues with current PyTorch version).
 
 _(Update this section as sprints are completed or significant learning occurs. Add specific skills or concepts learned under relevant headings.)_
