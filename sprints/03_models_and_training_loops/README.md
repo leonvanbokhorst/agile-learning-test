@@ -9,11 +9,11 @@ Focus: Defining neural network models using `nn.Module`, understanding loss func
   - Understand the `__init__` and `forward` methods.
   - [Notes](notes/01_define_nn_module_notes.md), [Module Composition](notes/03_module_composition_notes.md)
   - [Results](results/01_define_nn_module.py)
-- [ ] **Implement Loss Functions:**
+- [x] **Implement Loss Functions:**
   - Use common loss functions like `nn.CrossEntropyLoss` for classification or `nn.MSELoss` for regression.
   - Understand how loss functions measure model error.
-  - [Notes]()
-  - [Results]()
+  - [Notes](notes/02_loss_functions_training_loop_notes.md)
+  - [Results](results/02_loss_functions.py)
 - [ ] **Implement Optimizers:**
   - Use optimizers like `torch.optim.Adam` or `torch.optim.SGD`.
   - Understand the role of optimizers in updating model parameters.
