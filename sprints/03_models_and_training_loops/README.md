@@ -19,13 +19,13 @@ Focus: Defining neural network models using `nn.Module`, understanding loss func
   - Understand the role of optimizers in updating model parameters.
   - [Notes](notes/03_optimizers_notes.md)
   - [Results](results/03_optimizers.py)
-- [ ] **Build a Training Loop:**
+- [x] **Build a Training Loop:**
   - Combine the model, loss function, and optimizer into a complete training loop.
   - Implement the forward pass, loss calculation, backward pass (`loss.backward()`), and optimizer step (`optimizer.step()`).
   - Remember to zero gradients (`optimizer.zero_grad()`).
   - Iterate over the `DataLoader`.
-  - [Notes]()
-  - [Results]()
+  - [Notes](notes/04_training_loop_notes.md)
+  - [Results](results/04_training_loop.py)
 - [ ] **Implement Basic Evaluation:**
   - Add a basic evaluation step within or after the training loop.
   - Calculate accuracy or another relevant metric on a validation set.
