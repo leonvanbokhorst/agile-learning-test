@@ -112,4 +112,18 @@
   - Advanced memory management techniques for DataLoaders.
   - `torchtext` usage (due to deprecation and compatibility issues with current PyTorch version).
 
+## Sprint 3 Progress (Models & Training Loops)
+
+- **`nn.Module` Basics:** Completed work in [`sprints/03_models_and_training_loops/results/01_define_nn_module.py`](../sprints/03_models_and_training_loops/results/01_define_nn_module.py) and notes in [`sprints/03_models_and_training_loops/notes/01_define_nn_module_notes.md`](../sprints/03_models_and_training_loops/notes/01_define_nn_module_notes.md) covering:
+  - Defining custom models by inheriting from `nn.Module`.
+  - Understanding the role of `__init__` (layer definition, calling `super().__init__()`).
+  - Understanding the role of `forward` (defining data flow).
+  - Instantiating and using standard layers (`nn.Linear`, `nn.Flatten`, `nn.ReLU`).
+  - Testing model structure and forward pass with dummy data.
+- **Activation Functions & Non-Linearity:** Documented concepts in [`sprints/03_models_and_training_loops/notes/02_activation_functions_notes.md`](../sprints/03_models_and_training_loops/notes/02_activation_functions_notes.md) covering:
+  - The necessity of non-linearity to learn complex patterns.
+  - The limitation of stacking only linear layers.
+  - The role of activation functions (ReLU, Sigmoid, Tanh) in introducing non-linearity.
+  - The placement of activation functions (typically after linear layers).
+
 _(Update this section as sprints are completed or significant learning occurs. Add specific skills or concepts learned under relevant headings.)_
