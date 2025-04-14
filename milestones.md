@@ -69,11 +69,11 @@
 ### Next Steps
 
 - **Sprint 3: Models & Training Loops**
-  - Defining `nn.Module` based models.
-  - Implementing loss functions (`nn.CrossEntropyLoss`, etc.).
-  - Understanding optimizers (`torch.optim.Adam`, `SGD`).
-  - Building a complete training loop (forward pass, loss calc, backward pass, optimizer step).
-  - Implementing basic evaluation metrics.
+  - [x] Defining `nn.Module` based models.
+  - [x] Implementing loss functions (`nn.CrossEntropyLoss`, etc.).
+  - [x] Understanding optimizers (`torch.optim.Adam`, `SGD`).
+  - [ ] Building a complete training loop (forward pass, loss calc, backward pass, optimizer step).
+  - [ ] Implementing basic evaluation metrics.
 
 ### Documentation
 

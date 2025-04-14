@@ -121,9 +121,23 @@
   - Instantiating and using standard layers (`nn.Linear`, `nn.Flatten`, `nn.ReLU`).
   - Testing model structure and forward pass with dummy data.
 - **Activation Functions & Non-Linearity:** Documented concepts in [`sprints/03_models_and_training_loops/notes/02_activation_functions_notes.md`](../sprints/03_models_and_training_loops/notes/02_activation_functions_notes.md) covering:
+
   - The necessity of non-linearity to learn complex patterns.
   - The limitation of stacking only linear layers.
   - The role of activation functions (ReLU, Sigmoid, Tanh) in introducing non-linearity.
   - The placement of activation functions (typically after linear layers).
+
+- **Loss Functions:** Completed work in [`sprints/03_models_and_training_loops/results/02_loss_functions.py`](...) and notes in [`sprints/03_models_and_training_loops/notes/02_loss_functions_training_loop_notes.md`](...) covering:
+
+  - Understanding the purpose of loss functions (measuring error).
+  - Using common loss functions (`nn.CrossEntropyLoss`, `nn.MSELoss`).
+  - Understanding the input/output shapes expected by loss functions.
+  - Cross-Entropy specifics (combines LogSoftmax and NLLLoss).
+
+- **Optimizers:** Completed work in [`sprints/03_models_and_training_loops/results/03_optimizers.py`](...) and notes in [`sprints/03_models_and_training_loops/notes/03_optimizers_notes.md`](...) covering:
+  - Understanding the role of optimizers in updating weights based on gradients.
+  - Instantiating common optimizers (`torch.optim.Adam`, `torch.optim.SGD`).
+  - Understanding key hyperparameters (`lr`, `momentum`, `betas`).
+  - Recognizing Adam/AdamW as common default choices.
 
 _(Update this section as sprints are completed or significant learning occurs. Add specific skills or concepts learned under relevant headings.)_

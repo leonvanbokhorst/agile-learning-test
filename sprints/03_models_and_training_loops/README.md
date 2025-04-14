@@ -12,13 +12,13 @@ Focus: Defining neural network models using `nn.Module`, understanding loss func
 - [x] **Implement Loss Functions:**
   - Use common loss functions like `nn.CrossEntropyLoss` for classification or `nn.MSELoss` for regression.
   - Understand how loss functions measure model error.
-  - [Notes](notes/02_loss_functions_training_loop_notes.md)
+  - [Notes](notes/02_loss_functions_training_loop_notes.md), [Cross-Entropy Explained](notes/02a_cross_entropy_explained.md)
   - [Results](results/02_loss_functions.py)
-- [ ] **Implement Optimizers:**
+- [x] **Implement Optimizers:**
   - Use optimizers like `torch.optim.Adam` or `torch.optim.SGD`.
   - Understand the role of optimizers in updating model parameters.
-  - [Notes]()
-  - [Results]()
+  - [Notes](notes/03_optimizers_notes.md)
+  - [Results](results/03_optimizers.py)
 - [ ] **Build a Training Loop:**
   - Combine the model, loss function, and optimizer into a complete training loop.
   - Implement the forward pass, loss calculation, backward pass (`loss.backward()`), and optimizer step (`optimizer.step()`).
