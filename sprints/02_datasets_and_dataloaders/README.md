@@ -30,10 +30,10 @@ Learn how to efficiently load, preprocess, and manage data using PyTorch's `Data
    - [ ] Handle normalization and preprocessing
 
 4. **Built-in Datasets:**
-   - [x] Explore torchvision.datasets
+   - [*] Explore torchvision.datasets
    - [ ] Work with torchtext.datasets
-   - [ ] Understand dataset splits (train/val/test)
-   - [ ] Handle dataset downloading and caching
+   - [*] Understand dataset splits (train/val/test)
+   - [*] Handle dataset downloading and caching
 
 ## Definition of Done / Key Questions Answered
 
@@ -47,16 +47,17 @@ Learn how to efficiently load, preprocess, and manage data using PyTorch's `Data
 
 1. **Code Examples:**
 
-   - Custom dataset implementation
-   - DataLoader configuration
-   - Transformation pipeline
-   - Working with built-in datasets
+   - [x] Custom dataset implementation (`results/01_simple_dataset.py`)
+   - [x] DataLoader configuration (`results/02_dataloader_features.py`)
+   - [ ] Transformation pipeline
+   - [x] Working with built-in datasets (`results/03_builtin_datasets.py`)
 
 2. **Documentation:**
-   - Notes on dataset creation
-   - Best practices for data loading
-   - Memory management considerations
-   - Performance optimization tips
+   - [x] Notes on dataset creation (`notes/01_dataset_basics.md`)
+   - [*] Best practices for data loading (Covered partly in `notes/02_dataloader_and_builtin.md`)
+   - [x] Notes on DataLoader features and Built-in datasets (`notes/02_dataloader_and_builtin.md`)
+   - [ ] Memory management considerations
+   - [ ] Performance optimization tips
 
 ## Prerequisites
 
