@@ -6,4 +6,4 @@ alwaysApply: true
 1. Update @skills_competencies.md based on the current progress of the user if applicable.
 2. Update @milestones.md if applicable.
 3. Update the sprint tasklist in the README.md file in the directory of the current sprint if applicable.
-4. Update links and descriptions to the notes and results of this sprint in the same README of the sprint.
+4. Update all links and descriptions to the notes and results of this sprint in the same README of the sprint.

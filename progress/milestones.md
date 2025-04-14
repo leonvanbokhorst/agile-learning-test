@@ -34,3 +34,40 @@
 - Updated progress in README files
 - Maintained skills and competencies log
 - Documented neural network concepts in `02d_hidden_layer_network.md`
+
+## Sprint 2: Datasets & DataLoaders
+
+### Completed
+
+- [x] Implementation of custom `Dataset` (`__len__`, `__getitem__`)
+- [x] Understanding and configuration of `DataLoader` (batching, shuffling)
+- [x] Understanding parallel loading (`num_workers`) and associated caveats (`if __name__ == '__main__':`)
+- [x] Loading and using built-in datasets (`torchvision.datasets.MNIST`)
+- [x] Applying basic data transformations (`Compose`, `ToTensor`, `Normalize`)
+- [x] Documentation of Dataset and DataLoader concepts and examples
+- [x] Implemented custom transform class (`results/04_custom_transform.py`)
+- [x] Implemented basic data augmentation (`torchvision.transforms` like `RandomRotation`)
+
+### Skipped/Deferred
+
+- Deeper dive into DataLoader memory management.
+- `torchtext` dataset handling (due to library deprecation/compatibility).
+
+### Current Focus
+
+- Consolidating understanding of data handling pipeline.
+- Preparing for model building and training loop implementation in next sprint.
+
+### Next Steps
+
+- **Sprint 3: Models & Training Loops**
+  - Defining `nn.Module` based models.
+  - Implementing loss functions (`nn.CrossEntropyLoss`, etc.).
+  - Understanding optimizers (`torch.optim.Adam`, `SGD`).
+  - Building a complete training loop (forward pass, loss calc, backward pass, optimizer step).
+  - Implementing basic evaluation metrics.
+
+### Documentation
+
+- Created notes in `sprints/02_datasets_and_dataloaders/notes/`
+- Updated Sprint 2 `README.md`

@@ -1,44 +1,99 @@
 # Sprint Backlog
 
-Ideas for future sprints after completing Sprint 1 (Setup & Basics).
+## Completed Sprints
 
-## Potential Next Sprints
+### Sprint 1: Setup & Basics
 
-- **Sprint: Datasets & DataLoaders:**
+- [x] Environment setup with `pyproject.toml` and `uv`
+- [x] Basic tensor operations and manipulations
+- [x] Understanding of autograd and gradient computation
+- [x] Implementation of a simple neural network with one hidden layer
+- [x] Documentation of neural network concepts and architecture
 
-  - Goal: Learn how to load and preprocess data efficiently using PyTorch's `Dataset` and `DataLoader` classes.
-  - Tasks: Custom `Dataset` implementation, using built-in datasets, data augmentation/transformation pipelines.
+### Current Sprint: Datasets & DataLoaders
 
-- **Sprint: Building a Basic Neural Network:**
+- [ ] Understanding PyTorch Dataset interface
+- [ ] Implementing custom datasets
+- [ ] Working with DataLoaders
+- [ ] Data transformation pipelines
+- [ ] Built-in datasets exploration
 
-  - Goal: Combine `nn.Module`, layers (`Linear`, activation functions like `ReLU`), and loss functions (`MSELoss`, `CrossEntropyLoss`) to build and train a simple feed-forward network on a toy dataset (e.g., MNIST, simple regression).
-  - Tasks: Define network architecture, implement training loop (forward pass, loss calc, backward pass, optimizer step), basic evaluation.
+## Possible Upcoming Sprint Subjects
 
-- **Sprint: Understanding Embeddings & Positional Encoding:**
+### Sprint: Advanced Neural Networks
 
-  - Goal: Dive into the first key components of sequence models like Transformers.
-  - Tasks: Implement `nn.Embedding`, understand its purpose, implement sinusoidal or learned positional encoding.
+- Goal: Build upon basic networks to create more complex architectures
+- Tasks:
+  - Implement multi-layer networks
+  - Add different activation functions
+  - Implement dropout and batch normalization
+  - Create custom loss functions
+  - Handle different input/output types
 
-- **Sprint: Implementing Multi-Head Self-Attention:**
+### Sprint: Understanding Embeddings & Positional Encoding
 
-  - Goal: Tackle the core mechanism of the Transformer architecture.
-  - Tasks: Implement scaled dot-product attention, implement multi-head attention wrapper, understand masking.
+- Goal: Dive into the first key components of sequence models
+- Tasks:
+  - Implement `nn.Embedding`
+  - Create custom embedding layers
+  - Implement sinusoidal positional encoding
+  - Experiment with learned positional embeddings
+  - Understand embedding visualization
 
-- **Sprint: Building the Transformer Block:**
+### Sprint: Implementing Multi-Head Self-Attention
 
-  - Goal: Assemble the components (Multi-Head Attention, Add & Norm, Feed-Forward) into a full Transformer block.
-  - Tasks: Combine sub-layers, ensure correct tensor shapes flow through.
+- Goal: Tackle the core mechanism of the Transformer architecture
+- Tasks:
+  - Implement scaled dot-product attention
+  - Create multi-head attention wrapper
+  - Understand and implement masking
+  - Handle different attention patterns
+  - Optimize attention computation
 
-- **Sprint: Assembling the GPT-2 Model:**
+### Sprint: Building the Transformer Block
 
-  - Goal: Stack Transformer blocks to create the full GPT-2 like architecture.
-  - Tasks: Define the overall model structure, handle input/output processing.
+- Goal: Assemble components into a full Transformer block
+- Tasks:
+  - Combine attention with feed-forward networks
+  - Implement layer normalization
+  - Add residual connections
+  - Create encoder and decoder blocks
+  - Handle different block configurations
 
-- **Sprint: Training the GPT-2 Model (Small Scale):**
+### Sprint: Assembling the GPT-2 Model
 
-  - Goal: Implement the training loop specifically for the language model, train on a small text dataset.
-  - Tasks: Prepare text data, implement causal masking, train and observe basic text generation.
+- Goal: Stack Transformer blocks to create the full architecture
+- Tasks:
+  - Define model structure
+  - Implement input/output processing
+  - Add tokenization
+  - Handle model configuration
+  - Implement model saving/loading
 
-- **Sprint: Evaluation & Generation:**
-  - Goal: Learn how to evaluate the trained language model and generate text.
-  - Tasks: Implement perplexity calculation, implement different text generation strategies (greedy, sampling).
+### Sprint: Training the GPT-2 Model
+
+- Goal: Implement training pipeline for the language model
+- Tasks:
+  - Prepare text data pipeline
+  - Implement training loop
+  - Add evaluation metrics
+  - Handle model checkpointing
+  - Implement learning rate scheduling
+
+### Sprint: Evaluation & Generation
+
+- Goal: Learn model evaluation and text generation
+- Tasks:
+  - Implement perplexity calculation
+  - Add different generation strategies
+  - Create evaluation pipeline
+  - Handle different decoding methods
+  - Implement beam search
+
+## Future Considerations
+
+- Model optimization and quantization
+- Deployment strategies
+- Fine-tuning techniques
+- Advanced training methods
+- Model interpretability
