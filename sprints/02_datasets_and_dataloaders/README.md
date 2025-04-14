@@ -17,8 +17,8 @@ Learn how to efficiently load, preprocess, and manage data using PyTorch's `Data
 
 2. **Working with DataLoaders:**
 
-   - [ ] Configure batch size and shuffling
-   - [ ] Implement parallel data loading with workers
+   - [x] Configure batch size and shuffling
+   - [x] Implement parallel data loading with workers
    - [ ] Handle different data types (images, text, etc.)
    - [ ] Understand memory management
 
@@ -30,7 +30,7 @@ Learn how to efficiently load, preprocess, and manage data using PyTorch's `Data
    - [ ] Handle normalization and preprocessing
 
 4. **Built-in Datasets:**
-   - [ ] Explore torchvision.datasets
+   - [x] Explore torchvision.datasets
    - [ ] Work with torchtext.datasets
    - [ ] Understand dataset splits (train/val/test)
    - [ ] Handle dataset downloading and caching
