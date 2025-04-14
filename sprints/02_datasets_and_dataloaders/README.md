@@ -10,38 +10,38 @@ Learn how to efficiently load, preprocess, and manage data using PyTorch's `Data
 
 1. **Understanding PyTorch Dataset:**
 
-   - [ ] Study the `Dataset` class interface
-   - [ ] Implement a custom dataset for a simple task
-   - [ ] Understand `__len__` and `__getitem__` methods
-   - [ ] Handle data loading and preprocessing
+   - [x] Study the `Dataset` class interface (`notes/01_dataset_basics.md`)
+   - [x] Implement a custom dataset for a simple task (`results/01_simple_dataset.py`)
+   - [x] Understand `__len__` and `__getitem__` methods
+   - [x] Handle basic data loading and preprocessing
 
 2. **Working with DataLoaders:**
 
-   - [x] Configure batch size and shuffling
-   - [x] Implement parallel data loading with workers
-   - [ ] Handle different data types (images, text, etc.)
-   - [ ] Understand memory management
+   - [x] Configure batch size and shuffling (`results/02_dataloader_features.py`, `notes/02_dataloader_and_builtin.md`)
+   - [x] Implement parallel data loading with workers (`results/02_dataloader_features.py`, `notes/02_dataloader_and_builtin.md`)
+   - [x] Handle different data types (images explored via MNIST)
+   - [ ] Understand memory management (Basic understanding, not deep dive)
 
 3. **Data Transformation Pipeline:**
 
    - [ ] Implement data augmentation
-   - [ ] Create custom transforms
-   - [ ] Use torchvision.transforms
-   - [ ] Handle normalization and preprocessing
+   - [x] Create custom transforms
+   - [x] Use `torchvision.transforms` (ToTensor, Normalize, Compose) (`results/03_builtin_datasets.py`)
+   - [x] Handle normalization and basic preprocessing (`results/01_simple_dataset.py`, `results/03_builtin_datasets.py`)
 
 4. **Built-in Datasets:**
-   - [*] Explore torchvision.datasets
-   - [ ] Work with torchtext.datasets
-   - [*] Understand dataset splits (train/val/test)
-   - [*] Handle dataset downloading and caching
+   - [x] Explore `torchvision.datasets` (MNIST) (`results/03_builtin_datasets.py`)
+   - [ ] ~~Work with `torchtext.datasets`~~ (Skipped due to lib deprecation/compat issues)
+   - [x] Understand dataset splits (train/val/test) (`results/03_builtin_datasets.py`)
+   - [x] Handle dataset downloading and caching (`results/03_builtin_datasets.py`)
 
 ## Definition of Done / Key Questions Answered
 
-- [ ] Can create custom datasets for different data types
-- [ ] Understand how to efficiently load and preprocess data
-- [ ] Can implement data augmentation and transformation pipelines
-- [ ] Know how to use built-in datasets and create custom ones
-- [ ] Key Question: How does PyTorch handle data loading and preprocessing efficiently?
+- [x] Can create custom datasets for different data types (Demonstrated with `SimpleDataset`)
+- [x] Understand how to efficiently load and preprocess data (Core `DataLoader` usage, shuffling, worker concepts, basic & custom transforms)
+- [x] Can implement data augmentation and transformation pipelines (Basic pipelines with `Compose`, `ToTensor`, `Normalize`, custom transforms implemented; Augmentation skipped)
+- [x] Know how to use built-in datasets and create custom ones (MNIST example, `SimpleDataset` example, custom transform example)
+- [x] Key Question: How does PyTorch handle data loading and preprocessing efficiently? (Answered via `Dataset`, `DataLoader`, transforms, workers)
 
 ## Expected Outcomes
 
@@ -49,15 +49,15 @@ Learn how to efficiently load, preprocess, and manage data using PyTorch's `Data
 
    - [x] Custom dataset implementation (`results/01_simple_dataset.py`)
    - [x] DataLoader configuration (`results/02_dataloader_features.py`)
-   - [ ] Transformation pipeline
+   - [x] Transformation pipeline (`results/01_simple_dataset.py`, `results/03_builtin_datasets.py`, `results/04_custom_transform.py`)
    - [x] Working with built-in datasets (`results/03_builtin_datasets.py`)
 
 2. **Documentation:**
    - [x] Notes on dataset creation (`notes/01_dataset_basics.md`)
-   - [*] Best practices for data loading (Covered partly in `notes/02_dataloader_and_builtin.md`)
+   - [x] Best practices for data loading (`notes/02_dataloader_and_builtin.md` - covers core concepts)
    - [x] Notes on DataLoader features and Built-in datasets (`notes/02_dataloader_and_builtin.md`)
    - [ ] Memory management considerations
-   - [ ] Performance optimization tips
+   - [x] Performance optimization tips (`notes/02_dataloader_and_builtin.md` - worker caveats)
 
 ## Prerequisites
 
