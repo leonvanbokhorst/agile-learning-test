@@ -10,25 +10,34 @@
 - [x] Implementation of a simple neural network with one hidden layer
 - [x] Documentation of neural network concepts and architecture
 
-### Current Sprint: Datasets & DataLoaders
+### Sprint 2: Datasets & DataLoaders
 
-- [ ] Understanding PyTorch Dataset interface
-- [ ] Implementing custom datasets
-- [ ] Working with DataLoaders
-- [ ] Data transformation pipelines
-- [ ] Built-in datasets exploration
+- [x] Understanding PyTorch `Dataset` interface (`__len__`, `__getitem__`)
+- [x] Implementing custom datasets
+- [x] Working with `DataLoaders` (batching, shuffling, `num_workers`)
+- [x] Applying `torchvision.transforms` (Compose, ToTensor, Normalize, basic augmentation)
+- [x] Loading built-in datasets (`torchvision.datasets.MNIST`)
+- [x] Handled `DataLoader` multiprocessing caveats (`if __name__ == '__main__':`)
 
-## Possible Upcoming Sprint Subjects
+### Sprint 3: Models & Training Loops
 
-### Sprint: Advanced Neural Networks
+- [x] Defined basic `nn.Module` (Linear Regression example)
+- [x] Understood `__init__` and `forward` methods.
+- [x] Implemented common loss functions (`nn.MSELoss`, `nn.CrossEntropyLoss`).
+- [x] Implemented optimizers (`torch.optim.Adam`).
+- [x] Built a complete training loop (forward, loss, backward, step, zero_grad).
+- [x] Integrated `tqdm` for progress visualization.
+- [x] Implemented basic evaluation loop (`model.eval()`, `torch.no_grad()`).
 
-- Goal: Build upon basic networks to create more complex architectures
-- Tasks:
-  - Implement multi-layer networks
-  - Add different activation functions
-  - Implement dropout and batch normalization
-  - Create custom loss functions
-  - Handle different input/output types
+### Sprint 4: Advanced Training Techniques & CNN Basics
+
+- [x] Defined basic CNN architecture (`nn.Conv2d`, `nn.MaxPool2d`, etc.)
+- [x] Implemented TensorBoard logging (`SummaryWriter`).
+- [x] Implemented Learning Rate Scheduling (`CosineAnnealingLR`).
+- [x] Implemented Early Stopping logic.
+- [x] Combined techniques in a full MNIST training loop.
+
+## Next Sprint Focus (Sprint 5 Tentative)
 
 ### Sprint: Understanding Embeddings & Positional Encoding
 
@@ -39,6 +48,8 @@
   - Implement sinusoidal positional encoding
   - Experiment with learned positional embeddings
   - Understand embedding visualization
+
+## Possible Future Sprint Subjects
 
 ### Sprint: Implementing Multi-Head Self-Attention
 

@@ -112,4 +112,91 @@
   - Advanced memory management techniques for DataLoaders.
   - `torchtext` usage (due to deprecation and compatibility issues with current PyTorch version).
 
+## Sprint 3 Progress (Models & Training Loops)
+
+- **`nn.Module` Basics:** Completed work in [`sprints/03_models_and_training_loops/results/01_define_nn_module.py`](../sprints/03_models_and_training_loops/results/01_define_nn_module.py) and notes in [`sprints/03_models_and_training_loops/notes/01_define_nn_module_notes.md`](../sprints/03_models_and_training_loops/notes/01_define_nn_module_notes.md) covering:
+  - Defining custom models by inheriting from `nn.Module`.
+  - Understanding the role of `__init__` (layer definition, calling `super().__init__()`).
+  - Understanding the role of `forward` (defining data flow).
+  - Instantiating and using standard layers (`nn.Linear`, `nn.Flatten`, `nn.ReLU`).
+  - Testing model structure and forward pass with dummy data.
+- **Activation Functions & Non-Linearity:** Documented concepts in [`sprints/03_models_and_training_loops/notes/02_activation_functions_notes.md`](../sprints/03_models_and_training_loops/notes/02_activation_functions_notes.md) covering:
+
+  - The necessity of non-linearity to learn complex patterns.
+  - The limitation of stacking only linear layers.
+  - The role of activation functions (ReLU, Sigmoid, Tanh) in introducing non-linearity.
+  - The placement of activation functions (typically after linear layers).
+
+- **Loss Functions:** Completed work in [`sprints/03_models_and_training_loops/results/02_loss_functions.py`](...) and notes in [`sprints/03_models_and_training_loops/notes/02_loss_functions_training_loop_notes.md`](...) covering:
+
+  - Understanding the purpose of loss functions (measuring error).
+  - Using common loss functions (`nn.CrossEntropyLoss`, `nn.MSELoss`).
+  - Understanding the input/output shapes expected by loss functions.
+  - Cross-Entropy specifics (combines LogSoftmax and NLLLoss).
+
+- **Optimizers:** Completed work in [`sprints/03_models_and_training_loops/results/03_optimizers.py`](...) and notes in [`sprints/03_models_and_training_loops/notes/03_optimizers_notes.md`](...) covering:
+
+  - Understanding the role of optimizers in updating weights based on gradients.
+  - Instantiating common optimizers (`torch.optim.Adam`, `torch.optim.SGD`).
+  - Understanding key hyperparameters (`lr`, `momentum`, `betas`).
+  - Recognizing Adam/AdamW as common default choices.
+
+- **Training Loop:** Completed work in [`sprints/03_models_and_training_loops/results/04_training_loop.py`](...) and notes in [`sprints/03_models_and_training_loops/notes/04_training_loop_notes.md`](...) covering:
+
+  - Implementing the standard PyTorch training cycle: forward pass, loss calculation, `optimizer.zero_grad()`, `loss.backward()`, `optimizer.step()`.
+  - Iterating over a `DataLoader`.
+  - Setting the model to training mode (`model.train()`).
+  - Accumulating and logging epoch loss.
+  - Integrating `tqdm` for batch-level progress visualization.
+
+- **Basic Evaluation:** Completed work in [`sprints/03_models_and_training_loops/results/05_basic_evaluation.py`](...) and notes in [`sprints/03_models_and_training_loops/notes/05_basic_evaluation_notes.md`](...) covering:
+  - Creating a separate validation dataset and `DataLoader`.
+  - Implementing an evaluation loop.
+  - Setting the model to evaluation mode (`model.eval()`) and understanding its importance (e.g., for Dropout, BatchNorm).
+  - Disabling gradient calculation using `with torch.no_grad():` for efficiency.
+  - Calculating metrics (e.g., validation loss) on the validation set.
+  - Performing evaluation periodically during training (e.g., after each epoch).
+
 _(Update this section as sprints are completed or significant learning occurs. Add specific skills or concepts learned under relevant headings.)_
+
+## Sprint 4 Progress (Advanced Training & CNN Basics)
+
+- **CNN Fundamentals:** Learned and implemented core CNN layers in [`sprints/04_advanced_training_mnist/results/define_cnn.py`](./sprints/04_advanced_training_mnist/results/define_cnn.py) and notes in [`sprints/04_advanced_training_mnist/notes/01_cnn_architecture.md`](./sprints/04_advanced_training_mnist/notes/01_cnn_architecture.md):
+
+  - `nn.Conv2d`: Understanding kernels, channels, stride, padding.
+  - `nn.ReLU`: Standard activation function.
+  - `nn.MaxPool2d`: Down-sampling feature maps.
+  - `nn.Flatten`: Preparing data for fully connected layers.
+  - Understood basic hierarchical feature learning concept.
+  - Briefly explored a more complex ResNet structure (`BasicBlock`, skip connections) in [`sprints/04_advanced_training_mnist/results/define_resnet_mnist.py`](./sprints/04_advanced_training_mnist/results/define_resnet_mnist.py).
+
+- **TensorBoard Integration:** Learned to use `torch.utils.tensorboard.SummaryWriter` as documented in [`sprints/04_advanced_training_mnist/notes/02_tensorboard_basics.md`](./sprints/04_advanced_training_mnist/notes/02_tensorboard_basics.md):
+
+  - Creating a `SummaryWriter` with timestamped log directories (`runs/...`).
+  - Logging scalar values (`add_scalar`) like loss, accuracy, and learning rate during training.
+  - Understanding how to launch and interpret the TensorBoard dashboard (`tensorboard --logdir=runs`).
+
+- **Learning Rate Scheduling:** Learned concepts and implementation (notes in [`sprints/04_advanced_training_mnist/notes/03_learning_rate_scheduling.md`](./sprints/04_advanced_training_mnist/notes/03_learning_rate_scheduling.md)):
+
+  - Understood the rationale for changing LR during training.
+  - Implemented `torch.optim.lr_scheduler.CosineAnnealingLR`.
+  - Correctly integrated `scheduler.step()` into the training loop.
+  - Understood the concept of "annealing" in this context.
+  - Connected PyTorch schedulers to Hugging Face `Trainer`'s `lr_scheduler_type`.
+
+- **Early Stopping:** Learned concepts and implementation (notes in [`sprints/04_advanced_training_mnist/notes/04_early_stopping.md`](./sprints/04_advanced_training_mnist/notes/04_early_stopping.md)):
+
+  - Understood the goal of preventing overfitting and saving time.
+  - Implemented logic to monitor validation loss.
+  - Used a `patience` counter to trigger stopping.
+  - Saved the best model's `state_dict` based on validation performance.
+  - Loaded the best weights after training stopped.
+
+- **Integrated Training Loop:** Combined all above components in [`sprints/04_advanced_training_mnist/results/train_mnist_cnn.py`](./sprints/04_advanced_training_mnist/results/train_mnist_cnn.py):
+
+  - Successfully trained a CNN on MNIST.
+  - Observed the practical effects of LR scheduling and early stopping.
+
+- **Python/PyTorch Practices:**
+  - Resolved `DataLoader` multiprocessing errors using `if __name__ == '__main__':` guard.
+  - Practiced running scripts as modules (`python -m ...`) to handle relative imports correctly.

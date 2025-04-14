@@ -18,3 +18,4 @@ Gain a robust, practical understanding of PyTorch by implementing core deep lear
 ## 🚀 Current Status
 
 See the `sprints/` directory for active and completed work blocks.
+For a detailed breakdown of completed sprints and overall progress, see [`milestones.md`](milestones.md).
