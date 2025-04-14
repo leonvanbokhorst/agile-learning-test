@@ -158,3 +158,45 @@
   - Performing evaluation periodically during training (e.g., after each epoch).
 
 _(Update this section as sprints are completed or significant learning occurs. Add specific skills or concepts learned under relevant headings.)_
+
+## Sprint 4 Progress (Advanced Training & CNN Basics)
+
+- **CNN Fundamentals:** Learned and implemented core CNN layers in [`sprints/04_advanced_training_mnist/results/define_cnn.py`](./sprints/04_advanced_training_mnist/results/define_cnn.py) and notes in [`sprints/04_advanced_training_mnist/notes/01_cnn_architecture.md`](./sprints/04_advanced_training_mnist/notes/01_cnn_architecture.md):
+
+  - `nn.Conv2d`: Understanding kernels, channels, stride, padding.
+  - `nn.ReLU`: Standard activation function.
+  - `nn.MaxPool2d`: Down-sampling feature maps.
+  - `nn.Flatten`: Preparing data for fully connected layers.
+  - Understood basic hierarchical feature learning concept.
+  - Briefly explored a more complex ResNet structure (`BasicBlock`, skip connections) in [`sprints/04_advanced_training_mnist/results/define_resnet_mnist.py`](./sprints/04_advanced_training_mnist/results/define_resnet_mnist.py).
+
+- **TensorBoard Integration:** Learned to use `torch.utils.tensorboard.SummaryWriter` as documented in [`sprints/04_advanced_training_mnist/notes/02_tensorboard_basics.md`](./sprints/04_advanced_training_mnist/notes/02_tensorboard_basics.md):
+
+  - Creating a `SummaryWriter` with timestamped log directories (`runs/...`).
+  - Logging scalar values (`add_scalar`) like loss, accuracy, and learning rate during training.
+  - Understanding how to launch and interpret the TensorBoard dashboard (`tensorboard --logdir=runs`).
+
+- **Learning Rate Scheduling:** Learned concepts and implementation (notes in [`sprints/04_advanced_training_mnist/notes/03_learning_rate_scheduling.md`](./sprints/04_advanced_training_mnist/notes/03_learning_rate_scheduling.md)):
+
+  - Understood the rationale for changing LR during training.
+  - Implemented `torch.optim.lr_scheduler.CosineAnnealingLR`.
+  - Correctly integrated `scheduler.step()` into the training loop.
+  - Understood the concept of "annealing" in this context.
+  - Connected PyTorch schedulers to Hugging Face `Trainer`'s `lr_scheduler_type`.
+
+- **Early Stopping:** Learned concepts and implementation (notes in [`sprints/04_advanced_training_mnist/notes/04_early_stopping.md`](./sprints/04_advanced_training_mnist/notes/04_early_stopping.md)):
+
+  - Understood the goal of preventing overfitting and saving time.
+  - Implemented logic to monitor validation loss.
+  - Used a `patience` counter to trigger stopping.
+  - Saved the best model's `state_dict` based on validation performance.
+  - Loaded the best weights after training stopped.
+
+- **Integrated Training Loop:** Combined all above components in [`sprints/04_advanced_training_mnist/results/train_mnist_cnn.py`](./sprints/04_advanced_training_mnist/results/train_mnist_cnn.py):
+
+  - Successfully trained a CNN on MNIST.
+  - Observed the practical effects of LR scheduling and early stopping.
+
+- **Python/PyTorch Practices:**
+  - Resolved `DataLoader` multiprocessing errors using `if __name__ == '__main__':` guard.
+  - Practiced running scripts as modules (`python -m ...`) to handle relative imports correctly.

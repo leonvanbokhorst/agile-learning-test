@@ -99,3 +99,35 @@
 
 - Created notes and results in [sprints/03_models_and_training_loops/](sprints/03_models_and_training_loops/)
 - Filled out Sprint 3 `README.md` retrospective.
+
+## Sprint 4: Advanced Training Techniques & MNIST Classification
+
+### Completed
+
+- [x] Defined a basic CNN architecture (`nn.Conv2d`, `nn.MaxPool2d`, etc.).
+- [x] Implemented TensorBoard integration for logging metrics (`SummaryWriter`, `add_scalar`).
+- [x] Implemented Learning Rate Scheduling (`CosineAnnealingLR`, `scheduler.step()`).
+- [x] Implemented Early Stopping logic (monitoring validation loss, patience, saving best model).
+- [x] Combined all components into a full training/validation loop for MNIST.
+- [x] Successfully trained the CNN on MNIST, observing the effects of LR scheduling and early stopping.
+- [x] Correctly handled multiprocessing issues with `DataLoader` (`if __name__ == '__main__':`).
+- [x] Practiced running scripts as modules (`python -m ...`) for relative imports.
+
+### Key Insights
+
+- Understood the practical application and benefits of TensorBoard, LR scheduling, and early stopping for managing the training process.
+- Gained experience debugging common PyTorch issues like `DataLoader` multiprocessing errors and import path problems.
+- Reinforced understanding of the complete PyTorch workflow from data loading to model definition, training, and basic evaluation.
+- Recognized that MNIST served as a practical exercise for learning these techniques, which are transferable to more complex tasks like sequence modeling.
+
+### Next Steps
+
+- **Sprint 5: Embeddings & Positional Encoding** (Tentative)
+  - Understanding `nn.Embedding` for representing discrete tokens (like words).
+  - Implementing different types of positional encoding to inject sequence order information.
+  - Moving towards building the foundational components of sequence-to-sequence models and Transformers.
+
+### Documentation
+
+- Created notes and results in [sprints/04_advanced_training_mnist/](./sprints/04_advanced_training_mnist/)
+- Filled out Sprint 4 `README.md`.
