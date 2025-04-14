@@ -25,10 +25,6 @@ project_root/
 │   │   └── results/          # Outputs, code, practice files
 │   ├── current/              # Symbolic link or copy of the active sprint folder
 │   └── backlog.md            # Ideas for future sprints
-├── resources/                # Supporting materials
-│   ├── data/                 # Input data, datasets
-│   ├── references/           # Links, papers, articles
-│   └── tools/                # Setup guides, tool configurations
 └── progress/                 # Overall tracking
     ├── skills_competencies.md # Log of acquired skills/competencies
     └── milestones.md          # Major achievements and decisions
