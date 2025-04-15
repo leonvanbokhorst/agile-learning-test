@@ -280,3 +280,52 @@
 - [Position-wise FFN](./sprints/07_transformer_block/results/positionwise_feed_forward.py)
 - [Encoder Block Implementation](./sprints/07_transformer_block/results/encoder_block.py)
 - [Decoder Block Implementation](./sprints/07_transformer_block/results/decoder_block.py)
+
+## Sprint 8: Assembling the GPT-2 Model
+
+### Completed
+
+- [x] Defined overall `GPT` model architecture using stacked `GPTDecoderBlock`s.
+- [x] Implemented token and positional embeddings (using `PositionalEncodingBatchFirst`).
+- [x] Implemented final LayerNorm and output projection layer.
+- [x] Enabled weight tying between embeddings and output layer.
+- [x] Implemented weight initialization strategy.
+- [x] Refactored model to use a `GPTConfig` dataclass for hyperparameter management.
+- [x] Implemented checkpoint saving (`save_checkpoint`) and loading (`load_checkpoint`) utilities.
+- [x] (Stretch) Added `tokenizers` dependency and implemented loading of standard GPT-2 tokenizer.
+
+### Key Insights
+
+- Successfully integrated components from previous sprints into a complete, cohesive model (`GPT`).
+- Learned the structure of a decoder-only Transformer model (GPT-style).
+- Gained experience with practical considerations like configuration management (dataclasses), weight initialization, weight tying, and checkpointing.
+- Understood how to leverage external libraries (`tokenizers`) for standard components like tokenization.
+- Practiced organizing code into logical modules (`model.py`, `config.py`, `utils.py`, etc.).
+
+### Next Steps
+
+- **Sprint 9: Training the GPT-2 Model** (Tentative)
+  - Preparing a text dataset (e.g., TinyShakespeare).
+  - Implementing a data pipeline using the GPT-2 tokenizer.
+  - Building the training loop specifically for language modeling (predicting the next token).
+  - Implementing evaluation metrics relevant to language models (e.g., perplexity).
+  - Refining checkpointing to include optimizer state and training progress.
+
+### Documentation
+
+- Created notes and results in [sprints/08_gpt2_assembly/](./sprints/08_gpt2_assembly/)
+- Updated Sprint 8 `README.md`.
+
+### Notes:
+
+- [Model Structure](./sprints/08_gpt2_assembly/notes/sprint_08/model_structure.md) (Note: You might need to recreate this file if deleted)
+- (Create other notes as needed for config, utils, tokenizer)
+
+### Results:
+
+- [GPT Model](./sprints/08_gpt2_assembly/results/model.py)
+- [GPT Decoder Block](./sprints/08_gpt2_assembly/results/gpt_decoder_block.py)
+- [Positional Encoding](./sprints/08_gpt2_assembly/results/positional_encoding.py)
+- [Config](./sprints/08_gpt2_assembly/results/config.py)
+- [Utils (Checkpointing)](./sprints/08_gpt2_assembly/results/utils.py)
+- [Tokenizer](./sprints/08_gpt2_assembly/results/tokenizer.py)

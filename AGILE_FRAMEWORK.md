@@ -1,4 +1,4 @@
-# 🎯 Agile Collaboration Framework 🎯
+# Agile Collaboration Framework
 
 ## Introduction
 
@@ -32,7 +32,7 @@ project_root/
 
 _(Adapt this structure as needed)_
 
-## 🎯 Epic: [Overall Goal / Research Question / Project Title]
+## Epic: [Overall Goal / Research Question / Project Title]
 
 **Vision Statement:**
 [Clearly state the ultimate objective. What are we trying to achieve, learn, or build?]
@@ -43,7 +43,7 @@ _(Adapt this structure as needed)_
 - [ ] [Measurable outcome or key question 2]
 - [ ] [Measurable outcome or key question 3]
 
-## 📋 Current Sprint: [Focus of this Work Block]
+## Current Sprint: [Focus of this Work Block]
 
 _(Typically managed in `sprints/current/README.md`)_
 
@@ -62,7 +62,7 @@ _(Typically managed in `sprints/current/README.md`)_
 - [ ] [Deliverable 2 / Understanding achieved 2]
 - [ ] [Question answered / Hypothesis tested]
 
-## 📈 Backlog & Planning
+## Backlog & Planning
 
 _(Managed in `sprints/backlog.md` or here)_
 
@@ -80,7 +80,7 @@ _(Managed in `sprints/backlog.md` or here)_
 4.  **Execute:** Work through the sprint tasks.
 5.  **Conclude:** Summarize findings, update progress, and archive the sprint.
 
-## 📝 Progress & Assessment
+## Progress & Assessment
 
 _(Managed in `progress/` directory and sprint `README.md` files)_
 
@@ -96,7 +96,7 @@ _(Managed in `progress/` directory and sprint `README.md` files)_
 - **Practical Application:** Can the learned concepts/skills be applied successfully to tasks?
 - **Deliverables:** Are the sprint outputs complete and meet the defined goals?
 
-## 🔄 Adaptability
+## Adaptability
 
 This framework is designed to be flexible:
 

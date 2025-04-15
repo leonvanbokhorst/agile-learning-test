@@ -45,6 +45,7 @@ dependencies = [
     "pytz>=2024.1", # Required by matplotlib for date handling
     "pynndescent>=0.5.10", # For approximate nearest neighbor search
     "typing_extensions>=4.11.0", # For Python 3.10+ compatibility
+    "tokenizers>=0.19.1", # Added for text tokenization (GPT-2)
 ]
 
 [project.urls]

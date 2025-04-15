@@ -285,3 +285,35 @@ _(Update this section as sprints are completed or significant learning occurs. A
   - Practiced debugging import errors related to module structure and execution methods (`python -m ...`).
   - Debugged module interface mismatches (e.g., MHA arguments, tuple outputs).
   - Refactored code for clarity (e.g., renaming files).
+
+## Sprint 8 Progress (Assembling the GPT-2 Model)
+
+- **GPT Model Architecture:**
+  - Defined the overall `GPT` model structure as a `nn.Module` ([`results/model.py`](./sprints/08_gpt2_assembly/results/model.py)).
+  - Implemented token embeddings (`nn.Embedding`).
+  - Implemented sinusoidal positional encoding (`PositionalEncodingBatchFirst`) and integrated it ([`results/positional_encoding.py`](./sprints/08_gpt2_assembly/results/positional_encoding.py)).
+  - Created a GPT-specific decoder block (`GPTDecoderBlock`) by removing cross-attention from the previous `DecoderBlock` ([`results/gpt_decoder_block.py`](./sprints/08_gpt2_assembly/results/gpt_decoder_block.py)).
+  - Stacked `GPTDecoderBlock` layers using `nn.ModuleList`.
+  - Added final `LayerNorm` and output linear projection layer.
+  - Understood and implemented weight tying between token embeddings and output projection.
+- **Model Configuration:**
+  - Created a `GPTConfig` dataclass to manage hyperparameters ([`results/config.py`](./sprints/08_gpt2_assembly/results/config.py)).
+  - Refactored the `GPT` model to accept the `GPTConfig` object.
+  - Implemented automatic calculation of `d_ff` in the config.
+- **Weight Initialization:**
+  - Implemented a `_init_weights` method for initializing Linear and Embedding layers according to GPT-2 practices.
+  - Used `model.apply()` to apply the initialization.
+- **Saving & Loading:**
+  - Implemented `save_checkpoint` and `load_checkpoint` functions in [`results/utils.py`](./sprints/08_gpt2_assembly/results/utils.py).
+  - Checkpoints save model `state_dict` and `config`.
+  - Loading function reconstructs the model from the saved config.
+- **Tokenization (Stretch Goal):**
+  - Added `tokenizers` library to project dependencies (`pyproject.toml`).
+  - Implemented `get_gpt2_tokenizer` function to load the standard GPT-2 tokenizer from Hugging Face Hub/cache ([`results/tokenizer.py`](./sprints/08_gpt2_assembly/results/tokenizer.py)).
+  - Tested encoding and decoding with the loaded tokenizer.
+- **PyTorch Practices:**
+  - Used dataclasses for configuration.
+  - Organized utility functions (`save/load`) into a separate file.
+  - Added basic tests (`if __name__ == '__main__':`) for new modules.
+  - Handled Python environment updates using `uv`.
+  - Implemented helper methods within the model class (e.g., `get_num_params`).

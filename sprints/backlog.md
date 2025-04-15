@@ -60,28 +60,33 @@
 - [x] Implemented the `DecoderBlock` module.
 - [x] Tested blocks individually and stacked.
 
-## Next Sprint Focus (Sprint 8 Tentative)
+### Sprint 8: Assembling the GPT-2 Model
 
-### Sprint: Assembling the GPT-2 Model
+- [x] Defined overall `GPT` model architecture (`model.py`).
+- [x] Implemented token embeddings and sinusoidal positional encoding (`positional_encoding.py`).
+- [x] Created GPT-specific decoder block (`gpt_decoder_block.py`).
+- [x] Stacked decoder blocks and added final output layer.
+- [x] Enabled weight tying and added weight initialization.
+- [x] Handled configuration using a `GPTConfig` dataclass (`config.py`).
+- [x] Implemented checkpoint saving/loading (`utils.py`).
+- [x] (Stretch) Integrated GPT-2 tokenizer using `tokenizers` library (`tokenizer.py`).
 
-- Goal: Stack Transformer blocks to create the full architecture
-- Tasks:
-  - Define model structure (Stacking Decoder Blocks)
-  - Implement input processing (Token + Positional Embeddings)
-  - Implement final output layer (Linear projection to vocab size)
-  - Handle model configuration (hyperparameters like vocab size, context length, layers, etc.)
-  - Implement model saving/loading
-  - (Stretch) Add tokenization integration (e.g., using Hugging Face `tokenizers`)
+## Next Sprint Focus (Sprint 9 Tentative)
 
 ### Sprint: Training the GPT-2 Model
 
 - Goal: Implement training pipeline for the language model
 - Tasks:
-  - Prepare text data pipeline
-  - Implement training loop
-  - Add evaluation metrics
-  - Handle model checkpointing
-  - Implement learning rate scheduling
+  - Prepare text data pipeline (e.g., TinyShakespeare dataset)
+    - Integrate `tokenizer.py` for encoding.
+    - Create custom `Dataset` for sequential data.
+    - Set up `DataLoader`.
+  - Implement training loop for language modeling (predict next token).
+    - Define appropriate loss function (e.g., `nn.CrossEntropyLoss`).
+    - Select optimizer (e.g., AdamW).
+  - Add evaluation metrics (e.g., perplexity calculation).
+  - Refine model checkpointing (include optimizer state, epoch, etc.).
+  - Implement learning rate scheduling (e.g., cosine decay with warmup).
 
 ### Sprint: Evaluation & Generation
 
