@@ -9,17 +9,17 @@
 
 ## Tasks
 
-- [ ] **`nn.Embedding` Basics:**
-  - [ ] Understand the purpose of embeddings (mapping discrete tokens to dense vectors).
-  - [ ] Implement `nn.Embedding`, understand `num_embeddings` and `embedding_dim`.
-  - [ ] Demonstrate looking up embeddings for input indices.
-  - [ ] _Results:_ `results/01_nn_embedding_basics.py`
-  - [ ] _Notes:_ `notes/01_nn_embedding_notes.md`
-- [ ] **Custom Embedding Layers:**
-  - [ ] Implement a simple embedding layer from scratch (optional, for understanding).
-  - [ ] Discuss initialization strategies for embeddings.
-  - [ ] _Results:_ (Optional) `results/02_custom_embedding.py`
-  - [ ] _Notes:_ `notes/02_custom_embedding_notes.md`
+- [x] **`nn.Embedding` Basics:**
+  - [x] Understand the purpose of embeddings (mapping discrete tokens to dense vectors).
+  - [x] Implement `nn.Embedding`, understand `num_embeddings` and `embedding_dim`.
+  - [x] Demonstrate looking up embeddings for input indices.
+  - [x] _Results:_ `results/01_nn_embedding_basics.py`
+  - [x] _Notes:_ `notes/01_nn_embedding_notes.md`
+- [x] **Custom Embedding Layers:**
+  - [x] Implement a simple embedding layer from scratch (optional, for understanding).
+  - [x] Discuss initialization strategies for embeddings. (Covered conceptually)
+  - [x] _Results:_ (Optional) `results/02_custom_embedding.py`
+  - [x] _Notes:_ `notes/02_custom_embedding_notes.md`
 - [ ] **Sinusoidal Positional Encoding:**
   - [ ] Understand why positional information is needed for sequence models like Transformers.
   - [ ] Implement the sinusoidal positional encoding formula.
