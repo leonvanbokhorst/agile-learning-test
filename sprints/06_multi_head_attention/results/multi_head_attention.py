@@ -226,7 +226,7 @@ if __name__ == "__main__":
 
     print(f"  Look-Ahead Mask shape (base): {look_ahead_mask.shape}")
     print(f"  Look-Ahead Mask shape (broadcastable): {attn_mask_look_ahead.shape}")
-    print(f"  Example Look-Ahead Mask (Base):")
+    print("  Example Look-Ahead Mask (Base):")
     print(look_ahead_mask)
 
     output_look_ahead, attn_weights_look_ahead = multi_head_attn(

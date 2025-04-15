@@ -111,7 +111,7 @@ if __name__ == "__main__":
     mask[:, :, -2:] = False  # Mask out last two columns (keys)
 
     print(f"  Mask shape: {mask.shape}")
-    print(f"  Example Mask (first batch, first query):")
+    print("  Example Mask (first batch, first query):")
     print(mask[0, 0])
     print("")  # Add a blank line for spacing
 

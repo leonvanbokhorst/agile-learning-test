@@ -251,3 +251,37 @@ _(Update this section as sprints are completed or significant learning occurs. A
   - Implemented tests within `if __name__ == "__main__":` blocks.
   - Used `nn.Module` for building reusable components.
   - Handled tensor dimension manipulation (`transpose`, `view`).
+
+## Sprint 7 Progress (Building the Transformer Block)
+
+- **Layer Normalization (`nn.LayerNorm`):**
+  - Understood the concept, purpose (batch size independence, sequence stability), and mechanism.
+  - Implemented `nn.LayerNorm` correctly, specifying `normalized_shape` for typical Transformer inputs.
+  - Verified its effect (mean ~0, std dev ~1) on feature dimensions.
+  - Documented in [`sprints/07_transformer_block/notes/01_layer_norm.md`](./sprints/07_transformer_block/notes/01_layer_norm.md).
+- **Residual Connections & Add/Norm Pattern:**
+  - Understood the motivation (gradient flow, identity mapping) and implementation of skip connections.
+  - Implemented the common "Add & Norm" pattern: `LayerNorm(x + Dropout(Sublayer(x)))`.
+  - Created a reusable wrapper concept (`AddNormWrapper` in example).
+  - Documented in [`sprints/07_transformer_block/notes/02_residual_connections.md`](./sprints/07_transformer_block/notes/02_residual_connections.md).
+- **Position-wise Feed-Forward Network (FFN):**
+  - Understood the structure (Linear -> Activation -> Dropout -> Linear) and purpose.
+  - Implemented the FFN as a reusable `nn.Module` (`PositionWiseFeedForward`).
+  - Used GELU activation.
+  - Documented in [`sprints/07_transformer_block/notes/03_feed_forward_network.md`](./sprints/07_transformer_block/notes/03_feed_forward_network.md).
+- **Transformer Encoder Block:**
+  - Assembled the `EncoderBlock` module using Multi-Head Self-Attention and FFN sub-layers, each wrapped in Add & Norm.
+  - Correctly handled inputs, padding masks, and data flow.
+  - Handled tuple output from `MultiHeadAttention`.
+  - Tested shape maintenance and basic normalization with single and stacked blocks.
+  - Documented in [`sprints/07_transformer_block/notes/04_encoder_block.md`](./sprints/07_transformer_block/notes/04_encoder_block.md).
+- **Transformer Decoder Block:**
+  - Assembled the `DecoderBlock` module with three sub-layers: Masked Self-Attention, Cross-Attention, and FFN, each wrapped in Add & Norm.
+  - Correctly managed inputs (target sequence, encoder output) and masks (look-ahead target mask, encoder padding mask).
+  - Differentiated between self-attention (Q=K=V=target) and cross-attention (Q=target_processed, K=V=encoder_output).
+  - Tested shape maintenance and basic normalization with single and stacked blocks.
+  - Documented in [`sprints/07_transformer_block/notes/05_decoder_block.md`](./sprints/07_transformer_block/notes/05_decoder_block.md).
+- **Debugging & Integration:**
+  - Practiced debugging import errors related to module structure and execution methods (`python -m ...`).
+  - Debugged module interface mismatches (e.g., MHA arguments, tuple outputs).
+  - Refactored code for clarity (e.g., renaming files).

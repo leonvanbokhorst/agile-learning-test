@@ -125,6 +125,7 @@ def main():
     num_heads = 8
     d_ff = d_model * 4
     dropout_prob = 0.1
+    num_blocks = 2  # Number of blocks to stack
 
     # Input tensor
     x = torch.randn(batch_size, seq_len, d_model)
@@ -134,36 +135,61 @@ def main():
     mask[0:2, :, :, -2:] = True  # Mask last 2 tokens for first 2 sequences
     print(f"Input shape: {x.shape}")
     print(f"Mask shape: {mask.shape}")
-    print(f"Mask example:\n{mask[0]}")
+    # print(f"Mask example:\n{mask[0]}") # Can be large
 
-    # Create the Encoder Block
-    encoder_block = EncoderBlock(d_model, num_heads, d_ff, dropout_prob)
-    print(f"\nEncoder Block: {encoder_block}")
-
-    # Apply the Encoder Block
-    output = encoder_block(x, mask=mask)
-    print(f"\nOutput shape: {output.shape}")
-
-    # Verification: Check that the output shape is correct
-    assert output.shape == (
+    # --- Single Block Test --- #
+    print("\n--- Testing Single Encoder Block ---")
+    encoder_block_single = EncoderBlock(d_model, num_heads, d_ff, dropout_prob)
+    print(f"Encoder Block: {encoder_block_single}")
+    output_single = encoder_block_single(x, mask=mask)
+    print(f"Single Block Output shape: {output_single.shape}")
+    assert output_single.shape == (
         batch_size,
         seq_len,
         d_model,
-    ), f"Expected output shape {(batch_size, seq_len, d_model)}, but got {output.shape}"
-    print("Output shape verified successfully.")
+    ), f"Expected output shape {(batch_size, seq_len, d_model)}, but got {output_single.shape}"
+    print("Single Block Output shape verified successfully.")
+
+    # --- Stacked Blocks Test --- #
+    print(f"\n--- Testing Stacked Encoder Blocks (N={num_blocks}) ---")
+    # Create a list or ModuleList of encoder blocks
+    encoder_blocks = nn.ModuleList(
+        [
+            EncoderBlock(d_model, num_heads, d_ff, dropout_prob)
+            for _ in range(num_blocks)
+        ]
+    )
+    print(f"Stacked Encoder Blocks: {encoder_blocks}")
+
+    # Pass input through the stack
+    stacked_output = x  # Start with the initial input
+    for i, block in enumerate(encoder_blocks):
+        print(f"Passing through block {i+1}...")
+        stacked_output = block(stacked_output, mask=mask)
+        print(f"  Output shape after block {i+1}: {stacked_output.shape}")
+
+    print(f"\nFinal Stacked Output shape: {stacked_output.shape}")
+
+    # Verification: Check that the final output shape is correct
+    assert stacked_output.shape == (
+        batch_size,
+        seq_len,
+        d_model,
+    ), f"Expected final output shape {(batch_size, seq_len, d_model)}, but got {stacked_output.shape}"
+    print("Stacked Blocks Output shape verified successfully.")
 
     # Check output stats for one position (should be roughly normalized due to final LayerNorm)
     sample_idx = 0
     position_idx = 0
-    output_features = output[sample_idx, position_idx, :]
-    mean_after_block = output_features.mean()
-    std_dev_after_block = output_features.std(unbiased=False)
+    final_output_features = stacked_output[sample_idx, position_idx, :]
+    mean_after_stack = final_output_features.mean()
+    std_dev_after_stack = final_output_features.std(unbiased=False)
     print(
-        f"\n--- Output Stats Verification (sample {sample_idx}, position {position_idx}) ---"
+        f"\n--- Final Output Stats Verification (sample {sample_idx}, position {position_idx}) ---"
     )
-    print(f"Output Mean across features: {mean_after_block.item():.6f} (Should be ~0)")
+    print(f"Output Mean across features: {mean_after_stack.item():.6f} (Should be ~0)")
     print(
-        f"Output Std Dev across features: {std_dev_after_block.item():.6f} (Should be ~1)"
+        f"Output Std Dev across features: {std_dev_after_stack.item():.6f} (Should be ~1)"
     )
 
 

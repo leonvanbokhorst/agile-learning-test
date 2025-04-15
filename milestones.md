@@ -230,3 +230,53 @@
 
 - [Scaled Dot-Product Attention Implementation](./sprints/06_multi_head_attention/results/scaled_dot_product_attention.py)
 - [Multi-Head Attention Implementation](./sprints/06_multi_head_attention/results/02_multi_head_attention.py)
+
+## Sprint 7: Building the Transformer Block
+
+### Completed
+
+- [x] Understood and implemented Layer Normalization (`nn.LayerNorm`).
+- [x] Understood and implemented Residual Connections (Add & Norm pattern).
+- [x] Implemented the Position-wise Feed-Forward Network (FFN).
+- [x] Assembled the complete Transformer Encoder Block module.
+- [x] Assembled the complete Transformer Decoder Block module (including Masked Self-Attention and Cross-Attention).
+- [x] Tested block functionality with dummy data, masks, and stacking.
+- [x] Documented all components and block structures.
+
+### Key Insights
+
+- Gained hands-on experience combining multiple `nn.Module` components into larger, functional blocks.
+- Mastered the standard Add & Norm pattern ubiquitous in Transformers.
+- Deepened understanding of the data flow and specific roles of sub-layers within both Encoder and Decoder blocks.
+- Successfully debugged integration issues between modules developed in different sprints.
+- Recognized the importance of careful input/output management and mask handling, especially in the Decoder.
+
+### Next Steps
+
+- **Sprint 8: Assembling the GPT-2 Model** (Tentative)
+  - Stacking Encoder/Decoder blocks to create the full architecture.
+  - Implementing input embedding layers (token + positional).
+  - Adding the final output layer (Linear + Softmax).
+  - Handling model configuration (hyperparameters).
+
+### Documentation
+
+- Created notes and results in [sprints/07_transformer_block/](./sprints/07_transformer_block/)
+- Updated Sprint 7 `README.md`.
+
+### Notes:
+
+- [Layer Normalization](./sprints/07_transformer_block/notes/01_layer_norm.md)
+- [Layer Norm Output Explanation](./sprints/07_transformer_block/notes/01a_layer_norm_output_explanation.md)
+- [Residual Connections](./sprints/07_transformer_block/notes/02_residual_connections.md)
+- [Feed-Forward Network](./sprints/07_transformer_block/notes/03_feed_forward_network.md)
+- [Encoder Block](./sprints/07_transformer_block/notes/04_encoder_block.md)
+- [Decoder Block](./sprints/07_transformer_block/notes/05_decoder_block.md)
+
+### Results:
+
+- [Layer Norm Example](./sprints/07_transformer_block/results/01_layer_norm_example.py)
+- [Add & Norm Example](./sprints/07_transformer_block/results/02_residual_connection_example.py)
+- [Position-wise FFN](./sprints/07_transformer_block/results/positionwise_feed_forward.py)
+- [Encoder Block Implementation](./sprints/07_transformer_block/results/encoder_block.py)
+- [Decoder Block Implementation](./sprints/07_transformer_block/results/decoder_block.py)
