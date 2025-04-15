@@ -37,19 +37,14 @@
 - [x] Implemented Early Stopping logic.
 - [x] Combined techniques in a full MNIST training loop.
 
-## Next Sprint Focus (Sprint 5 Tentative)
+### Sprint 5: Embeddings & Positional Encoding
 
-### Sprint: Understanding Embeddings & Positional Encoding
+- [x] Implemented `nn.Embedding` and custom embeddings.
+- [x] Implemented Sinusoidal and Learned Positional Encoding.
+- [x] Understood and implemented embedding visualization concepts (PCA, t-SNE, UMAP).
+- [x] Managed complex library dependencies for visualization tools.
 
-- Goal: Dive into the first key components of sequence models
-- Tasks:
-  - Implement `nn.Embedding`
-  - Create custom embedding layers
-  - Implement sinusoidal positional encoding
-  - Experiment with learned positional embeddings
-  - Understand embedding visualization
-
-## Possible Future Sprint Subjects
+## Next Sprint Focus (Sprint 6 Tentative)
 
 ### Sprint: Implementing Multi-Head Self-Attention
 

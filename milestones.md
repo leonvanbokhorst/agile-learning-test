@@ -131,3 +131,59 @@
 
 - Created notes and results in [sprints/04_advanced_training_mnist/](./sprints/04_advanced_training_mnist/)
 - Filled out Sprint 4 `README.md`.
+
+## Sprint 5: Embeddings & Positional Encoding
+
+### Completed
+
+- [x] Understood and implemented `nn.Embedding`.
+- [x] Implemented a custom embedding layer for understanding.
+- [x] Understood the rationale for positional encoding.
+- [x] Implemented Sinusoidal Positional Encoding (`PositionalEncoding` module).
+- [x] Added positional encoding to token embeddings.
+- [x] Understood and implemented Learned Positional Embeddings.
+- [x] Understood embedding visualization concepts (PCA, t-SNE, UMAP).
+- [x] Implemented visualization examples.
+
+### Key Insights
+
+- Learned how discrete tokens are represented as trainable vectors using `nn.Embedding`.
+- Understood the limitation of sequence models that don't inherently process order (like basic attention).
+- Grasped the concept and implementation of adding fixed sinusoidal signals to embeddings to provide positional context.
+- Understood the alternative approach of using a _learned_ `nn.Embedding` layer to represent positions, offering flexibility at the cost of fixed sequence length and more parameters.
+- Learned how dimensionality reduction techniques (PCA, t-SNE, UMAP) can be used to visualize high-dimensional embeddings, each offering different trade-offs between preserving global structure and local clusters.
+- Gained experience debugging Python environment dependency issues, particularly with complex libraries like Matplotlib.
+
+### Next Steps
+
+- [x] Conceptualizing Embedding Visualization.
+- **Sprint 6: Multi-Head Self-Attention** (Tentative)
+  - Implementing scaled dot-product attention.
+  - Building the multi-head attention mechanism.
+  - Understanding masking.
+
+### Documentation
+
+- Created notes and results in [sprints/05_embeddings_and_positional_encoding/](./sprints/05_embeddings_and_positional_encoding/)
+- Updated Sprint 5 `README.md`.
+
+### Notes:
+
+- [Embedding Basics](notes/01_nn_embedding_notes.md)
+- [Custom Embeddings](notes/02_custom_embedding_notes.md)
+- [Positional Encoding](notes/03_positional_encoding_notes.md)
+- [Learned Positional Embeddings](notes/04_learned_positional_embeddings.md)
+- [Embedding Visualization](notes/05_embedding_visualization_notes.md)
+- [PCA Explained](notes/05a_pca_explained_novice.md)
+- [t-SNE Explained](notes/05b_tsne_explained.md)
+- [UMAP Explained](notes/05c_umap_explained_novice.md)
+
+### Results:
+
+- [nn.Embedding Basics](results/01_nn_embedding_basics.py)
+- [Custom Embedding (Optional)](results/02_custom_embedding.py)
+- [Sinusoidal Positional Encoding](results/03_positional_encoding.py)
+- [Learned Positional Embedding Example](results/learned_pe_example.py)
+- [PCA Visualization Example](results/pca_example.py)
+- [t-SNE Visualization Example](results/tsne_example.py)
+- [UMAP Visualization Example](results/umap_example.py)

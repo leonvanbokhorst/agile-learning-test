@@ -200,3 +200,28 @@ _(Update this section as sprints are completed or significant learning occurs. A
 - **Python/PyTorch Practices:**
   - Resolved `DataLoader` multiprocessing errors using `if __name__ == '__main__':` guard.
   - Practiced running scripts as modules (`python -m ...`) to handle relative imports correctly.
+
+## Sprint 5 Progress (Embeddings & Positional Encoding)
+
+- **Embeddings:**
+  - Understood the concept of word embeddings (`nn.Embedding`) for mapping discrete tokens to dense vectors.
+  - Implemented `nn.Embedding` and understood its parameters.
+  - Created a custom embedding layer from scratch for deeper understanding.
+- **Sinusoidal Positional Encoding:**
+
+  - Understood the need for positional information in sequence models (especially Transformers).
+  - Implemented the sinusoidal positional encoding formula from "Attention Is All You Need".
+  - Visualized positional encoding patterns.
+  - Integrated positional encodings with token embeddings via addition.
+  - Built a `PositionalEncoding` `nn.Module` incorporating dropout.
+  - Used `register_buffer` for non-trainable parameters.
+
+- **Learned Positional Encoding:**
+  - Understood the concept of learning positional embeddings via `nn.Embedding`.
+  - Implemented learned positional embeddings in PyTorch ([`sprints/05_embeddings_and_positional_encoding/results/learned_pe_example.py`](./sprints/05_embeddings_and_positional_encoding/results/learned_pe_example.py)).
+  - Contrasted learned vs. sinusoidal PEs (flexibility vs. extrapolation, parameters). ([`sprints/05_embeddings_and_positional_encoding/notes/04_learned_positional_embeddings.md`](./sprints/05_embeddings_and_positional_encoding/notes/04_learned_positional_embeddings.md))
+- **Embedding Visualization:**
+  - Understood the purpose and concepts of dimensionality reduction for visualizing embeddings ([`sprints/05_embeddings_and_positional_encoding/notes/05_embedding_visualization_notes.md`](./sprints/05_embeddings_and_positional_encoding/notes/05_embedding_visualization_notes.md)).
+  - Learned the core ideas behind PCA, t-SNE, and UMAP ([`notes/05a...`](./sprints/05_embeddings_and_positional_encoding/notes/05a_pca_explained_novice.md), [`notes/05b...`](./sprints/05_embeddings_and_positional_encoding/notes/05b_tsne_explained.md), [`notes/05c...`](./sprints/05_embeddings_and_positional_encoding/notes/05c_umap_explained_novice.md)).
+  - Implemented basic visualization examples using `matplotlib`, `scikit-learn` (PCA, t-SNE), and `umap-learn` ([`results/pca_example.py`](./sprints/05_embeddings_and_positional_encoding/results/pca_example.py), [`results/tsne_example.py`](./sprints/05_embeddings_and_positional_encoding/results/tsne_example.py), [`results/umap_example.py`](./sprints/05_embeddings_and_positional_encoding/results/umap_example.py)).
+  - Debugged complex dependency issues related to visualization libraries in `pyproject.toml`.

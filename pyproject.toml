@@ -28,6 +28,22 @@ dependencies = [
     "toml>=0.10.0", # For configuration file
     "tensorboard>=2.19.0", # For visualizing training
     "torch-tb-profiler>=0.4.3", # For PyTorch profiling with TensorBoard
+    "scikit-learn>=1.5.0", # For PCA, t-SNE, datasets
+    "umap-learn>=0.5.6", # For UMAP visualization
+    "packaging>=24.0", # Required by recent matplotlib versions
+    "Pillow>=10.4.0", # Required by matplotlib for image handling
+    "pyparsing>=3.1.2", # Required by matplotlib/dependencies
+    "cycler>=0.12.1", # Required by matplotlib for color cycling
+    "python-dateutil>=2.9.0", # Required by matplotlib for date handling
+    "kiwisolver>=1.4.5", # Required by matplotlib for layout solving
+    "six>=1.16.0", # Python 2/3 compatibility library (various dependencies)
+    "joblib>=1.4.2", # Used by scikit-learn for parallelism
+    "scipy>=1.14.0", # Core scientific library (dependency for scikit-learn/umap)
+    "threadpoolctl>=3.5.0", # Controls thread usage in numerical libraries
+    "numba>=0.58.0", # For parallel computing with NumPy
+    "llvmlite>=0.42.0", # Required by numba for LLVM-based compilation
+    "pytz>=2024.1", # Required by matplotlib for date handling
+    "pynndescent>=0.5.10", # For approximate nearest neighbor search
 ]
 
 [project.urls]
