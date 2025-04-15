@@ -44,17 +44,14 @@
 - [x] Understood and implemented embedding visualization concepts (PCA, t-SNE, UMAP).
 - [x] Managed complex library dependencies for visualization tools.
 
-## Next Sprint Focus (Sprint 6 Tentative)
+### Sprint 6: Multi-Head Attention
 
-### Sprint: Implementing Multi-Head Self-Attention
+- [x] Implemented scaled dot-product attention function.
+- [x] Understood and implemented attention masking (padding and look-ahead).
+- [x] Implemented `MultiHeadAttention` module.
+- [x] Tested module with masks.
 
-- Goal: Tackle the core mechanism of the Transformer architecture
-- Tasks:
-  - Implement scaled dot-product attention
-  - Create multi-head attention wrapper
-  - Understand and implement masking
-  - Handle different attention patterns
-  - Optimize attention computation
+## Next Sprint Focus (Sprint 7 Tentative)
 
 ### Sprint: Building the Transformer Block
 

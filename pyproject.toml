@@ -44,6 +44,7 @@ dependencies = [
     "llvmlite>=0.42.0", # Required by numba for LLVM-based compilation
     "pytz>=2024.1", # Required by matplotlib for date handling
     "pynndescent>=0.5.10", # For approximate nearest neighbor search
+    "typing_extensions>=4.11.0", # For Python 3.10+ compatibility
 ]
 
 [project.urls]
