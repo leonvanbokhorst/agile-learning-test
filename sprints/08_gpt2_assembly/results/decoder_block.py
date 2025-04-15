@@ -1,9 +1,8 @@
 import torch
 import torch.nn as nn
 
-from .multi_head_attention import MultiHeadAttention
-from .add_norm import AddNorm
-from .ffn_example import PositionWiseFeedForward
+from multi_head_attention import MultiHeadAttention
+from ffn_example import PositionWiseFeedForward
 
 
 class DecoderBlock(nn.Module):
