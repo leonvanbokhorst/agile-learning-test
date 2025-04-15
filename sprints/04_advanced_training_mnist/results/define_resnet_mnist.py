@@ -206,9 +206,7 @@ class ResNetMNIST(nn.Module):
                 norm_layer(planes * block.expansion),
             )
 
-        layers = []
-        # Add the first block for the layer (handles stride and downsampling)
-        layers.append(
+        layers = [
             block(
                 self.inplanes,
                 planes,
@@ -219,23 +217,22 @@ class ResNetMNIST(nn.Module):
                 previous_dilation,
                 norm_layer,
             )
-        )
+        ]
         self.inplanes = (
             planes * block.expansion
         )  # Update inplanes for the next block/layer
         # Add the remaining blocks for the layer
-        for _ in range(1, blocks):
-            layers.append(
-                block(
-                    self.inplanes,
-                    planes,
-                    groups=self.groups,
-                    base_width=self.base_width,
-                    dilation=self.dilation,
-                    norm_layer=norm_layer,
-                )
+        layers.extend(
+            block(
+                self.inplanes,
+                planes,
+                groups=self.groups,
+                base_width=self.base_width,
+                dilation=self.dilation,
+                norm_layer=norm_layer,
             )
-
+            for _ in range(1, blocks)
+        )
         return nn.Sequential(*layers)
 
     def _forward_impl(self, x: torch.Tensor) -> torch.Tensor:
@@ -262,8 +259,7 @@ class ResNetMNIST(nn.Module):
 
 def _resnet_mnist(block: Type[BasicBlock], layers: List[int], **kwargs) -> ResNetMNIST:
     """Helper function to create ResNetMNIST model"""
-    model = ResNetMNIST(block, layers, **kwargs)
-    return model
+    return ResNetMNIST(block, layers, **kwargs)
 
 
 def resnet10_mnist(**kwargs) -> ResNetMNIST:
