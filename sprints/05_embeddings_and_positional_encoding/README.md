@@ -20,13 +20,13 @@
   - [x] Discuss initialization strategies for embeddings. (Covered conceptually)
   - [x] _Results:_ (Optional) `results/02_custom_embedding.py`
   - [x] _Notes:_ `notes/02_custom_embedding_notes.md`
-- [ ] **Sinusoidal Positional Encoding:**
-  - [ ] Understand why positional information is needed for sequence models like Transformers.
-  - [ ] Implement the sinusoidal positional encoding formula.
-  - [ ] Visualize the positional encoding patterns.
-  - [ ] Integrate positional encodings with token embeddings.
-  - [ ] _Results:_ `results/03_sinusoidal_positional_encoding.py`
-  - [ ] _Notes:_ `notes/03_positional_encoding_notes.md`
+- [x] **Sinusoidal Positional Encoding:**
+  - [x] Understand why positional information is needed for sequence models like Transformers.
+  - [x] Implement the sinusoidal positional encoding formula.
+  - [x] Visualize the positional encoding patterns.
+  - [x] Integrate positional encodings with token embeddings.
+  - [x] _Results:_ `results/03_positional_encoding.py`
+  - [x] _Notes:_ `notes/03_positional_encoding.md`
 - [ ] **Learned Positional Embeddings:**
   - [ ] Understand the concept of learning positional information using another `nn.Embedding` layer.
   - [ ] Implement learned positional embeddings.
@@ -41,7 +41,10 @@
 
 ## Key Learnings & Insights
 
-_(To be filled in as the sprint progresses)_
+- `nn.Embedding` provides a trainable lookup table for converting token IDs into dense vectors.
+- Sinusoidal Positional Encoding offers a fixed, non-learned way to inject sequence order information by adding unique vectors based on position and dimension, using sine and cosine functions of varying frequencies (the "Label Factory" analogy).
+
+_(To be filled in further as the sprint progresses)_
 
 ## Links to Notes and Results
 
@@ -53,5 +56,5 @@ _(To be filled in as the sprint progresses)_
 - **Results:**
   - [nn.Embedding Basics](results/01_nn_embedding_basics.py)
   - [Custom Embedding (Optional)](results/02_custom_embedding.py)
-  - [Sinusoidal Positional Encoding](results/03_sinusoidal_positional_encoding.py)
+  - [Sinusoidal Positional Encoding](results/03_positional_encoding.py)
   - [Learned Positional Embedding](results/04_learned_positional_embedding.py)

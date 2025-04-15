@@ -131,3 +131,33 @@
 
 - Created notes and results in [sprints/04_advanced_training_mnist/](./sprints/04_advanced_training_mnist/)
 - Filled out Sprint 4 `README.md`.
+
+## Sprint 5: Embeddings & Positional Encoding
+
+### Completed
+
+- [x] Understood and implemented `nn.Embedding`.
+- [x] Implemented a custom embedding layer for understanding.
+- [x] Understood the rationale for positional encoding.
+- [x] Implemented Sinusoidal Positional Encoding (`PositionalEncoding` module).
+- [x] Added positional encoding to token embeddings.
+
+### Key Insights
+
+- Learned how discrete tokens are represented as trainable vectors using `nn.Embedding`.
+- Understood the limitation of sequence models that don't inherently process order (like basic attention).
+- Grasped the concept and implementation of adding fixed sinusoidal signals to embeddings to provide positional context.
+
+### Next Steps
+
+- Implementing Learned Positional Embeddings.
+- Conceptualizing Embedding Visualization.
+- **Sprint 6: Multi-Head Self-Attention** (Tentative)
+  - Implementing scaled dot-product attention.
+  - Building the multi-head attention mechanism.
+  - Understanding masking.
+
+### Documentation
+
+- Created notes and results in [sprints/05_embeddings_and_positional_encoding/](./sprints/05_embeddings_and_positional_encoding/)
+- Updated Sprint 5 `README.md`.

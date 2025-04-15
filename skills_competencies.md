@@ -200,3 +200,17 @@ _(Update this section as sprints are completed or significant learning occurs. A
 - **Python/PyTorch Practices:**
   - Resolved `DataLoader` multiprocessing errors using `if __name__ == '__main__':` guard.
   - Practiced running scripts as modules (`python -m ...`) to handle relative imports correctly.
+
+## Sprint 5 Progress (Embeddings & Positional Encoding)
+
+- **Embeddings:**
+  - Understood the concept of word embeddings (`nn.Embedding`) for mapping discrete tokens to dense vectors.
+  - Implemented `nn.Embedding` and understood its parameters.
+  - Created a custom embedding layer from scratch for deeper understanding.
+- **Sinusoidal Positional Encoding:**
+  - Understood the need for positional information in sequence models (especially Transformers).
+  - Implemented the sinusoidal positional encoding formula from "Attention Is All You Need".
+  - Visualized positional encoding patterns.
+  - Integrated positional encodings with token embeddings via addition.
+  - Built a `PositionalEncoding` `nn.Module` incorporating dropout.
+  - Used `register_buffer` for non-trainable parameters.
