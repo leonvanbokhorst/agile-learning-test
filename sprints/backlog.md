@@ -51,27 +51,27 @@
 - [x] Implemented `MultiHeadAttention` module.
 - [x] Tested module with masks.
 
-## Next Sprint Focus (Sprint 7 Tentative)
+### Sprint 7: Building the Transformer Block
 
-### Sprint: Building the Transformer Block
+- [x] Implemented Layer Normalization (`nn.LayerNorm`).
+- [x] Implemented Residual Connections and the Add & Norm pattern.
+- [x] Implemented the Position-wise Feed-Forward Network (`PositionWiseFeedForward`).
+- [x] Implemented the `EncoderBlock` module.
+- [x] Implemented the `DecoderBlock` module.
+- [x] Tested blocks individually and stacked.
 
-- Goal: Assemble components into a full Transformer block
-- Tasks:
-  - Combine attention with feed-forward networks
-  - Implement layer normalization
-  - Add residual connections
-  - Create encoder and decoder blocks
-  - Handle different block configurations
+## Next Sprint Focus (Sprint 8 Tentative)
 
 ### Sprint: Assembling the GPT-2 Model
 
 - Goal: Stack Transformer blocks to create the full architecture
 - Tasks:
-  - Define model structure
-  - Implement input/output processing
-  - Add tokenization
-  - Handle model configuration
+  - Define model structure (Stacking Decoder Blocks)
+  - Implement input processing (Token + Positional Embeddings)
+  - Implement final output layer (Linear projection to vocab size)
+  - Handle model configuration (hyperparameters like vocab size, context length, layers, etc.)
   - Implement model saving/loading
+  - (Stretch) Add tokenization integration (e.g., using Hugging Face `tokenizers`)
 
 ### Sprint: Training the GPT-2 Model
 
