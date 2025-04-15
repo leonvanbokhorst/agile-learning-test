@@ -37,6 +37,13 @@ In our main `model.py` file, we'll create a `GPT` class. Inside this class, we'l
 
 The forward pass will push the embedded input through each block in the stack sequentially.
 
-## Next Steps
+## GPT-2 Stacked Decoder Blocks
 
-Implement this stacking logic within a new `GPT` class in `results/model.py`. Let the block party begin!
+GPT-2 wasn't just one single model; OpenAI released it in several sizes, each with a different number of stacked decoder blocks (which they often just call "layers"):
+
+*   **GPT-2 Small (124M parameters):** Had **12** layers (decoder blocks).
+*   **GPT-2 Medium (355M parameters):** Had **24** layers.
+*   **GPT-2 Large (774M parameters):** Had **36** layers.
+*   **GPT-2 XL (1.5B parameters):** Had **48** layers.
+
+So, the number of stacked blocks varied quite a bit depending on which version of GPT-2 you were looking at! Our `GPTConfig` currently defaults to 12 layers, mimicking the "small" version.
