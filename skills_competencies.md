@@ -225,3 +225,29 @@ _(Update this section as sprints are completed or significant learning occurs. A
   - Learned the core ideas behind PCA, t-SNE, and UMAP ([`notes/05a...`](./sprints/05_embeddings_and_positional_encoding/notes/05a_pca_explained_novice.md), [`notes/05b...`](./sprints/05_embeddings_and_positional_encoding/notes/05b_tsne_explained.md), [`notes/05c...`](./sprints/05_embeddings_and_positional_encoding/notes/05c_umap_explained_novice.md)).
   - Implemented basic visualization examples using `matplotlib`, `scikit-learn` (PCA, t-SNE), and `umap-learn` ([`results/pca_example.py`](./sprints/05_embeddings_and_positional_encoding/results/pca_example.py), [`results/tsne_example.py`](./sprints/05_embeddings_and_positional_encoding/results/tsne_example.py), [`results/umap_example.py`](./sprints/05_embeddings_and_positional_encoding/results/umap_example.py)).
   - Debugged complex dependency issues related to visualization libraries in `pyproject.toml`.
+
+## Sprint 6 Progress (Multi-Head Attention)
+
+- **Scaled Dot-Product Attention:**
+  - Understood the concept, formula, and motivation (Q, K, V analogy).
+  - Implemented the `scaled_dot_product_attention` function from scratch using PyTorch tensor operations ([`sprints/06_multi_head_attention/results/scaled_dot_product_attention.py`](./sprints/06_multi_head_attention/results/scaled_dot_product_attention.py)).
+  - Included scaling by `sqrt(d_k)`.
+  - Handled potential NaNs resulting from masking.
+- **Attention Masking:**
+  - Understood the purpose and implementation of Padding Masks (ignoring pad tokens).
+  - Understood the purpose and implementation of Look-Ahead (Causal) Masks (preventing attention to future tokens).
+  - Modified `scaled_dot_product_attention` to accept and apply boolean masks (`False` indicates masking).
+  - Tested attention calculation with both mask types.
+  - Documented masking concepts in [`sprints/06_multi_head_attention/notes/03_attention_masking.md`](./sprints/06_multi_head_attention/notes/03_attention_masking.md).
+- **Multi-Head Attention:**
+  - Understood the rationale for using multiple heads (attending to different subspaces).
+  - Implemented the `MultiHeadAttention` `nn.Module` ([`sprints/06_multi_head_attention/results/02_multi_head_attention.py`](./sprints/06_multi_head_attention/results/02_multi_head_attention.py)).
+  - Implemented linear projections for Q, K, V, and the final output.
+  - Implemented `split_heads` and `combine_heads` helper methods for reshaping.
+  - Correctly utilized the `scaled_dot_product_attention` function for parallel head computation.
+  - Ensured the module handles input masks correctly.
+- **PyTorch Best Practices:**
+  - Continued use of type hints and comprehensive docstrings.
+  - Implemented tests within `if __name__ == "__main__":` blocks.
+  - Used `nn.Module` for building reusable components.
+  - Handled tensor dimension manipulation (`transpose`, `view`).

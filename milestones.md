@@ -157,7 +157,7 @@
 ### Next Steps
 
 - [x] Conceptualizing Embedding Visualization.
-- **Sprint 6: Multi-Head Self-Attention** (Tentative)
+- **Sprint 6: Multi-Head Self-Attention** (Completed)
   - Implementing scaled dot-product attention.
   - Building the multi-head attention mechanism.
   - Understanding masking.
@@ -187,3 +187,46 @@
 - [PCA Visualization Example](results/pca_example.py)
 - [t-SNE Visualization Example](results/tsne_example.py)
 - [UMAP Visualization Example](results/umap_example.py)
+
+## Sprint 6: Multi-Head Attention
+
+### Completed
+
+- [x] Implemented scaled dot-product attention function.
+- [x] Understood and implemented attention masking (padding and look-ahead).
+- [x] Implemented `MultiHeadAttention` module as `nn.Module`.
+- [x] Used helper methods (`split_heads`, `combine_heads`) for clarity.
+- [x] Tested module with and without masks.
+- [x] Documented concepts in notes.
+
+### Key Insights
+
+- Mastered the core mechanism of Transformer attention.
+- Understood how multiple heads allow attending to different representation subspaces.
+- Gained practical experience with tensor manipulation for reshaping and transposing dimensions for parallel computation.
+- Learned the importance and implementation of padding and causal masks.
+- Successfully built a complex, reusable PyTorch module.
+
+### Next Steps
+
+- **Sprint 7: Building the Transformer Block** (Tentative)
+  - Combining Multi-Head Attention with Feed-Forward Networks.
+  - Implementing Layer Normalization.
+  - Adding Residual Connections (Add & Norm).
+  - Creating a complete Encoder or Decoder block.
+
+### Documentation
+
+- Created notes and results in [sprints/06_multi_head_attention/](./sprints/06_multi_head_attention/)
+- Updated Sprint 6 `README.md`.
+
+### Notes:
+
+- [Scaled Dot-Product Attention](./sprints/06_multi_head_attention/notes/01_scaled_dot_product_attention.md)
+- [Multi-Head Attention](./sprints/06_multi_head_attention/notes/02_multi_head_attention.md)
+- [Attention Masking](./sprints/06_multi_head_attention/notes/03_attention_masking.md)
+
+### Results:
+
+- [Scaled Dot-Product Attention Implementation](./sprints/06_multi_head_attention/results/scaled_dot_product_attention.py)
+- [Multi-Head Attention Implementation](./sprints/06_multi_head_attention/results/02_multi_head_attention.py)
