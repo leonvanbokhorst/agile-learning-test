@@ -208,9 +208,15 @@ _(Update this section as sprints are completed or significant learning occurs. A
   - Implemented `nn.Embedding` and understood its parameters.
   - Created a custom embedding layer from scratch for deeper understanding.
 - **Sinusoidal Positional Encoding:**
+
   - Understood the need for positional information in sequence models (especially Transformers).
   - Implemented the sinusoidal positional encoding formula from "Attention Is All You Need".
   - Visualized positional encoding patterns.
   - Integrated positional encodings with token embeddings via addition.
   - Built a `PositionalEncoding` `nn.Module` incorporating dropout.
   - Used `register_buffer` for non-trainable parameters.
+
+- **Learned Positional Encoding:**
+  - Understood the concept of learning positional embeddings via `nn.Embedding`.
+  - Implemented learned positional embeddings in PyTorch ([`sprints/05_embeddings_and_positional_encoding/results/learned_pe_example.py`](./sprints/05_embeddings_and_positional_encoding/results/learned_pe_example.py)).
+  - Contrasted learned vs. sinusoidal PEs (flexibility vs. extrapolation, parameters). ([`sprints/05_embeddings_and_positional_encoding/notes/04_learned_positional_embeddings.md`](./sprints/05_embeddings_and_positional_encoding/notes/04_learned_positional_embeddings.md))

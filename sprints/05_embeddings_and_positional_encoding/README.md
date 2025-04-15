@@ -26,23 +26,24 @@
   - [x] Visualize the positional encoding patterns.
   - [x] Integrate positional encodings with token embeddings.
   - [x] _Results:_ `results/03_positional_encoding.py`
-  - [x] _Notes:_ `notes/03_positional_encoding.md`
-- [ ] **Learned Positional Embeddings:**
-  - [ ] Understand the concept of learning positional information using another `nn.Embedding` layer.
-  - [ ] Implement learned positional embeddings.
-  - [ ] Compare/contrast with sinusoidal encoding.
-  - [ ] _Results:_ `results/04_learned_positional_embedding.py`
-  - [ ] _Notes:_ (Can be added to `notes/03_positional_encoding_notes.md`)
+  - [x] _Notes:_ `notes/03_positional_encoding_notes.md`
+- [x] **Learned Positional Embeddings:**
+  - [x] Understand the concept of learning positional information using another `nn.Embedding` layer.
+  - [x] Implement learned positional embeddings.
+  - [x] Compare/contrast with sinusoidal encoding.
+  - [x] _Results:_ `results/learned_pe_example.py`
+  - [x] _Notes:_ `notes/04_learned_positional_embeddings.md`
 - [ ] **Embedding Visualization (Conceptual):**
   - [ ] Understand techniques like t-SNE or PCA for visualizing high-dimensional embeddings.
   - [ ] Discuss what insights visualization can provide.
   - [ ] (Implementation Optional/Deferred)
-  - [ ] _Notes:_ `notes/04_embedding_visualization_notes.md`
+  - [ ] _Notes:_ `notes/05_embedding_visualization_notes.md`
 
 ## Key Learnings & Insights
 
 - `nn.Embedding` provides a trainable lookup table for converting token IDs into dense vectors.
 - Sinusoidal Positional Encoding offers a fixed, non-learned way to inject sequence order information by adding unique vectors based on position and dimension, using sine and cosine functions of varying frequencies (the "Label Factory" analogy).
+- Learned Positional Embeddings provide an alternative where the model learns optimal position representations using another `nn.Embedding` layer, offering flexibility but limited by `max_seq_len`.
 
 _(To be filled in further as the sprint progresses)_
 
@@ -52,9 +53,10 @@ _(To be filled in further as the sprint progresses)_
   - [Embedding Basics](notes/01_nn_embedding_notes.md)
   - [Custom Embeddings](notes/02_custom_embedding_notes.md)
   - [Positional Encoding](notes/03_positional_encoding_notes.md)
-  - [Embedding Visualization](notes/04_embedding_visualization_notes.md)
+  - [Learned Positional Embeddings](notes/04_learned_positional_embeddings.md)
+  - [Embedding Visualization](notes/05_embedding_visualization_notes.md)
 - **Results:**
   - [nn.Embedding Basics](results/01_nn_embedding_basics.py)
   - [Custom Embedding (Optional)](results/02_custom_embedding.py)
   - [Sinusoidal Positional Encoding](results/03_positional_encoding.py)
-  - [Learned Positional Embedding](results/04_learned_positional_embedding.py)
+  - [Learned Positional Embedding Example](results/learned_pe_example.py)

@@ -141,17 +141,18 @@
 - [x] Understood the rationale for positional encoding.
 - [x] Implemented Sinusoidal Positional Encoding (`PositionalEncoding` module).
 - [x] Added positional encoding to token embeddings.
+- [x] Understood and implemented Learned Positional Embeddings.
 
 ### Key Insights
 
 - Learned how discrete tokens are represented as trainable vectors using `nn.Embedding`.
 - Understood the limitation of sequence models that don't inherently process order (like basic attention).
 - Grasped the concept and implementation of adding fixed sinusoidal signals to embeddings to provide positional context.
+- Understood the alternative approach of using a _learned_ `nn.Embedding` layer to represent positions, offering flexibility at the cost of fixed sequence length and more parameters.
 
 ### Next Steps
 
-- Implementing Learned Positional Embeddings.
-- Conceptualizing Embedding Visualization.
+- [ ] Conceptualizing Embedding Visualization.
 - **Sprint 6: Multi-Head Self-Attention** (Tentative)
   - Implementing scaled dot-product attention.
   - Building the multi-head attention mechanism.
@@ -161,3 +162,18 @@
 
 - Created notes and results in [sprints/05_embeddings_and_positional_encoding/](./sprints/05_embeddings_and_positional_encoding/)
 - Updated Sprint 5 `README.md`.
+
+### Notes:
+
+- [Embedding Basics](notes/01_nn_embedding_notes.md)
+- [Custom Embeddings](notes/02_custom_embedding_notes.md)
+- [Positional Encoding](notes/03_positional_encoding_notes.md)
+- [Learned Positional Embeddings](notes/04_learned_positional_embeddings.md)
+- [Embedding Visualization](notes/04_embedding_visualization_notes.md)
+
+### Results:
+
+- [nn.Embedding Basics](results/01_nn_embedding_basics.py)
+- [Custom Embedding (Optional)](results/02_custom_embedding.py)
+- [Sinusoidal Positional Encoding](results/03_positional_encoding.py)
+- [Learned Positional Embedding Example](results/learned_pe_example.py)
