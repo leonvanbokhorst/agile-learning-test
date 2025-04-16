@@ -392,3 +392,38 @@
 
 - Created notes and results in [sprints/10_pretrained_generation_demo/](./sprints/10_pretrained_generation_demo/)
 - Updated Sprint 10 `README.md` including the retrospective.
+
+## Sprint 11: Fine-tuning GPT-2 for Classification
+
+### Completed
+
+- [x] Identified and loaded a suitable dataset (`Pulk17/Fake-News-Detection-dataset`) for classification.
+- [x] Prepared the dataset: tokenized, handled padding/truncation, split into stratified train/validation/test sets, created `DataLoader`s.
+- [x] Loaded a pre-trained `gpt2` model with a sequence classification head using `AutoModelForSequenceClassification`.
+- [x] Implemented a fine-tuning loop with periodic validation (every 250 steps).
+- [x] Trained the model for 1 epoch.
+- [x] Evaluated the fine-tuned model on the test set, achieving **99.83%** accuracy.
+- [x] Documented the entire process, including dataset selection challenges, code implementation, and results.
+
+### Key Insights
+
+- Successfully applied the concept of fine-tuning to adapt a pre-trained generative model for a discriminative task (classification).
+- Gained practical experience with the `transformers` library for sequence classification tasks.
+- Reinforced understanding of data preprocessing steps specific to classification (stratified splits, label handling).
+- Observed rapid convergence and high performance, indicating the effectiveness of fine-tuning even with limited training (1 epoch).
+- Practiced iterative development (refining evaluation frequency, handling dataset availability issues).
+
+### Next Steps
+
+- **Sprint 12: Fine-tuning GPT-2 for Generative Tasks** (Tentative)
+  - Choose a dataset suitable for generative fine-tuning (e.g., specific style/domain).
+  - Adapt the data pipeline for this objective.
+  - Implement fine-tuning focused on the language modeling objective.
+  - Compare generated outputs.
+
+### Documentation
+
+- Created notes and results in [sprints/11_finetune_gpt2_classification/](./sprints/11_finetune_gpt2_classification/)
+- Updated Sprint 11 `README.md`.
+- Updated `backlog.md`.
+- Updated `skills_competencies.md`.

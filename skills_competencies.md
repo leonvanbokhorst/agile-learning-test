@@ -374,3 +374,35 @@ _(Update this section as sprints are completed or significant learning occurs. A
 - **Python/Environment Practices:**
   - Reinforced understanding of Python imports (relative vs. absolute, running as module `-m`).
   - Gained further experience with `uv` dependency management (`uv add`, `uv sync`).
+
+## Sprint 11 Progress (Fine-tuning for Classification)
+
+- **Fine-tuning Concepts:**
+  - Understood the process of adapting a pre-trained model for a downstream task ([`notes/06_finetuning_explained.md`](./sprints/11_finetune_gpt2_classification/notes/06_finetuning_explained.md)).
+  - Differentiated between fine-tuning and training from scratch.
+- **Sequence Classification with Transformers:**
+  - Used `AutoModelForSequenceClassification` to load a pre-trained model with an added (randomly initialized) classification head.
+  - Understood how the classification head processes sequence representations for prediction.
+- **Hugging Face `datasets` Library:**
+  - Loaded datasets by name from the Hub (`load_dataset`).
+  - Handled cases where specified datasets were unavailable.
+  - Used `.map()` for efficient tokenization.
+  - Used `.cast_column()` to set feature types (`ClassLabel`).
+  - Used `.train_test_split()` for creating stratified train/validation/test splits.
+  - Used `.save_to_disk()` and `load_from_disk()` for processed datasets.
+- **Tokenizer Fine-tuning Specifics:**
+  - Handled `pad_token` assignment for models like GPT-2 that lack one by default.
+  - Applied padding and truncation strategies suitable for classification.
+- **Training Loop for Fine-tuning:**
+  - Implemented a standard fine-tuning loop ([`results/06_finetune_loop.py`](./sprints/11_finetune_gpt2_classification/results/06_finetune_loop.py)).
+  - Used `AdamW` optimizer.
+  - Leveraged the model's built-in loss calculation when labels are provided.
+  - Implemented periodic validation within epochs.
+- **Evaluation Metrics:**
+  - Calculated accuracy using `sklearn.metrics.accuracy_score`.
+  - Generated and interpreted `sklearn.metrics.classification_report` (precision, recall, F1-score).
+- **Device Handling:**
+  - Implemented robust device checking (`cuda`, `mps`, `cpu`).
+- **PyTorch Practices:**
+  - Refactored evaluation logic into a reusable function.
+  - Used `tqdm` for progress bars in training and evaluation.
