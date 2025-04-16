@@ -9,9 +9,33 @@ from typing import Any, Dict
 from model import GPT
 from config import GPTConfig
 
-logging.basicConfig(
-    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
-)
+
+def setup_logging():
+    """Setup basic logging configuration."""
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s - %(levelname)s - %(message)s",
+        datefmt="%Y-%m-%d %H:%M:%S",
+    )
+    logging.info("Logging setup complete")
+
+
+def get_device() -> torch.device:
+    """Get the appropriate device for training (CUDA, MPS, or CPU).
+
+    Returns:
+        torch.device: The device to use for training.
+    """
+    if torch.cuda.is_available():
+        device = torch.device("cuda")
+        logging.info("Using CUDA device")
+    elif torch.backends.mps.is_available():
+        device = torch.device("mps")
+        logging.info("Using MPS device")
+    else:
+        device = torch.device("cpu")
+        logging.info("Using CPU device")
+    return device
 
 
 def save_checkpoint(
