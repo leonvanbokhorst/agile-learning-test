@@ -11,9 +11,6 @@ from model import GPT, GPTConfig
 from dataset import TextDataset
 from utils import get_device, setup_logging
 
-# Setup logging
-setup_logging()
-
 
 def calc_loss_batch(
     input_batch: torch.Tensor,
@@ -123,7 +120,7 @@ def train_model_simple(
 
 
 def main():
-    # Setup logging
+    # Setup logging here instead
     setup_logging()
     logging.info("Starting simple training loop experiment")
 
