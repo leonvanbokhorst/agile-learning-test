@@ -10,7 +10,7 @@ Sprint 11 - Task 1
 from datasets import load_dataset
 
 
-def main():
+def main():  # sourcery skip: extract-method
     """Loads and prints basic info about the dataset."""
     print("Loading dataset...")
     # Let's try the Pulk17 dataset
