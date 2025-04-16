@@ -17,7 +17,7 @@ class GPTConfig:
     d_ff: int = field(init=False)  # Dimension of the FFN's inner layer
 
     # --- Regularization --- #
-    dropout_prob: float = 0.1  # Dropout probability
+    dropout_prob: float = 0.1  # Dropout probability (Restored from 0.2)
 
     # --- Optional --- #
     # activation_function: str = "gelu" # Example: Could add activation choice here

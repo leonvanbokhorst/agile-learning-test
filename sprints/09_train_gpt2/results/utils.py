@@ -16,7 +16,6 @@ logging.basicConfig(
 
 def save_checkpoint(
     state: dict,
-    is_best: bool,
     directory: str | Path,
     filename: str = "checkpoint.pth.tar",
 ):
@@ -25,7 +24,6 @@ def save_checkpoint(
     Args:
         state (dict): Contains model's state_dict and other necessary training states
                       (e.g., epoch, optimizer_state_dict, best_val_loss, config).
-        is_best (bool): If True, copies the checkpoint to a 'model_best.pth.tar' file.
         directory (str | Path): Directory to save the checkpoint.
         filename (str): Base filename for the checkpoint.
     """
@@ -36,12 +34,6 @@ def save_checkpoint(
     # Save the checkpoint
     torch.save(state, filepath)
     logging.info(f"Checkpoint saved to {filepath}")
-
-    # If this is the best model so far, create a copy named 'model_best.pth.tar'
-    if is_best:
-        best_filepath = directory / "model_best.pth.tar"
-        shutil.copyfile(filepath, best_filepath)
-        logging.info(f"Best model checkpoint copied to {best_filepath}")
 
 
 def load_checkpoint(

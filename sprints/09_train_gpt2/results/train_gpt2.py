@@ -81,7 +81,10 @@ def evaluate(
         inputs, targets = inputs.to(device), targets.to(device)
 
         # Forward pass
-        logits, loss = model(inputs, targets=targets)  # Assuming model returns loss
+        logits = model(inputs)  # Model expects only input indices
+        # Calculate loss using criterion
+        # Reshape logits: (B, T, V) -> (B*T, V) and targets: (B, T) -> (B*T)
+        loss = criterion(logits.view(-1, logits.size(-1)), targets.view(-1))
 
         # Accumulate loss - multiply by target sequence length for weighting
         # CrossEntropyLoss typically averages over the batch *and* sequence length
@@ -208,6 +211,12 @@ def parse_arguments():
         help="Evaluate on validation set every N epochs.",
     )
     parser.add_argument(
+        "--eval_steps",
+        type=int,
+        default=0,
+        help="Evaluate on validation set every N steps (0 to disable step-based eval). Overrides --eval_interval if > 0.",
+    )
+    parser.add_argument(
         "--resume_from",
         type=str,
         default=None,
@@ -233,6 +242,13 @@ def main():
     log_path = Path(args.log_dir)
     checkpoint_path.mkdir(parents=True, exist_ok=True)
     log_path.mkdir(parents=True, exist_ok=True)
+
+    # --- Setup TensorBoard --- #
+    logging.info(f"Initializing TensorBoard SummaryWriter in {log_path}...")
+    # Add a timestamped subdirectory for this specific run
+    run_name = f"gpt2_seq{args.seq_length}_batch{args.batch_size}_lr{args.learning_rate}_{time.strftime('%Y%m%d_%H%M%S')}"
+    writer = SummaryWriter(log_dir=log_path / run_name)
+    logging.info(f"TensorBoard run name: {run_name}")
 
     # --- Setup DataLoaders ---
     logging.info("Setting up datasets and dataloaders...")
@@ -304,24 +320,18 @@ def main():
     )  # Standard loss for classification/language modeling
     logging.info(f"Loss Function: {type(criterion).__name__}")
 
-    # --- Setup LR Scheduler ---
+    # --- Initialize Scheduler (Initial setup before potential override) ---
+    # Initialize scheduler based on command-line args initially
     scheduler = get_lr_scheduler(
         optimizer,
         warmup_iters=args.warmup_iters,
-        lr_decay_iters=lr_decay_iters,  # Decay over total iterations
+        lr_decay_iters=lr_decay_iters,
         min_lr=args.min_lr,
-        start_lr=args.learning_rate,  # Use max LR as the target after warmup
+        start_lr=args.learning_rate,
     )
     logging.info(
-        f"LR Scheduler: LambdaLR with Linear Warmup ({args.warmup_iters} iters) and Cosine Decay (to {args.min_lr})"
+        f"Initial LR Scheduler: LambdaLR with Linear Warmup ({args.warmup_iters} iters) and Cosine Decay (to {args.min_lr}) using start_lr={args.learning_rate}"
     )
-
-    # --- Setup TensorBoard ---
-    logging.info(f"Initializing TensorBoard SummaryWriter in {log_path}...")
-    # Add a timestamped subdirectory for this specific run
-    run_name = f"gpt2_seq{args.seq_length}_batch{args.batch_size}_lr{args.learning_rate}_{time.strftime('%Y%m%d_%H%M%S')}"
-    writer = SummaryWriter(log_dir=log_path / run_name)
-    logging.info(f"TensorBoard run name: {run_name}")
 
     # --- Resume from Checkpoint (Optional) ---
     start_epoch = 0
@@ -330,9 +340,10 @@ def main():
 
     if args.resume_from:
         logging.info(f"Resuming training from checkpoint: {args.resume_from}")
-        # Pass model, optimizer, and scheduler to load their states
+        # Pass model and optimizer to load their states
+        # Do NOT pass scheduler here, we will reinitialize it based on current args
         checkpoint_data = load_checkpoint(
-            args.resume_from, model, optimizer, scheduler, device
+            args.resume_from, model, optimizer, scheduler=None, device=device # Pass scheduler=None
         )
         if checkpoint_data:
             # Check for potential key errors for backward compatibility
@@ -341,9 +352,24 @@ def main():
             best_val_loss = checkpoint_data.get("best_val_loss", float("inf"))
             # We might want to verify the config matches, but skip for now
             # loaded_config = GPTConfig(**checkpoint_data['config'])
+
             logging.info(
                 f"Resumed from Epoch {start_epoch}, Global Step {global_step}, Best Val Loss {best_val_loss:.4f}"
             )
+            # --- Simpler LR Override on Resume --- #
+            logging.info(f"Overriding optimizer LR with provided --learning_rate: {args.learning_rate:.6f}")
+            for param_group in optimizer.param_groups:
+                param_group['lr'] = args.learning_rate
+
+            # --- Set Scheduler Step Count --- #
+            # Set the scheduler's internal step count to continue decay correctly
+            logging.info(f"Setting scheduler last_epoch to {global_step}")
+            scheduler.last_epoch = global_step
+            current_scheduler_lr = scheduler.get_last_lr()[0] # Get LR *after* setting epoch
+            logging.info(f"Scheduler advanced. Optimizer LR should now be: {optimizer.param_groups[0]['lr']:.6f}. Scheduler expects LR: {current_scheduler_lr:.6f}")
+            # Note: Optimizer LR and scheduler LR might differ slightly initially if warmup is involved
+            # The scheduler will adjust the optimizer LR on the *next* scheduler.step() call
+
         else:
             logging.error(
                 f"Failed to load checkpoint {args.resume_from}. Starting from scratch."
@@ -352,6 +378,14 @@ def main():
             start_epoch = 0
             global_step = 0
             best_val_loss = float("inf")
+            # Re-initialize scheduler with default args if checkpoint failed
+            scheduler = get_lr_scheduler(
+                optimizer,
+                warmup_iters=args.warmup_iters,
+                lr_decay_iters=lr_decay_iters,
+                min_lr=args.min_lr,
+                start_lr=args.learning_rate,
+            )
 
     # --- Training Loop ---
     logging.info(f"Starting training...")
@@ -421,22 +455,12 @@ def main():
                     writer.add_scalar("LearningRate", current_lr, global_step)
                 batch_iter_time = time.time()
 
-        # --- End of Epoch ---
-        epoch_duration = time.time() - epoch_start_time
-        logging.info(f"Epoch {epoch_num} finished in {epoch_duration:.2f} seconds.")
-
-        if training_complete:
-            logging.info(f"Reached max_iters ({args.max_iters}). Stopping training.")
-            break
-
-        # --- Evaluation and Checkpointing (End of Epoch based) ---
-        # We only run evaluation and checkpointing if training by epochs
-        if args.num_epochs > 0:
-            if epoch_num % args.eval_interval == 0:
-                logging.info(f"Running evaluation for epoch {epoch_num}...")
+            # --- Step-based Evaluation --- #
+            if args.eval_steps > 0 and global_step % args.eval_steps == 0:
+                logging.info(f"Running step-based evaluation at step {global_step}...")
                 val_loss, perplexity = evaluate(model, val_loader, criterion, device)
                 logging.info(
-                    f"Epoch {epoch_num} Validation Loss: {val_loss:.4f}, Perplexity: {perplexity:.2f}"
+                    f"Step {global_step} Validation Loss: {val_loss:.4f}, Perplexity: {perplexity:.2f}"
                 )
 
                 if writer:
@@ -448,11 +472,11 @@ def main():
                 if is_best:
                     best_val_loss = val_loss
                     logging.info(
-                        f"New best validation loss: {best_val_loss:.4f} (at epoch {epoch_num}, step {global_step})"
+                        f"New best validation loss: {best_val_loss:.4f} (at step {global_step})"
                     )
                     # Save the best model checkpoint
                     state_dict = {
-                        "epoch": epoch,
+                        "epoch": epoch, # Still save epoch for context
                         "global_step": global_step,
                         "model_state_dict": model.state_dict(),
                         "optimizer_state_dict": optimizer.state_dict(),
@@ -464,65 +488,30 @@ def main():
                     }
                     save_checkpoint(
                         state_dict,
-                        is_best=True,
                         directory=checkpoint_path,
-                        filename="model_best.pth.tar",
+                        filename="model_best.pth.tar", # Overwrites previous best
                     )
 
-            # Save periodic checkpoints (even if not the best)
-            if epoch_num % args.save_interval == 0:
-                logging.info(f"Saving periodic checkpoint for epoch {epoch_num}...")
-                state_dict = {
-                    "epoch": epoch,
-                    "global_step": global_step,
-                    "model_state_dict": model.state_dict(),
-                    "optimizer_state_dict": optimizer.state_dict(),
-                    "scheduler_state_dict": (
-                        scheduler.state_dict() if scheduler else None
-                    ),
-                    "best_val_loss": best_val_loss,  # Still save the current best loss
-                    "config": config.__dict__,
-                }
-                save_checkpoint(
-                    state_dict,
-                    is_best=False,
-                    directory=checkpoint_path,
-                    filename=f"checkpoint_epoch_{epoch_num}.pth.tar",
-                )
+        # --- End of Epoch --- #
+        epoch_duration = time.time() - epoch_start_time
+        logging.info(f"Epoch {epoch_num} finished in {epoch_duration:.2f} seconds.")
 
-    logging.info("--- Training Finished ---")
+        if training_complete:
+            logging.info(f"Reached max_iters ({args.max_iters}). Stopping training.")
+            break
 
-    # TODO: Consider loading the best model before final evaluation?
-    # if Path(checkpoint_path / "model_best.pth.tar").exists():
-    #     logging.info("Loading best model for final evaluation...")
-    #     load_checkpoint(checkpoint_path / "model_best.pth.tar", model, device=device)
-
-    # Perform final evaluation
-    logging.info("Performing final evaluation on validation set...")
-    final_val_loss, final_perplexity = evaluate(model, val_loader, criterion, device)
-    logging.info(
-        f"Final Validation Loss: {final_val_loss:.4f}, Final Perplexity: {final_perplexity:.2f}"
-    )
-
-    # Close TensorBoard writer
-    if writer:
-        writer.close()
-
-        # Evaluation (run periodically based on epochs if not iter-based)
-        if args.num_epochs > 0 and epoch_num % args.eval_interval == 0:
-            logging.info(f"Running evaluation for epoch {epoch_num}...")
+        # --- Epoch-based Evaluation and Checkpointing --- #
+        # Run only if step-based evaluation is disabled AND epoch-based is enabled
+        if args.eval_steps <= 0 and args.num_epochs > 0 and epoch_num % args.eval_interval == 0:
+            logging.info(f"Running epoch-based evaluation for epoch {epoch_num}...")
             val_loss, perplexity = evaluate(model, val_loader, criterion, device)
             logging.info(
                 f"Epoch {epoch_num} Validation Loss: {val_loss:.4f}, Perplexity: {perplexity:.2f}"
             )
 
             if writer:
-                writer.add_scalar(
-                    "Loss/validation", val_loss, global_step
-                )  # Log validation loss
-                writer.add_scalar(
-                    "Perplexity/validation", perplexity, global_step
-                )  # Log perplexity
+                writer.add_scalar("Loss/validation", val_loss, global_step)
+                writer.add_scalar("Perplexity/validation", perplexity, global_step)
 
             # Checkpointing based on eval
             is_best = val_loss < best_val_loss
@@ -544,16 +533,20 @@ def main():
 
     logging.info("--- Training Finished ---")
 
-    # Perform final evaluation?
-    logging.info("Performing final evaluation...")
+    # TODO: Consider loading the best model before final evaluation?
+    # if Path(checkpoint_path / "model_best.pth.tar").exists():
+    #     logging.info("Loading best model for final evaluation...")
+    #     load_checkpoint(checkpoint_path / "model_best.pth.tar", model, device=device)
+
+    # Perform final evaluation
+    logging.info("Performing final evaluation on validation set...")
     final_val_loss, final_perplexity = evaluate(model, val_loader, criterion, device)
     logging.info(
         f"Final Validation Loss: {final_val_loss:.4f}, Final Perplexity: {final_perplexity:.2f}"
     )
-    # TODO: Maybe save final model separately?
 
     # Close TensorBoard writer
-    if writer:
+    if 'writer' in locals() and writer is not None:
         writer.close()
         logging.info("TensorBoard writer closed.")
 
