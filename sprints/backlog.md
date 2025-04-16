@@ -82,33 +82,27 @@
 - [x] Integrated TensorBoard logging.
 - [x] Created main training script with `argparse`.
 
-## Next Sprint Focus (Sprint 10 Tentative)
-
 ### Sprint 10: Pre-trained GPT-2, Text Generation & Basic Demo
 
-- **Goal:** Load and interact with a pre-trained GPT-2 model, implement various text generation techniques, and create a simple local demo.
-- **Tasks:**
-  - Load pre-trained GPT-2 model weights and tokenizer (e.g., using Hugging Face `transformers` library).
-  - Understand the configuration of the pre-trained model.
-  - Implement text generation / sampling functions:
-    - Greedy decoding.
-    - Top-k sampling.
-    - Nucleus (top-p) sampling.
-  - Implement and understand temperature scaling for controlling randomness.
-  - Write a script to generate text using the pre-trained model and different sampling strategies.
-  - **Add:** Create a _basic local interactive demo_ (e.g., using `Gradio` or `Streamlit`) to input prompts/parameters and display generated text (Proof-of-Concept level).
+- [x] Loaded pre-trained GPT-2 model and tokenizer using `transformers`.
+- [x] Implemented greedy, top-k, top-p sampling, and temperature scaling.
+- [x] Built a basic interactive demo using `gradio`.
+- [x] Implemented streaming output in the demo using `TextIteratorStreamer`.
 
-## Future Sprints
+## Next Sprint Focus (Sprint 11 Tentative)
 
-### Sprint 11: Fine-tuning GPT-2 for Classification (Tentative)
+### Sprint 11: Fine-tuning GPT-2 for Classification
 
 - **Goal:** Adapt the pre-trained GPT-2 model for a sequence classification task.
 - **Tasks:**
-  - Choose a suitable classification dataset.
-  - Add a classification head to the pre-trained GPT-2 model architecture.
-  - Prepare data loaders for classification training.
-  - Implement a fine-tuning loop, potentially freezing most of the base model initially.
-  - Evaluate the fine-tuned classification model.
+  - Choose a suitable classification dataset (e.g., IMDB, GLUE subset).
+  - Understand how to add a classification head to GPT-2.
+  - Adapt the tokenizer for classification (padding, truncation).
+  - Prepare `DataLoaders` for classification training.
+  - Implement a fine-tuning loop (potentially freezing base model layers initially).
+  - Evaluate the fine-tuned model (accuracy, etc.).
+
+## Future Sprints
 
 ### Sprint 12: Fine-tuning GPT-2 for Generative Tasks (Tentative)
 

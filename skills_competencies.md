@@ -349,3 +349,28 @@ _(Update this section as sprints are completed or significant learning occurs. A
   - Successfully ran training experiments, gaining insights into compute requirements.
 - **Documentation:**
   - Created detailed notes for each major component (data pipeline, training loop, perplexity, checkpointing, LR scheduling) in `sprints/09_train_gpt2/notes/`.
+
+## Sprint 10 Progress (Pre-trained Models, Generation, Demo)
+
+- **Hugging Face `transformers` Library:**
+  - Successfully used `AutoTokenizer` and `AutoModelForCausalLM` to load pre-trained models (e.g., GPT-2).
+  - Handled model configuration (`model.config`).
+  - Managed tokenizer specifics (adding PAD token, resizing embeddings).
+  - Gained familiarity with the high-level `model.generate()` API.
+- **Text Generation Techniques:**
+  - Understood and implemented Greedy Search.
+  - Understood and implemented Temperature Scaling.
+  - Understood and implemented Top-k Sampling.
+  - Understood and implemented Nucleus (Top-p) Sampling.
+  - Configured generation parameters (`do_sample`, `temperature`, `top_k`, `top_p`, `max_new_tokens`).
+- **Streaming Output:**
+  - Understood the concept of using Python generators (`yield`) for streaming.
+  - Implemented streaming generation using `transformers.TextIteratorStreamer`.
+  - Utilized `threading.Thread` to run blocking `model.generate` calls asynchronously.
+- **Basic UI/Demo Building:**
+  - Installed and used `gradio` library.
+  - Built an interactive web UI using `gr.Blocks` with components like Textbox, Dropdown, Slider, Button.
+  - Connected UI inputs/outputs to Python backend functions (including streaming generator function).
+- **Python/Environment Practices:**
+  - Reinforced understanding of Python imports (relative vs. absolute, running as module `-m`).
+  - Gained further experience with `uv` dependency management (`uv add`, `uv sync`).

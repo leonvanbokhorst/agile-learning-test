@@ -362,3 +362,33 @@
 
 - Created detailed notes and results in [sprints/09_train_gpt2/](./sprints/09_train_gpt2/)
 - Updated Sprint 9 `README.md` including the retrospective.
+
+## Sprint 10: Pre-trained Models, Generation & Demo
+
+### Completed
+
+- [x] Loaded pre-trained GPT-2 model and tokenizer using Hugging Face `transformers`.
+- [x] Implemented various text generation strategies (`greedy`, `top-k`, `top-p`, `temperature`) using `model.generate()`.
+- [x] Built a basic interactive demo using `gradio`.
+- [x] Implemented streaming output in the Gradio demo using `TextIteratorStreamer` and threading.
+- [x] Documented loading process, generation methods, demo setup, and streaming implementation.
+
+### Key Insights
+
+- Confirmed the significant efficiency gains of using pre-trained models from Hugging Face Hub compared to training from scratch.
+- Gained practical experience with common text generation parameters and their effects.
+- Learned how to quickly prototype interactive ML applications using Gradio.
+- Understood the mechanism for enabling real-time streaming output in Gradio applications.
+
+### Next Steps
+
+- **Sprint 11: Fine-tuning GPT-2 for Classification** (Tentative)
+  - Choose a classification dataset.
+  - Adapt pre-trained GPT-2 for sequence classification.
+  - Implement fine-tuning loop.
+  - Evaluate results.
+
+### Documentation
+
+- Created notes and results in [sprints/10_pretrained_generation_demo/](./sprints/10_pretrained_generation_demo/)
+- Updated Sprint 10 `README.md` including the retrospective.
