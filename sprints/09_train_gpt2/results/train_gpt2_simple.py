@@ -22,8 +22,7 @@ def calc_loss_batch(
     input_batch, target_batch = input_batch.to(device), target_batch.to(device)
     logits = model(input_batch)
     B, T, V = logits.shape
-    loss = nn.CrossEntropyLoss()(logits.view(B * T, V), target_batch.view(B * T))
-    return loss
+    return nn.CrossEntropyLoss()(logits.view(B * T, V), target_batch.view(B * T))
 
 
 @torch.no_grad()
@@ -150,7 +149,7 @@ def main():
         batch_size=batch_size,
         shuffle=True,
         num_workers=4,
-        pin_memory=True if device.type == "cuda" else False,
+        pin_memory=device.type == "cuda",
     )
 
     val_loader = DataLoader(
@@ -158,7 +157,7 @@ def main():
         batch_size=batch_size,
         shuffle=False,
         num_workers=4,
-        pin_memory=True if device.type == "cuda" else False,
+        pin_memory=device.type == "cuda",
     )
 
     # Setup model
