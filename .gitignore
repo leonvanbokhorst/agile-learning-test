@@ -21,3 +21,7 @@ runs/
 
 # Checkpoints
 checkpoints/
+
+# Results
+finetuned_model/
+tokenized_data_split/

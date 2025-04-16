@@ -89,20 +89,18 @@
 - [x] Built a basic interactive demo using `gradio`.
 - [x] Implemented streaming output in the demo using `TextIteratorStreamer`.
 
-## Next Sprint Focus (Sprint 11 Tentative)
-
 ### Sprint 11: Fine-tuning GPT-2 for Classification
 
-- **Goal:** Adapt the pre-trained GPT-2 model for a sequence classification task.
-- **Tasks:**
-  - Choose a suitable classification dataset (e.g., IMDB, GLUE subset).
-  - Understand how to add a classification head to GPT-2.
-  - Adapt the tokenizer for classification (padding, truncation).
-  - Prepare `DataLoaders` for classification training.
-  - Implement a fine-tuning loop (potentially freezing base model layers initially).
-  - Evaluate the fine-tuned model (accuracy, etc.).
+- **Goal:** Adapt the pre-trained GPT-2 model for a sequence classification task (Fake News Detection).
+- **Status:** Completed (See `sprints/11_finetune_gpt2_classification/README.md`)
+- **Key Outcomes:**
+  - [x] Selected and prepared `Pulk17/Fake-News-Detection-dataset`.
+  - [x] Adapted `gpt2` tokenizer and created DataLoaders.
+  - [x] Loaded `GPT2ForSequenceClassification` model.
+  - [x] Implemented fine-tuning loop with periodic validation.
+  - [x] Achieved **99.83%** accuracy on the test set after 1 epoch.
 
-## Future Sprints
+## Next Sprint Focus (Sprint 12 Tentative)
 
 ### Sprint 12: Fine-tuning GPT-2 for Generative Tasks (Tentative)
 
