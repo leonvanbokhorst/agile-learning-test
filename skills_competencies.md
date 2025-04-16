@@ -317,3 +317,35 @@ _(Update this section as sprints are completed or significant learning occurs. A
   - Added basic tests (`if __name__ == '__main__':`) for new modules.
   - Handled Python environment updates using `uv`.
   - Implemented helper methods within the model class (e.g., `get_num_params`).
+
+## Sprint 9 Progress (Training the GPT-2 Model)
+
+- **Text Data Pipeline:**
+  - Implemented data preparation script (`prepare_data.py`) for downloading and splitting text datasets (TinyShakespeare).
+  - Created a custom PyTorch `Dataset` (`TextDataset`) for sequential text data, handling tokenization and generating input/target pairs ([`results/dataset.py`](./sprints/09_train_gpt2/results/dataset.py)).
+  - Configured `DataLoader` for efficient batching, shuffling, and optional parallel loading.
+  - Integrated the GPT-2 tokenizer from Sprint 8.
+- **Language Model Training Loop:**
+  - Implemented a complete training loop for autoregressive language modeling ([`results/train_gpt2.py`](./sprints/09_train_gpt2/results/train_gpt2.py)).
+  - Correctly used `nn.CrossEntropyLoss` for next-token prediction.
+  - Integrated the `GPT` model and `GPTConfig` from Sprint 8.
+  - Used `torch.optim.AdamW` optimizer with appropriate weight decay.
+  - Implemented gradient clipping (`torch.nn.utils.clip_grad_norm_`).
+- **Evaluation & Metrics:**
+  - Implemented a function to calculate perplexity as the primary evaluation metric.
+  - Set up an evaluation loop using `torch.no_grad()` and `model.eval()`.
+- **Checkpointing Enhancements:**
+  - Modified `save_checkpoint` and `load_checkpoint` utilities (`utils.py`) to handle optimizer state, learning rate scheduler state, training step/epoch, and validation loss.
+  - Implemented logic to resume training from checkpoints.
+- **Learning Rate Scheduling:**
+  - Implemented a cosine decay learning rate scheduler with linear warmup.
+  - Integrated the scheduler step correctly within the training loop.
+- **Logging & Configuration:**
+  - Added `SummaryWriter` logging (TensorBoard) for training loss, validation loss/perplexity, and learning rate.
+  - Used `argparse` to configure training parameters (data paths, hyperparameters, device, logging, checkpointing).
+  - Implemented device handling logic (`get_device`) to automatically select CUDA, MPS, or CPU.
+- **End-to-End Execution:**
+  - Created a main training script combining all components.
+  - Successfully ran training experiments, gaining insights into compute requirements.
+- **Documentation:**
+  - Created detailed notes for each major component (data pipeline, training loop, perplexity, checkpointing, LR scheduling) in `sprints/09_train_gpt2/notes/`.

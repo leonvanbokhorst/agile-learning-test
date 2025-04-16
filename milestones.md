@@ -329,3 +329,36 @@
 - [Config](./sprints/08_gpt2_assembly/results/config.py)
 - [Utils (Checkpointing)](./sprints/08_gpt2_assembly/results/utils.py)
 - [Tokenizer](./sprints/08_gpt2_assembly/results/tokenizer.py)
+
+## Sprint 9: Training the GPT-2 Model
+
+### Completed
+
+- [x] Implemented a complete text data pipeline (download, split, tokenize, `Dataset`, `DataLoader`).
+- [x] Built a full training loop for language modeling (forward, loss, backward, optim, gradient clipping).
+- [x] Integrated evaluation (perplexity) within the training process.
+- [x] Enhanced checkpointing to save/load full training state (model, optimizer, scheduler, steps).
+- [x] Implemented learning rate scheduling (warmup + cosine decay).
+- [x] Added TensorBoard logging for key metrics.
+- [x] Created a configurable main training script (`train_gpt2.py`) using `argparse`.
+- [x] Successfully ran training end-to-end, demonstrating the pipeline's functionality.
+- [x] Gained practical insight into the computational cost of training transformers from scratch.
+
+### Key Insights
+
+- Successfully synthesized components from all previous sprints into a working end-to-end training system for a non-trivial model.
+- Mastered the practical details of language model training, including data preparation, loss calculation, and evaluation metrics like perplexity.
+- Learned the importance and implementation of advanced checkpointing and learning rate scheduling techniques.
+- Developed a strong appreciation for the computational resources required for training even moderately sized transformer models from scratch, motivating the use of pre-trained models in future sprints.
+
+### Next Steps
+
+- **Sprint 10: Using Pre-trained Models & Text Generation** (Tentative)
+  - Loading pre-trained GPT-2 weights (e.g., from Hugging Face).
+  - Implementing text generation/sampling algorithms (greedy, top-k, nucleus).
+  - Potentially exploring basic fine-tuning techniques on the pre-trained model.
+
+### Documentation
+
+- Created detailed notes and results in [sprints/09_train_gpt2/](./sprints/09_train_gpt2/)
+- Updated Sprint 9 `README.md` including the retrospective.
