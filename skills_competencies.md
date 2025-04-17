@@ -407,20 +407,22 @@ _(Update this section as sprints are completed or significant learning occurs. A
   - Refactored evaluation logic into a reusable function.
   - Used `tqdm` for progress bars in training and evaluation.
 
-## Sprint 12 Progress (Fine-tuning for Generative Tasks)
+## Sprint 12 Progress (Fine-tuning for Generation)
 
-- **Dataset Preparation & Pipeline:**
-  - Implemented `TextDataset` for causal language modeling on `book.txt`.
-  - Configured `AutoTokenizer` with `pad_token` and `pad_token_id`.
-- **Fine-Tuning Implementation:**
-  - Created `finetune_generative.py` script; ran 3 epochs with block size 128, batch size 64, learning rate 3e-5.
-  - Achieved best validation loss of 0.1143 and perplexity of 1.1211.
-- **Evaluation & Generation:**
-  - Developed `generate_text.py` with attention mask support and sampling parameters (`do_sample`, `top_k`, `top_p`, `temperature`).
-  - Compared original vs fine-tuned outputs for multiple prompts and documented results.
-- **Tooling & Practices:**
-  - Utilized Hugging Face `get_scheduler` for warmup and learning rate scheduling.
-  - Integrated `tqdm` and `logging` for progress monitoring.
-- **Documentation:**
-  - Updated `README.md` with training summary, evaluation usage examples, and next steps.
-  - Prepared backlog and milestone updates to reflect Sprint 12 completion.
+- **Generative Fine-tuning Concepts:**
+  - Understood the difference between fine-tuning for classification vs. generation ([`notes/02_finetuning_setup.md`](./sprints/12_finetune_gpt2_generative/notes/02_finetuning_setup.md)).
+  - Used `AutoModelForCausalLM` for loading the base model.
+- **Data Preparation for Generation:**
+  - Adapted the data preparation script (`prepare_data.py`) to tokenize raw text and save as `.bin` files for training/validation ([`results/prepare_data.py`](./sprints/12_finetune_gpt2_generative/results/prepare_data.py)).
+  - Created a `TextDataset` using `numpy.memmap` for efficient loading of tokenized binary data ([`results/dataset.py`](./sprints/12_finetune_gpt2_generative/results/dataset.py)).
+- **Generative Fine-tuning Loop:**
+  - Implemented a fine-tuning loop using standard PyTorch practices ([`results/finetune_generative.py`](./sprints/12_finetune_gpt2_generative/results/finetune_generative.py)).
+  - Leveraged the model's built-in loss calculation for causal language modeling when `labels` are provided.
+  - Used `AdamW` optimizer and a learning rate scheduler (`get_scheduler`).
+  - Implemented periodic evaluation based on validation loss and perplexity.
+  - Included checkpointing to save the best model based on validation loss using `model.save_pretrained()`.
+- **Model Comparison:**
+  - Implemented a script (`generate_text.py`) to load the original pre-trained model and the fine-tuned checkpoint ([`results/generate_text.py`](./sprints/12_finetune_gpt2_generative/results/generate_text.py)).
+  - Generated text from both models using identical prompts and parameters for qualitative comparison.
+- **Practices:**
+  - Practiced iterative development (refining evaluation frequency, handling dataset availability issues).

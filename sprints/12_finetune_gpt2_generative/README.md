@@ -44,6 +44,7 @@ This involves adapting the data loading pipeline for causal language modeling (s
   - [x] Monitor training progress and loss.
 
 **Training Summary:**
+
 - Completed 3 epochs with hyperparameters (block size: 128, batch size: 64, learning rate: 3e-5).
 - Best validation loss achieved: 0.1143 (epoch 3).
 - Final perplexity: 1.1211.
@@ -53,11 +54,12 @@ This involves adapting the data loading pipeline for causal language modeling (s
   - [x] Implemented `generate_text.py` to compare original vs fine-tuned models.
   - [x] Used same prompts and generation parameters (including top-p and attention mask).
   - [x] Qualitatively compared outputs for prompts: "The old house", "Lorem ipsum", and empty string.
-  - [ ] Document the generation process and comparison results in `notes/04_evaluation.md`.
+  - [x] Document the generation process and comparison results in `notes/04_evaluation.md`.
 
 ## Evaluation & Comparison Results
 
 **Usage Examples:**
+
 ```bash
 cd sprints/12_finetune_gpt2_generative/results
 python generate_text.py --do-sample False --top-k 1
@@ -65,6 +67,7 @@ python generate_text.py --do-sample True --temperature 0.3 --top-p 0.9
 ```
 
 **Summary:**
+
 - **Prompt 1 ("The old house"):**
   - Original: coherent, human-like sentence repetition.
   - Fine-tuned: Latin-like gibberish persists.
@@ -78,7 +81,35 @@ python generate_text.py --do-sample True --temperature 0.3 --top-p 0.9
 Despite greedy decoding (do-sample=False, top-k=1) and nucleus sampling (do-sample=True, temp=0.3, top-p=0.9), the fine-tuned model did not replicate the expected repeating pattern.
 **Next Steps:** augment training data with repeated "Lorem ipsum" lines or run additional epochs to reinforce this motif.
 
-- [ ] **6. Documentation & Retrospective:**
-  - [ ] Ensure all code is well-commented and follows project standards.
-  - [ ] Update `skills_competencies.md` and `milestones.md`.
-  - [ ] Update this `
+- [x] **6. Documentation & Retrospective:**
+  - [x] Ensure all code is well-commented and follows project standards.
+  - [x] Update `skills_competencies.md` and `milestones.md`.
+  - [x] Update this `README.md` with results, links to notes/code, and a retrospective.
+  - [x] Update `sprints/backlog.md`.
+
+## Retrospective
+
+- **What went well?**
+
+  - Successfully built the entire pipeline: data prep (`prepare_data.py`), dataset loading (`dataset.py`, `TextDataset`), the fine-tuning script (`finetune_generative.py`), and the generation comparison script (`generate_text.py`).
+  - Using `transformers` (`AutoModelForCausalLM`, `AutoTokenizer`) for loading models was straightforward.
+  - `TextDataset` with `np.memmap` handled data efficiently.
+  - Implemented a standard training loop with validation (loss, perplexity) and checkpointing.
+  - Maintained good progress tracking and documentation throughout the sprint.
+
+- **What could be improved?**
+
+  - The single fine-tuning epoch wasn't sufficient to fully capture the specific stylistic elements (e.g., "Lorem ipsum" repetition) of `book.txt`.
+  - Initial path handling in `prepare_data.py` defaults needed correction.
+  - Evaluation relied on qualitative comparison; objective style metrics could be explored for future, more targeted tasks.
+
+- **Key learnings?**
+
+  - Gained practical experience with the generative fine-tuning workflow and its differences from classification fine-tuning.
+  - Reinforced understanding of the causal LM training objective and how Hugging Face models handle loss calculation when `labels` are provided.
+  - Learned that improving metrics like perplexity doesn't guarantee perfect stylistic mimicry; targeted data or more training might be needed.
+  - Practiced using `AdamW`, `get_scheduler`, and `save_pretrained`/`from_pretrained`.
+
+- **Blockers encountered?**
+  - Minor path correction needed for `prepare_data.py`.
+  - General compute time constraints for fine-tuning.
