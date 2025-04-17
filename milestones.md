@@ -432,21 +432,37 @@
 
 ### Completed
 
-- [x] Selected and prepared dataset (`book.txt`) for generative fine-tuning.
-- [x] Implemented fine-tuning loop in `finetune_generative.py` (3 epochs, block size 128, batch size 64, lr 3e-5).
-- [x] Achieved best validation loss 0.1143 and perplexity 1.1211.
-- [x] Developed `generate_text.py` for evaluation with attention masks and sampling parameters (`top-k`, `top-p`, `temperature`, `do_sample`).
-- [x] Conducted comparative generation tests for prompts: "The old house", "Lorem ipsum", and empty prompt.
-- [x] Documented results in README and updated backlog.
+- [x] Understood the conceptual difference between generative and classification fine-tuning.
+- [x] Prepared a custom dataset (`book.txt`) for generative fine-tuning using `prepare_data.py` (tokenization, train/val split, binary saving).
+- [x] Implemented a `TextDataset` using `np.memmap` for efficient loading.
+- [x] Loaded a pre-trained `gpt2` model (`AutoModelForCausalLM`) and tokenizer.
+- [x] Implemented a complete fine-tuning loop (`finetune_generative.py`) including:
+  - Causal LM loss calculation.
+  - `AdamW` optimizer and learning rate scheduler.
+  - Validation loop calculating loss and perplexity.
+  - Checkpointing based on best validation loss.
+- [x] Ran fine-tuning experiment (1 epoch) on the custom dataset.
+- [x] Implemented a script (`generate_text.py`) to compare text generation between the original and fine-tuned models.
+- [x] Documented the process, including dataset prep, setup, training loop, and generation comparison concepts.
 
 ### Key Insights
 
-- Fine-tuned GPT-2 improved perplexity but struggled to replicate repeating patterns like "Lorem ipsum" without targeted data augmentation.
-- Attention mask inclusion removed warnings and ensured cleaner generation.
-- Greedy decoding (`top-k=1, do_sample=False`) produced stable text for coherent prompts.
+- Successfully applied fine-tuning to adapt a pre-trained generative model (GPT-2) to a custom text dataset (`book.txt`).
+- Gained practical experience with the end-to-end workflow for generative fine-tuning using Hugging Face `transformers`.
+- Reinforced understanding of data preparation for language modeling (tokenization, sequential splitting, binary formats).
+- Practiced implementing standard training components (optimizer, scheduler, evaluation metrics like perplexity, checkpointing).
+- Observed the qualitative difference in text generation between a base model and one fine-tuned on specific data (requires user observation from `generate_text.py`).
 
 ### Next Steps
 
-- Augment training data with specific repeating patterns (e.g., multiple "Lorem ipsum" lines) if needed.
-- Consider additional epochs or parameter-efficient fine-tuning (LoRA).
-- Plan next sprint: Parameter-efficient fine-tuning (PEFT - LoRA).
+- **Sprint 13: Parameter-Efficient Fine-Tuning (PEFT - LoRA)** (Tentative)
+  - Learn the theory behind LoRA.
+  - Implement LoRA for a fine-tuning task.
+  - Compare results with full fine-tuning.
+
+### Documentation
+
+- Created notes and results in [sprints/12_finetune_gpt2_generative/](./sprints/12_finetune_gpt2_generative/)
+- Updated Sprint 12 `README.md`.
+- Updated `skills_competencies.md`.
+- Updated `backlog.md`.
