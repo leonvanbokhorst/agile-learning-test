@@ -89,7 +89,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--input-path",
         type=str,
-        default="data/book.txt",
+        default="sprints/12_finetune_gpt2_generative/results/data/self_aware_lorem.txt",
         help="Path to the input text file.",
     )
     parser.add_argument(

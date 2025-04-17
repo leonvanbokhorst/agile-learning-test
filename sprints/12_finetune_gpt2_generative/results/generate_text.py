@@ -30,21 +30,25 @@ def generate_text(
     device,
     max_new_tokens=50,
     temperature=0.7,
-    top_k=50,
-    do_sample=True,
+    top_k=1,
+    top_p=0.9,
+    do_sample=False,
 ):
     """Generates text from a given model and tokenizer."""
     model.eval()  # Ensure model is in eval mode
-    inputs = tokenizer(prompt, return_tensors="pt").to(device)
+    inputs = tokenizer(prompt, return_tensors="pt", return_attention_mask=True).to(device)
     input_ids = inputs.input_ids
+    attention_mask = inputs.attention_mask
 
     # Generate text
     with torch.no_grad():
         outputs = model.generate(
             input_ids,
+            attention_mask=attention_mask,
             max_new_tokens=max_new_tokens,
             temperature=temperature,
             top_k=top_k,
+            top_p=top_p,
             do_sample=do_sample,
             pad_token_id=(
                 tokenizer.pad_token_id
@@ -105,9 +109,9 @@ def main(args):
 
     # --- Define Prompts ---
     prompts = [
-        "The old house stood on a hill overlooking the town. ",
-        "Chapter 1: It was a dark and stormy night",
-        "To be, or not to be, that is the",
+        "The old house ",
+        "Lorem ipsum ",
+        " ",
         # Add more prompts relevant to your book.txt content if possible
     ]
 
@@ -128,6 +132,7 @@ def main(args):
                 max_new_tokens=args.max_new_tokens,
                 temperature=args.temperature,
                 top_k=args.top_k,
+                top_p=args.top_p,
                 do_sample=args.do_sample,
             )
             print(original_output)
@@ -145,6 +150,7 @@ def main(args):
                 max_new_tokens=args.max_new_tokens,
                 temperature=args.temperature,
                 top_k=args.top_k,
+                top_p=args.top_p,
                 do_sample=args.do_sample,
             )
             print(finetuned_output)
@@ -184,11 +190,12 @@ if __name__ == "__main__":
     parser.add_argument(
         "--temperature", type=float, default=0.7, help="Sampling temperature."
     )
-    parser.add_argument("--top-k", type=int, default=50, help="Top-k sampling.")
+    parser.add_argument("--top-k", type=int, default=1, help="Top-k sampling (1 for greedy decoding).")
+    parser.add_argument("--top-p", type=float, default=0.9, help="Nucleus sampling top-p.")
     parser.add_argument(
         "--do-sample",
         type=bool,
-        default=True,
+        default=False,
         help="Whether to use sampling; set to False for greedy decoding.",
     )
 

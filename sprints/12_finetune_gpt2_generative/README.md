@@ -44,8 +44,9 @@ This involves adapting the data loading pipeline for causal language modeling (s
   - [x] Monitor training progress and loss.
 
 **Training Summary:**
-
-- Completed 1 epoch with default hyperparameters (block size: 512, batch size: 2, learning rate: 3e-5).
+- Completed 3 epochs with hyperparameters (block size: 128, batch size: 64, learning rate: 3e-5).
+- Best validation loss achieved: 0.1143 (epoch 3).
+- Final perplexity: 1.1211.
 - Best model checkpoint saved to `results/checkpoints/finetuned_model`.
 
 - [ ] **5. Evaluation & Comparison:**

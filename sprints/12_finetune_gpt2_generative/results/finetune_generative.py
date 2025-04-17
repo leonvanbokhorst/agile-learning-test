@@ -250,19 +250,19 @@ if __name__ == "__main__":
     parser.add_argument(
         "--block-size",
         type=int,
-        default=512,
+        default=128,
         help="Context length (sequence length) for the model. Max 1024 for GPT-2.",
     )
 
     # Training Hyperparameters
     parser.add_argument(
-        "--epochs", type=int, default=1, help="Number of training epochs."
+        "--epochs", type=int, default=3, help="Number of training epochs."
     )
     # Adjust batch size based on GPU memory
     parser.add_argument(
         "--batch-size",
         type=int,
-        default=2,
+        default=64,
         help="Batch size for training and validation.",
     )
     parser.add_argument(
@@ -289,6 +289,7 @@ if __name__ == "__main__":
         default="cosine",
         help="Learning rate scheduler type (e.g., linear, cosine).",
     )
+
     # parser.add_argument('--max-grad-norm', type=float, default=1.0, help='Gradient clipping value.') # Optional
 
     # Runtime Args
