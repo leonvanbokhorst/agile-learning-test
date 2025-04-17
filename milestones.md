@@ -455,14 +455,14 @@
 
 ### Next Steps
 
-- **Sprint 13: Parameter-Efficient Fine-Tuning (PEFT - LoRA)** (Tentative)
-  - Learn the theory behind LoRA.
-  - Implement LoRA for a fine-tuning task.
-  - Compare results with full fine-tuning.
+- **Sprint 13: Parameter-Efficient Fine-Tuning (PEFT - LoRA)** (Completed)
+  - Learned LoRA theory and setup using the Hugging Face `peft` library.
+  - Adapted and ran the LoRA fine-tuning script (`finetune_lora.py`) on generative GPT-2 task.
+  - Achieved best validation loss of 0.2228 and best perplexity of 1.2496.
+  - Reduced trainable parameters to 294,912 (≈0.2364% of total 124,734,720).
+  - Saved LoRA adapter weights and config in `sprints/13_peft_lora/results/checkpoints/lora_finetuned_model/`.
 
 ### Documentation
 
-- Created notes and results in [sprints/12_finetune_gpt2_generative/](./sprints/12_finetune_gpt2_generative/)
-- Updated Sprint 12 `README.md`.
-- Updated `skills_competencies.md`.
-- Updated `backlog.md`.
+- Updated `sprints/13_peft_lora/README.md` with results and retrospective.
+- Updated `skills_competencies.md` and project backlog accordingly.

@@ -426,3 +426,13 @@ _(Update this section as sprints are completed or significant learning occurs. A
   - Generated text from both models using identical prompts and parameters for qualitative comparison.
 - **Practices:**
   - Practiced iterative development (refining evaluation frequency, handling dataset availability issues).
+
+## Sprint 13 Progress (Parameter-Efficient Fine-Tuning - LoRA)
+
+- **PEFT & LoRA Theory:** Learned low-rank adaptation principles and adapter injection mechanisms.
+- **Hugging Face PeFT Usage:** Configured `LoraConfig` (r, alpha, dropout, target_modules) and applied `get_peft_model` to freeze base weights and inject adapters.
+- **Parameter Efficiency:** Measured trainable vs. total parameters, achieving 294,912 trainable parameters (~0.2364% of 124,734,720 model weights).
+- **Fine-Tuning Loop Adaptation:** Adapted the training script (`finetune_lora.py`) to train only LoRA adapter layers with `AdamW` optimizer and learning rate scheduler from `transformers.get_scheduler`.
+- **Evaluation & Metrics:** Implemented validation loop computing average loss (best 0.2228) and perplexity (best 1.2496).
+- **Model Checkpointing:** Saved adapter weights (`adapter_model.safetensors`) and config (`adapter_config.json`) via `model.save_pretrained()`.
+- **Documentation Practices:** Updated sprint README, created detailed implementation and results notes (`notes/03_lora_implementation.md`, `notes/04_results_comparison.md`), and added retrospective insights.
