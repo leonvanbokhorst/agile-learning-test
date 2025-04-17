@@ -101,7 +101,7 @@ def evaluate_on_test_set(model, test_dataloader, device):
 
 
 # --- Main Execution ---
-def main():
+def main():  # sourcery skip: extract-method
     device = get_device()
 
     try:

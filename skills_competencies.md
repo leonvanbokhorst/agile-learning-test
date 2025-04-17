@@ -406,3 +406,21 @@ _(Update this section as sprints are completed or significant learning occurs. A
 - **PyTorch Practices:**
   - Refactored evaluation logic into a reusable function.
   - Used `tqdm` for progress bars in training and evaluation.
+
+## Sprint 12 Progress (Fine-tuning for Generative Tasks)
+
+- **Dataset Preparation & Pipeline:**
+  - Implemented `TextDataset` for causal language modeling on `book.txt`.
+  - Configured `AutoTokenizer` with `pad_token` and `pad_token_id`.
+- **Fine-Tuning Implementation:**
+  - Created `finetune_generative.py` script; ran 3 epochs with block size 128, batch size 64, learning rate 3e-5.
+  - Achieved best validation loss of 0.1143 and perplexity of 1.1211.
+- **Evaluation & Generation:**
+  - Developed `generate_text.py` with attention mask support and sampling parameters (`do_sample`, `top_k`, `top_p`, `temperature`).
+  - Compared original vs fine-tuned outputs for multiple prompts and documented results.
+- **Tooling & Practices:**
+  - Utilized Hugging Face `get_scheduler` for warmup and learning rate scheduling.
+  - Integrated `tqdm` and `logging` for progress monitoring.
+- **Documentation:**
+  - Updated `README.md` with training summary, evaluation usage examples, and next steps.
+  - Prepared backlog and milestone updates to reflect Sprint 12 completion.
