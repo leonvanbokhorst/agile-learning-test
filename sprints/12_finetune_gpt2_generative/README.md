@@ -2,7 +2,7 @@
 
 **Sprint Goal:** Fine-tune a pre-trained GPT-2 model to generate text in a specific style or domain, deepening the understanding of generative fine-tuning techniques.
 
-**Status:** In Progress ⏳
+**Status:** Training Completed ✅
 
 ## Overview
 
@@ -40,8 +40,14 @@ This involves adapting the data loading pipeline for causal language modeling (s
   - [x] Implement periodic saving of model checkpoints (fine-tuned weights).
   - [x] Document the training loop logic in `notes/03_training_loop.md`.
 - [ ] **4. Run Fine-tuning:**
-  - [ ] Execute the fine-tuning script for a chosen number of steps/epochs.
-  - [ ] Monitor training progress and loss.
+  - [x] Execute the fine-tuning script for a chosen number of steps/epochs.
+  - [x] Monitor training progress and loss.
+
+**Training Summary:**
+
+- Completed 1 epoch with default hyperparameters (block size: 512, batch size: 2, learning rate: 3e-5).
+- Best model checkpoint saved to `results/checkpoints/finetuned_model`.
+
 - [ ] **5. Evaluation & Comparison:**
   - [ ] Implement a script (`generate_text.py`?) to generate text using:
     - The original pre-trained GPT-2.
