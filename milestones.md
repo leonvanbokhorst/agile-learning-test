@@ -455,14 +455,40 @@
 
 ### Next Steps
 
-- **Sprint 13: Parameter-Efficient Fine-Tuning (PEFT - LoRA)** (Completed)
-  - Learned LoRA theory and setup using the Hugging Face `peft` library.
-  - Adapted and ran the LoRA fine-tuning script (`finetune_lora.py`) on generative GPT-2 task.
-  - Achieved best validation loss of 0.2228 and best perplexity of 1.2496.
-  - Reduced trainable parameters to 294,912 (≈0.2364% of total 124,734,720).
-  - Saved LoRA adapter weights and config in `sprints/13_peft_lora/results/checkpoints/lora_finetuned_model/`.
+- **Sprint 14: Model Optimization (Quantization - PoC Level)** (Tentative)
+  - Understand quantization concepts (INT8, dynamic vs. static).
+  - Use PyTorch's quantization tools (`torch.quantization`).
+  - Apply quantization to a GPT-2 model (pre-trained or fine-tuned).
+  - Evaluate impact on model size, inference speed, and performance.
+
+### Documentation
+
+- Created notes and results in [sprints/12_finetune_gpt2_generative/](./sprints/12_finetune_gpt2_generative/)
+- Updated Sprint 12 docs in `sprints/12_finetune_gpt2_generative/README.md`.
+- Updated project backlog and skills log for Sprint 12.
+
+## Sprint 13: Parameter-Efficient Fine-Tuning (PEFT - LoRA)
+
+### Completed
+
+- [x] Learned LoRA theory and setup using the Hugging Face `peft` library.
+- [x] Adapted and ran the LoRA fine-tuning script (`finetune_lora.py`) on generative GPT-2 task.
+- [x] Achieved best validation loss of 0.2228 and best perplexity of 1.2496.
+- [x] Reduced trainable parameters to 294,912 (≈0.2364% of total 124,734,720).
+- [x] Saved LoRA adapter weights and config in `sprints/13_peft_lora/results/checkpoints/lora_finetuned_model/`.
+
+### Key Insights
+
+- LoRA enabled efficient fine-tuning with minimal trainable parameters.
+- Tuning `r`, `lora_alpha`, and target modules significantly affects performance.
+- The `peft` library makes LoRA integration straightforward.
+
+### Next Steps
+
+- Experiment with different LoRA configurations (higher rank, varied target modules).
+- Automate evaluation scripts and expand `notes/04_results_comparison.md`.
 
 ### Documentation
 
 - Updated `sprints/13_peft_lora/README.md` with results and retrospective.
-- Updated `skills_competencies.md` and project backlog accordingly.
+- Updated `skills_competencies.md` and project backlog for Sprint 13.
