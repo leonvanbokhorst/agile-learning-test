@@ -49,39 +49,36 @@ This involves adapting the data loading pipeline for causal language modeling (s
 - Final perplexity: 1.1211.
 - Best model checkpoint saved to `results/checkpoints/finetuned_model`.
 
-- [ ] **5. Evaluation & Comparison:**
-  - [ ] Implement a script (`generate_text.py`?) to generate text using:
-    - The original pre-trained GPT-2.
-    - The fine-tuned GPT-2 checkpoint.
-  - [ ] Use the same prompts and generation parameters (e.g., temperature, top-k) for fair comparison.
-  - [ ] Qualitatively compare the outputs. Does the fine-tuned model adopt the target style/domain?
+- [x] **5. Evaluation & Comparison:**
+  - [x] Implemented `generate_text.py` to compare original vs fine-tuned models.
+  - [x] Used same prompts and generation parameters (including top-p and attention mask).
+  - [x] Qualitatively compared outputs for prompts: "The old house", "Lorem ipsum", and empty string.
   - [ ] Document the generation process and comparison results in `notes/04_evaluation.md`.
+
+## Evaluation & Comparison Results
+
+**Usage Examples:**
+```bash
+cd sprints/12_finetune_gpt2_generative/results
+python generate_text.py --do-sample False --top-k 1
+python generate_text.py --do-sample True --temperature 0.3 --top-p 0.9
+```
+
+**Summary:**
+- **Prompt 1 ("The old house"):**
+  - Original: coherent, human-like sentence repetition.
+  - Fine-tuned: Latin-like gibberish persists.
+- **Prompt 2 ("Lorem ipsum"):**
+  - Original: classic "Lorem ipsum ipsum..." repetition.
+  - Fine-tuned: fragmented pseudo-Latin, no true repetition.
+- **Prompt 3 (empty prompt):**
+  - Original: sensible code generation advice.
+  - Fine-tuned: repeated Latin-like tokens.
+
+Despite greedy decoding (do-sample=False, top-k=1) and nucleus sampling (do-sample=True, temp=0.3, top-p=0.9), the fine-tuned model did not replicate the expected repeating pattern.
+**Next Steps:** augment training data with repeated "Lorem ipsum" lines or run additional epochs to reinforce this motif.
+
 - [ ] **6. Documentation & Retrospective:**
   - [ ] Ensure all code is well-commented and follows project standards.
   - [ ] Update `skills_competencies.md` and `milestones.md`.
-  - [ ] Update this `README.md` with results, links to notes/code, and a retrospective.
-  - [ ] Update `sprints/backlog.md`.
-
-## Resources & Links
-
-- **Notes:**
-  - [`notes/01_dataset_prep.md`](./notes/01_dataset_prep.md)
-  - [`notes/02_finetuning_setup.md`](./notes/02_finetuning_setup.md)
-  - [`notes/03_training_loop.md`](./notes/03_training_loop.md)
-  - [`notes/04_evaluation.md`](./notes/04_evaluation.md)
-- **Results:**
-  - [`results/prepare_data.py`](./results/prepare_data.py) (or similar)
-  - [`results/finetune_generative.py`](./results/finetune_generative.py) (or similar)
-  - [`results/generate_text.py`](./results/generate_text.py) (or similar)
-  - Checkpoints directory (e.g., `results/checkpoints/`)
-- **Dependencies:**
-  - `torch`, `transformers`, `datasets`, `tokenizers` (Add others as needed to `pyproject.toml`)
-
-## Retrospective
-
-_(To be filled out at the end of the sprint)_
-
-- **What went well?**
-- **What could be improved?**
-- **Key learnings?**
-- **Blockers encountered?**
+  - [ ] Update this `

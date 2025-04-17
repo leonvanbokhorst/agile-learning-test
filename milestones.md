@@ -427,3 +427,26 @@
 - Updated Sprint 11 `README.md`.
 - Updated `backlog.md`.
 - Updated `skills_competencies.md`.
+
+## Sprint 12: Fine-tuning GPT-2 for Generative Tasks
+
+### Completed
+
+- [x] Selected and prepared dataset (`book.txt`) for generative fine-tuning.
+- [x] Implemented fine-tuning loop in `finetune_generative.py` (3 epochs, block size 128, batch size 64, lr 3e-5).
+- [x] Achieved best validation loss 0.1143 and perplexity 1.1211.
+- [x] Developed `generate_text.py` for evaluation with attention masks and sampling parameters (`top-k`, `top-p`, `temperature`, `do_sample`).
+- [x] Conducted comparative generation tests for prompts: "The old house", "Lorem ipsum", and empty prompt.
+- [x] Documented results in README and updated backlog.
+
+### Key Insights
+
+- Fine-tuned GPT-2 improved perplexity but struggled to replicate repeating patterns like "Lorem ipsum" without targeted data augmentation.
+- Attention mask inclusion removed warnings and ensured cleaner generation.
+- Greedy decoding (`top-k=1, do_sample=False`) produced stable text for coherent prompts.
+
+### Next Steps
+
+- Augment training data with specific repeating patterns (e.g., multiple "Lorem ipsum" lines) if needed.
+- Consider additional epochs or parameter-efficient fine-tuning (LoRA).
+- Plan next sprint: Parameter-efficient fine-tuning (PEFT - LoRA).
