@@ -2,7 +2,7 @@
 
 **Sprint Goal:** Understand and implement Low-Rank Adaptation (LoRA) for parameter-efficient fine-tuning, comparing its effectiveness and resource usage against full fine-tuning.
 
-**Status:** Not Started ⏳
+**Status:** Completed ✅
 
 ## Overview
 
@@ -23,32 +23,32 @@ We will learn the theory behind LoRA, implement it (likely using the Hugging Fac
 
 ## Tasks
 
-- [ ] **1. LoRA Theory & Setup:**
-  - [ ] Research and understand the theoretical underpinnings of LoRA (low-rank decomposition, injecting adapter layers).
-  - [ ] Explore the Hugging Face `peft` library and its API for LoRA integration.
-  - [ ] Set up the environment with necessary libraries (e.g., `pip install peft`).
-  - [ ] Document LoRA concepts and `peft` library usage in `notes/01_lora_theory_setup.md`.
-- [ ] **2. Choose Task & Baseline:**
+- [x] **1. LoRA Theory & Setup:**
+  - [x] Research and understand the theoretical underpinnings of LoRA (low-rank decomposition, injecting adapter layers).
+  - [x] Explore the Hugging Face `peft` library and its API for LoRA integration.
+  - [x] Set up the environment with necessary libraries (e.g., `pip install peft`).
+  - [x] Document LoRA concepts and `peft` library usage in `notes/01_lora_theory_setup.md`.
+- [x] **2. Choose Task & Baseline:**
   - [x] Decide whether to re-run the classification task (Sprint 11) or the generative task (Sprint 12) as the target for LoRA.
   - [x] Identify the baseline performance and parameter count from the chosen previous sprint's full fine-tuning results.
   - [x] Document the chosen task and baseline metrics in `notes/02_task_baseline.md`.
-- [ ] **3. Implement LoRA Fine-tuning:**
-  - [ ] Adapt the chosen fine-tuning script (from Sprint 11 or 12) to incorporate LoRA using the `peft` library.
-  - [ ] Configure LoRA parameters (e.g., `r`, `lora_alpha`, `target_modules`).
-  - [ ] Implement the training loop, ensuring only LoRA parameters are trained.
-  - [ ] Document the implementation details in `notes/03_lora_implementation.md`.
-- [ ] **4. Run LoRA Fine-tuning & Evaluation:**
-  - [ ] Execute the LoRA fine-tuning script.
-  - [ ] Monitor training progress (loss, metrics).
-  - [ ] Evaluate the final LoRA-tuned model on the relevant test set.
-  - [ ] Compare performance (accuracy/perplexity) against the full fine-tuning baseline.
-  - [ ] Compare the number of trainable parameters and approximate training time difference.
-  - [ ] Document results and comparisons in `notes/04_results_comparison.md`.
-- [ ] **5. Documentation & Retrospective:**
-  - [ ] Ensure all code is well-commented and follows project standards.
-  - [ ] Update `skills_competencies.md` and `milestones.md`.
-  - [ ] Update this `README.md` with results, links to notes/code, and a retrospective.
-  - [ ] Update `sprints/backlog.md`.
+- [x] **3. Implement LoRA Fine-tuning:**
+  - [x] Adapt the chosen fine-tuning script (from Sprint 11 or 12) to incorporate LoRA using the `peft` library.
+  - [x] Configure LoRA parameters (e.g., `r`, `lora_alpha`, `target_modules`).
+  - [x] Implement the training loop, ensuring only LoRA parameters are trained.
+  - [x] Document the implementation details in `notes/03_lora_implementation.md`.
+- [x] **4. Run LoRA Fine-tuning & Evaluation:**
+  - [x] Execute the LoRA fine-tuning script.
+  - [x] Monitor training progress (loss, metrics).
+  - [x] Evaluate the final LoRA-tuned model on the relevant test set.
+  - [x] Compare performance (accuracy/perplexity) against the full fine-tuning baseline.
+  - [x] Compare the number of trainable parameters and approximate training time difference.
+  - [x] Document results and comparisons in `notes/04_results_comparison.md`.
+- [x] **5. Documentation & Retrospective:**
+  - [x] Ensure all code is well-commented and follows project standards.
+  - [x] Update `skills_competencies.md` and `milestones.md`.
+  - [x] Update this `README.md` with results, links to notes/code, and a retrospective.
+  - [x] Update `sprints/backlog.md`.
 
 ## Notes & Results Links
 
@@ -60,14 +60,12 @@ _(To be filled in as the sprint progresses)_
   - [LoRA Implementation](./notes/03_lora_implementation.md)
   - [Results & Comparison](./notes/04_results_comparison.md)
 - Results:
-  - _(Link to LoRA config/script)_
-  - _(Link to evaluation script/results)_
+  - LoRA fine-tuning script: [`finetune_lora.py`](./results/finetune_lora.py)
+  - Adapter model and config: [`checkpoints/lora_finetuned_model`](./results/checkpoints/lora_finetuned_model/)
 
 ## Retrospective
 
-_(To be filled in upon sprint completion)_
-
-- **What went well?**
-- **What could be improved?**
-- **Key learnings?**
-- **Blockers encountered?**
+- **What went well?** LoRA adapters trained quickly with only 0.236% trainable parameters and achieved a best perplexity of 1.2496.
+- **What could be improved?** Experiment with different LoRA ranks and target modules, enhance evaluation and analysis scripts.
+- **Key learnings?** PEFT with the Hugging Face `peft` library makes integrating LoRA straightforward and efficient.
+- **Blockers encountered?** No significant blockers; minor logging adjustments were made.

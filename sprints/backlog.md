@@ -111,16 +111,18 @@
   - [x] Implemented script to compare generation vs. original model.
   - [x] Observed qualitative differences, though specific style mimicry needs further work/epochs.
 
-## Next Sprint Focus (Sprint 13 Tentative)
+## Next Sprint Focus (Sprint 13 & beyond)
 
-### Sprint 13: Parameter-Efficient Fine-Tuning (PEFT - LoRA) (Tentative)
+### Sprint 13: Parameter-Efficient Fine-Tuning (PEFT - LoRA) (Completed)
 
 - **Goal:** Understand and implement LoRA for parameter-efficient fine-tuning.
-- **Tasks:**
-  - Learn the theory behind LoRA.
-  - Implement/integrate LoRA layers (e.g., using `peft` library or custom layers).
-  - Re-run a fine-tuning task (classification or generation) using LoRA.
-  - Compare results (performance, parameters) against full fine-tuning.
+- **Key Outcomes:**
+  - Learned LoRA theory and setup (Hugging Face `peft`).
+  - Ran `finetune_lora.py` achieving best val loss 0.2228 and perplexity 1.2496.
+  - Trained only 294,912 parameters (~0.2364% of GPT-2).
+  - Saved adapters in `sprints/13_peft_lora/results/checkpoints/lora_finetuned_model/`.
+
+## Upcoming Sprint Focus
 
 ### Sprint 14: Model Optimization (Quantization - PoC Level) (Tentative)
 
@@ -129,7 +131,7 @@
   - Understand quantization concepts (INT8, dynamic vs. static).
   - Use PyTorch's quantization tools (`torch.quantization`).
   - Apply quantization to a GPT-2 model (pre-trained or fine-tuned).
-  - Evaluate impact on model size, (estimated) inference speed, and performance (minimal deployment focus).
+  - Evaluate impact on model size, (estimated) inference speed, and performance.
 
 ### Sprint 15: Exploring Other Architectures (Encoder-Decoder) (Tentative)
 
