@@ -44,8 +44,8 @@ We will learn the theory behind LoRA, implement it (likely using the Hugging Fac
   - [x] Compare performance (accuracy/perplexity) against the full fine-tuning baseline.
   - [x] Compare the number of trainable parameters and approximate training time difference.
   - [x] Document results and comparisons in `notes/04_results_comparison.md`.
-- [x] **5. Documentation & Retrospective:**
-  - [x] Ensure all code is well-commented and follows project standards.
+- [ ] **5. Documentation & Retrospective:**
+  - [ ] Ensure all code is well-commented and follows project standards.
   - [x] Update `skills_competencies.md` and `milestones.md`.
   - [x] Update this `README.md` with results, links to notes/code, and a retrospective.
   - [x] Update `sprints/backlog.md`.
@@ -57,15 +57,37 @@ _(To be filled in as the sprint progresses)_
 - Notes:
   - [LoRA Theory & Setup](./notes/01_lora_theory_setup.md)
   - [Task & Baseline Selection](./notes/02_task_baseline.md)
-  - [LoRA Implementation](./notes/03_lora_implementation.md)
+  - [LoRA Implementation](./notes/03_lora_implementation.md) _(Placeholder - Code in results)_
   - [Results & Comparison](./notes/04_results_comparison.md)
 - Results:
-  - LoRA fine-tuning script: [`finetune_lora.py`](./results/finetune_lora.py)
-  - Adapter model and config: [`checkpoints/lora_finetuned_model`](./results/checkpoints/lora_finetuned_model/)
+  - [Dataset Loading Script](./results/dataset.py)
+  - [LoRA Fine-tuning Script](./results/finetune_lora.py)
+  - [LoRA Adapter Checkpoint](./results/checkpoints/lora_finetuned_model/) _(Saved here)_
 
 ## Retrospective
 
-- **What went well?** LoRA adapters trained quickly with only 0.236% trainable parameters and achieved a best perplexity of 1.2496.
-- **What could be improved?** Experiment with different LoRA ranks and target modules, enhance evaluation and analysis scripts.
-- **Key learnings?** PEFT with the Hugging Face `peft` library makes integrating LoRA straightforward and efficient.
-- **Blockers encountered?** No significant blockers; minor logging adjustments were made.
+_(To be filled in upon sprint completion)_
+
+- **What went well?**
+
+  - Implementing LoRA using the Hugging Face `peft` library (`LoraConfig`, `get_peft_model`) was relatively straightforward and effective.
+  - Successfully created self-contained scripts (`dataset.py`, `finetune_lora.py`) for this sprint.
+  - Observed the drastic reduction in trainable parameters (~0.24%) as expected, clearly demonstrating LoRA's efficiency.
+  - The training loop executed successfully after resolving initial setup issues.
+  - Achieved a reasonable perplexity (1.2537), validating the LoRA approach.
+
+- **What could be improved?**
+
+  - The final LoRA perplexity (1.2537) was slightly higher than the full fine-tuning baseline (1.1211). Experimenting with different `LoraConfig` parameters (e.g., higher `r`, different `target_modules`) could potentially improve this.
+  - We haven't yet implemented a script (`generate_lora.py`) to load the adapters and qualitatively compare text generation against the original and fully fine-tuned models.
+
+- **Key learnings?**
+
+  - Gained practical experience implementing LoRA for generative fine-tuning.
+  - Deepened understanding of the efficiency vs. performance trade-off inherent in PEFT methods.
+  - Learned the specific mechanics of configuring LoRA with `peft`, applying it to a model, and saving the resulting adapters.
+  - Reinforced debugging skills related to Python module imports and path handling.
+
+- **Blockers encountered?**
+  - Initial `ModuleNotFoundError` when running the training script via `python -m`, resolved by changing the execution method (`cd ... && python ...`).
+  - Had to adjust default data paths in the script after deciding to copy data locally.

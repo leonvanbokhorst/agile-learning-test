@@ -429,10 +429,28 @@ _(Update this section as sprints are completed or significant learning occurs. A
 
 ## Sprint 13 Progress (Parameter-Efficient Fine-Tuning - LoRA)
 
-- **PEFT & LoRA Theory:** Learned low-rank adaptation principles and adapter injection mechanisms.
-- **Hugging Face PeFT Usage:** Configured `LoraConfig` (r, alpha, dropout, target_modules) and applied `get_peft_model` to freeze base weights and inject adapters.
-- **Parameter Efficiency:** Measured trainable vs. total parameters, achieving 294,912 trainable parameters (~0.2364% of 124,734,720 model weights).
-- **Fine-Tuning Loop Adaptation:** Adapted the training script (`finetune_lora.py`) to train only LoRA adapter layers with `AdamW` optimizer and learning rate scheduler from `transformers.get_scheduler`.
-- **Evaluation & Metrics:** Implemented validation loop computing average loss (best 0.2228) and perplexity (best 1.2496).
-- **Model Checkpointing:** Saved adapter weights (`adapter_model.safetensors`) and config (`adapter_config.json`) via `model.save_pretrained()`.
-- **Documentation Practices:** Updated sprint README, created detailed implementation and results notes (`notes/03_lora_implementation.md`, `notes/04_results_comparison.md`), and added retrospective insights.
+- **PEFT & LoRA Theory:**
+  - Understood the motivation for Parameter-Efficient Fine-Tuning (PEFT).
+  - Learned the core concepts of Low-Rank Adaptation (LoRA): freezing base weights, injecting low-rank adapter matrices (A, B), updating only adapters.
+  - Understood the mechanism of low-rank decomposition (ΔW ≈ BA).
+  - Documented concepts in [`notes/01_lora_theory_setup.md`](./sprints/13_peft_lora/notes/01_lora_theory_setup.md).
+- **Hugging Face `peft` Library Usage:**
+  - Installed and imported the `peft` library.
+  - Configured `LoraConfig` specifying rank (`r`), alpha (`lora_alpha`), dropout (`lora_dropout`), and `target_modules` (e.g., `["c_attn"]` for GPT-2 attention).
+  - Set the appropriate `task_type` (`TaskType.CAUSAL_LM`).
+  - Used `get_peft_model` to wrap a base `transformers` model (`AutoModelForCausalLM`) and apply the LoRA configuration.
+- **LoRA Fine-tuning Implementation:**
+  - Adapted a generative fine-tuning script (`finetune_lora.py`) to use the PEFT model ([`results/finetune_lora.py`](./sprints/13_peft_lora/results/finetune_lora.py)).
+  - Ensured the optimizer (`AdamW`) only targeted the trainable adapter parameters.
+  - Implemented the training loop, evaluation (calculating perplexity), and learning rate scheduling (`get_scheduler`).
+- **Parameter Efficiency Analysis:**
+  - Implemented `print_trainable_parameters` function to calculate and display the number and percentage of trainable parameters vs. total parameters.
+  - Observed a drastic reduction in trainable parameters (~0.24% for `r=8` on GPT-2).
+- **Comparison & Evaluation:**
+  - Compared the validation perplexity achieved with LoRA (1.2537) against the baseline full fine-tuning perplexity (1.1211 from Sprint 12).
+  - Analyzed the trade-off between performance and parameter efficiency.
+  - Documented results and comparison in [`notes/04_results_comparison.md`](./sprints/13_peft_lora/notes/04_results_comparison.md).
+- **LoRA Model Saving:**
+  - Used `model.save_pretrained()` on the PEFT model to save only the adapter weights (`adapter_model.safetensors` or `.bin`) and the adapter configuration (`adapter_config.json`).
+
+_(Self-assessment: Gained practical understanding and implementation skills for LoRA, a key PEFT technique, including its configuration, application, and evaluation.)_

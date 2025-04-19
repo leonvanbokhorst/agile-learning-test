@@ -471,24 +471,32 @@
 
 ### Completed
 
-- [x] Learned LoRA theory and setup using the Hugging Face `peft` library.
-- [x] Adapted and ran the LoRA fine-tuning script (`finetune_lora.py`) on generative GPT-2 task.
-- [x] Achieved best validation loss of 0.2228 and best perplexity of 1.2496.
-- [x] Reduced trainable parameters to 294,912 (≈0.2364% of total 124,734,720).
-- [x] Saved LoRA adapter weights and config in `sprints/13_peft_lora/results/checkpoints/lora_finetuned_model/`.
+- [x] Understood PEFT concepts and LoRA theory.
+- [x] Installed and configured the Hugging Face `peft` library.
+- [x] Implemented LoRA for generative fine-tuning (`gpt2` on `book.txt`).
+- [x] Adapted training script to use `LoraConfig` and `get_peft_model`.
+- [x] Successfully ran LoRA fine-tuning, training only adapter layers (~0.24% of total params).
+- [x] Evaluated LoRA model (Perplexity: 1.2537) and compared to full fine-tuning baseline (Perplexity: 1.1211).
+- [x] Saved LoRA adapter weights using `save_pretrained`.
+- [x] Documented process, results, and comparison.
 
 ### Key Insights
 
-- LoRA enabled efficient fine-tuning with minimal trainable parameters.
-- Tuning `r`, `lora_alpha`, and target modules significantly affects performance.
-- The `peft` library makes LoRA integration straightforward.
+- Mastered the practical application of LoRA for significantly reducing the number of trainable parameters during fine-tuning.
+- Gained experience with the Hugging Face `peft` library for configuring and applying LoRA.
+- Observed the trade-off between parameter efficiency and performance (LoRA achieved comparable, slightly higher perplexity with vastly fewer parameters).
+- Understood how LoRA adapters are saved independently of the base model.
 
 ### Next Steps
 
-- Experiment with different LoRA configurations (higher rank, varied target modules).
-- Automate evaluation scripts and expand `notes/04_results_comparison.md`.
+- **Sprint 14: Model Optimization (Quantization - PoC Level)** (Tentative)
+  - Learn quantization concepts (INT8).
+  - Apply post-training quantization to a model.
+  - Evaluate impact on size and performance.
 
 ### Documentation
 
-- Updated `sprints/13_peft_lora/README.md` with results and retrospective.
-- Updated `skills_competencies.md` and project backlog for Sprint 13.
+- Created notes and results in [sprints/13_peft_lora/](./sprints/13_peft_lora/)
+- Updated Sprint 13 `README.md`.
+- Updated `skills_competencies.md`.
+- Updated `backlog.md`.

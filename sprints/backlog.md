@@ -106,50 +106,50 @@
 - **Status:** Completed (See `sprints/12_finetune_gpt2_generative/README.md`)
 - **Key Outcomes:**
   - [x] Prepared custom text dataset (`book.txt`) and implemented `TextDataset`.
-  - [x] Implemented generative fine-tuning loop with validation (perplexity) and checkpointing.
-  - [x] Successfully ran fine-tuning (1 epoch) on the custom dataset.
+  - [x] Implemented generative fine-tuning loop with validation (perplexity=1.1211) and checkpointing.
+  - [x] Successfully ran full fine-tuning (1 epoch) on the custom dataset.
   - [x] Implemented script to compare generation vs. original model.
-  - [x] Observed qualitative differences, though specific style mimicry needs further work/epochs.
 
-## Next Sprint Focus (Sprint 13 & beyond)
+### Sprint 13: Parameter-Efficient Fine-Tuning (PEFT - LoRA)
 
-### Sprint 13: Parameter-Efficient Fine-Tuning (PEFT - LoRA) (Completed)
-
-- **Goal:** Understand and implement LoRA for parameter-efficient fine-tuning.
+- **Goal:** Understand and implement LoRA for parameter-efficient generative fine-tuning.
+- **Status:** Completed (See `sprints/13_peft_lora/README.md`)
 - **Key Outcomes:**
-  - Learned LoRA theory and setup (Hugging Face `peft`).
-  - Ran `finetune_lora.py` achieving best val loss 0.2228 and perplexity 1.2496.
-  - Trained only 294,912 parameters (~0.2364% of GPT-2).
-  - Saved adapters in `sprints/13_peft_lora/results/checkpoints/lora_finetuned_model/`.
+  - [x] Learned LoRA theory and setup using Hugging Face `peft`.
+  - [x] Implemented and ran `finetune_lora.py` for generative task.
+  - [x] Achieved best validation perplexity of **1.2537**.
+  - [x] Trained only **294,912** parameters (~0.24% of GPT-2).
+  - [x] Saved LoRA adapter checkpoint.
+  - [x] Compared LoRA results (perplexity, param count) to Sprint 12 baseline.
 
-## Upcoming Sprint Focus
+## Next Sprint Focus (Sprint 14 Tentative)
 
 ### Sprint 14: Model Optimization (Quantization - PoC Level) (Tentative)
 
-- **Goal:** Learn and apply post-training quantization to the GPT-2 model.
+- **Goal:** Learn and apply post-training quantization to a GPT-2 model.
 - **Tasks:**
-  - Understand quantization concepts (INT8, dynamic vs. static).
-  - Use PyTorch's quantization tools (`torch.quantization`).
-  - Apply quantization to a GPT-2 model (pre-trained or fine-tuned).
-  - Evaluate impact on model size, (estimated) inference speed, and performance.
+  - [ ] Understand quantization concepts (INT8, dynamic vs. static).
+  - [ ] Explore PyTorch's quantization tools (`torch.quantization`).
+  - [ ] Apply dynamic/static quantization to a GPT-2 model (e.g., the base model or LoRA adapted one).
+  - [ ] Evaluate impact on model size and potentially performance (perplexity/generation quality).
 
 ### Sprint 15: Exploring Other Architectures (Encoder-Decoder) (Tentative)
 
 - **Goal:** Implement or dissect a basic Encoder-Decoder Transformer architecture.
 - **Tasks:**
-  - Revisit `EncoderBlock` and `DecoderBlock` from Sprint 7.
-  - Assemble them into a full Encoder-Decoder model.
-  - Understand the data flow for sequence-to-sequence tasks.
-  - (Optional) Implement a simple training loop for a toy seq2seq task.
+  - [ ] Revisit `EncoderBlock` and `DecoderBlock` from Sprint 7.
+  - [ ] Assemble them into a full Encoder-Decoder model.
+  - [ ] Understand the data flow for sequence-to-sequence tasks.
+  - [ ] (Optional) Implement a simple training loop for a toy seq2seq task.
 
 ## Future Considerations
 
-- Advanced Fine-tuning techniques (LoRA, prompt tuning, PEFT library)
-- Model optimization and quantization (for the pre-trained/fine-tuned model)
-- Deployment strategies
-- Model interpretability
-- More advanced generation techniques (e.g., beam search)
-- Building larger or different Transformer architectures (e.g., Encoder-Decoder)
+- Advanced Fine-tuning techniques (More PEFT methods, prompt tuning)
+- Advanced Model optimization and quantization (Weight-only, AWQ, GPTQ)
+- Deployment strategies (TorchServe, ONNX, Triton)
+- Model interpretability (Attention visualization)
+- More advanced generation techniques (Beam search, diverse beam search)
+- Building larger or different Transformer architectures
 - Advanced Evaluation Metrics (BLEU, ROUGE, etc.)
 - Knowledge Distillation
 - Self-Supervised Learning Concepts (Masked LM, etc.)
