@@ -251,6 +251,8 @@ _(Update this section as sprints are completed or significant learning occurs. A
   - Implemented tests within `if __name__ == "__main__":` blocks.
   - Used `nn.Module` for building reusable components.
   - Handled tensor dimension manipulation (`transpose`, `view`).
+- **Comparison:**
+  - Compared LoRA results (perplexity, param count) to Sprint 12 baseline.
 
 ## Sprint 7 Progress (Building the Transformer Block)
 
@@ -454,3 +456,30 @@ _(Update this section as sprints are completed or significant learning occurs. A
   - Used `model.save_pretrained()` on the PEFT model to save only the adapter weights (`adapter_model.safetensors` or `.bin`) and the adapter configuration (`adapter_config.json`).
 
 _(Self-assessment: Gained practical understanding and implementation skills for LoRA, a key PEFT technique, including its configuration, application, and evaluation.)_
+
+## Sprint 14 Progress (Post-Training Quantization - PoC)
+
+- **Quantization Concepts:**
+  - Documented core concepts, benefits (size, speed, power), and drawbacks (potential accuracy loss) of model quantization ([`notes/01...`](./sprints/14_quantization/notes/01_quantization_concepts.md)).
+  - Differentiated between Post-Training Dynamic, Post-Training Static, and Quantization-Aware Training (QAT) ([`notes/02...`](./sprints/14_quantization/notes/02_quantization_types.md)).
+  - Understood common data types used (`INT8`, `FP16`, `BF16`) ([`notes/03...`](./sprints/14_quantization/notes/03_data_types.md)).
+- **PyTorch Eager Mode Quantization API:**
+  - Explored the `torch.ao.quantization` namespace ([`notes/04...`](./sprints/14_quantization/notes/04_pytorch_quantization_api.md)).
+  - Implemented **Dynamic Quantization** using `torch.ao.quantization.quantize_dynamic`, targeting specific layer types (`nn.Linear`).
+  - Implemented **Static Quantization** workflow:
+    - Used a wrapper module (`GPT2QuantWrapper`) with `QuantStub`/`DeQuantStub`.
+    - Set quantization backend (`torch.backends.quantized.engine = 'qnnpack'`).
+    - Applied `QConfig` directly to target submodules (`Conv1D`).
+    - Used `torch.ao.quantization.prepare` to insert observers.
+    - Performed calibration using data from `datasets` library (Wikitext).
+    - Used `torch.ao.quantization.convert` to finalize the quantized model.
+- **Debugging & Analysis:**
+  - Resolved quantization backend errors (`NoQEngine`).
+  - Debugged issues with applying QConfigs (`AssertionError`, `AttributeError`, `TypeError`) by switching from direct assignment/mapping to submodule targeting.
+  - Identified correct target layer type (`Conv1D`) in the HF GPT-2 model for effective quantization.
+  - Compared inference speed (CPU) between FP32, dynamic INT8, and static INT8 models, observing expected speedups (~1.2x).
+  - Understood why `state_dict` size might not decrease (or even increase) with PTQ due to overhead, emphasizing runtime metrics.
+
+## Sprint 15 Progress (Encoder-Decoder Architecture)
+
+_(To be added...)_
