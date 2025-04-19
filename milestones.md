@@ -500,3 +500,38 @@
 - Updated Sprint 13 `README.md`.
 - Updated `skills_competencies.md`.
 - Updated `backlog.md`.
+
+## Sprint 14: Model Optimization (Quantization PoC)
+
+### Completed
+
+- [x] Researched and documented quantization concepts (dynamic, static, data types).
+- [x] Explored PyTorch Eager Mode quantization API (`torch.ao.quantization`).
+- [x] Implemented Post-Training Dynamic Quantization on GPT-2.
+- [x] Implemented Post-Training Static Quantization on GPT-2 (using wrapper, calibration data, submodule config targeting).
+- [x] Debugged common quantization errors (backend selection, QConfig application, layer targeting).
+- [x] Performed basic inference speed comparison (CPU), observing ~1.2x speedup for both dynamic and static INT8 vs FP32.
+- [x] Updated sprint `README.md` with results and retrospective ([`sprints/14_quantization/README.md`](./sprints/14_quantization/README.md)).
+
+### Key Insights
+
+- Gained practical experience with both major Post-Training Quantization techniques in PyTorch.
+- Understood the workflow and common pitfalls of Eager Mode quantization, particularly the need for careful backend selection and targeted QConfig application.
+- Recognized that `state_dict` size is not a reliable indicator of PTQ success; runtime performance (latency) is key.
+- Learned the importance of identifying the correct internal layer types (e.g., `Conv1D` vs `nn.Linear`) in pre-built models for effective quantization.
+
+### Next Steps
+
+- **Sprint 15: Exploring Other Architectures (Encoder-Decoder)** (Tentative)
+  - Revisit `EncoderBlock` and `DecoderBlock` from Sprint 7.
+  - Assemble them into a full Encoder-Decoder model.
+  - Understand the data flow for sequence-to-sequence tasks.
+
+### Documentation
+
+- Created notes on quantization concepts, types, data formats, and PyTorch API in [`sprints/14_quantization/notes/`](./sprints/14_quantization/notes/).
+- Created implementation scripts for dynamic and static quantization in [`sprints/14_quantization/results/`](./sprints/14_quantization/results/).
+
+## Sprint 15: Exploring Other Architectures (Encoder-Decoder)
+
+_(To be added...)_

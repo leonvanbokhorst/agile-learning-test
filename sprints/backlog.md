@@ -122,18 +122,21 @@
   - [x] Saved LoRA adapter checkpoint.
   - [x] Compared LoRA results (perplexity, param count) to Sprint 12 baseline.
 
-## Next Sprint Focus (Sprint 14 Tentative)
+### Sprint 14: Model Optimization (Quantization - PoC Level)
 
-### Sprint 14: Model Optimization (Quantization - PoC Level) (Tentative)
+- **Goal:** Learn and apply post-training quantization (Dynamic, Static) to a GPT-2 model using PyTorch Eager Mode.
+- **Status:** Completed (See `sprints/14_quantization/README.md`)
+- **Key Outcomes:**
+  - [x] Understood core quantization concepts (PTQ Dynamic/Static, INT8/FP16/BF16).
+  - [x] Implemented PTQ Dynamic using `quantize_dynamic`.
+  - [x] Implemented PTQ Static using wrapper, calibration, `prepare`/`convert`.
+  - [x] Debugged backend/QConfig/layer targeting issues in Eager Mode.
+  - [x] Achieved ~1.2x inference speedup on CPU vs FP32 for both methods.
+  - [x] Documented process and learnings in notes and README.
 
-- **Goal:** Learn and apply post-training quantization to a GPT-2 model.
-- **Tasks:**
-  - [ ] Understand quantization concepts (INT8, dynamic vs. static).
-  - [ ] Explore PyTorch's quantization tools (`torch.quantization`).
-  - [ ] Apply dynamic/static quantization to a GPT-2 model (e.g., the base model or LoRA adapted one).
-  - [ ] Evaluate impact on model size and potentially performance (perplexity/generation quality).
+## Next Sprint Focus (Sprint 15)
 
-### Sprint 15: Exploring Other Architectures (Encoder-Decoder) (Tentative)
+### Sprint 15: Exploring Other Architectures (Encoder-Decoder)
 
 - **Goal:** Implement or dissect a basic Encoder-Decoder Transformer architecture.
 - **Tasks:**
@@ -154,3 +157,6 @@
 - Knowledge Distillation
 - Self-Supervised Learning Concepts (Masked LM, etc.)
 - Scaling Training (DistributedDataParallel basics)
+- BERT (Encoder-Only Architecture): Explore MLM/NSP pre-training and applications like sequence/token classification.
+- T5 (Text-to-Text Framework): Understand the unified text-to-text approach for diverse NLP tasks using an encoder-decoder model.
+- MoE Layers (Conceptual): Investigate Mixture-of-Experts layers, sparsity, and routing mechanisms, potentially implementing a basic MoE FFN replacement layer.
