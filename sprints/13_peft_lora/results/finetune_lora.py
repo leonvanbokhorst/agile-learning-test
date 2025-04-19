@@ -326,13 +326,13 @@ if __name__ == "__main__":
     parser.add_argument(
         "--train-data-path",
         type=str,
-        default="data/train.bin",  # Point to local data subdir
+        default="sprints/13_peft_lora/results/data/train.bin",  # Point to local data subdir
         help="Path to the training data (.bin file, relative to script location).",
     )
     parser.add_argument(
         "--val-data-path",
         type=str,
-        default="data/val.bin",  # Point to local data subdir
+        default="sprints/13_peft_lora/results/data/val.bin",  # Point to local data subdir
         help="Path to the validation data (.bin file, relative to script location).",
     )
     parser.add_argument(
@@ -349,7 +349,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--batch-size",
         type=int,
-        default=64,  # May need adjustment based on GPU memory with PEFT
+        default=16,  # May need adjustment based on GPU memory with PEFT
         help="Batch size for training and validation.",
     )
     parser.add_argument(
