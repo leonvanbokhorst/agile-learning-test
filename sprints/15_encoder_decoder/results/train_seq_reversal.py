@@ -220,6 +220,38 @@ def evaluate_model(model, num_eval_samples=5, device=DEVICE):
     )
 
 
+# --- Teacher-Forcing Evaluation ---
+def teacher_forcing_eval(model, dataloader, device):
+    """Evaluate the model under teacher forcing (feeding true previous tokens)."""
+    model.eval()
+    total_seqs = 0
+    correct_seqs = 0
+    total_tokens = 0
+    correct_tokens = 0
+    with torch.no_grad():
+        for batch in dataloader:
+            src = batch["src"].to(device)
+            tgt_input = batch["tgt_input"].to(device)
+            tgt_output = batch["tgt_output"].to(device)
+            # Forward under teacher forcing
+            logits = model(src, tgt_input)  # (batch, seq_len, vocab)
+            preds = logits.argmax(dim=-1)  # (batch, seq_len)
+            # Sequence-level correctness (ignore padding)
+            mask = tgt_output != PAD_TOKEN
+            seq_ok = ((preds == tgt_output) | (~mask)).all(dim=1)
+            correct_seqs += seq_ok.sum().item()
+            total_seqs += preds.size(0)
+            # Token-level accuracy
+            correct_tokens += ((preds == tgt_output) & mask).sum().item()
+            total_tokens += mask.sum().item()
+    print(
+        f"\nTeacher-forcing seq accuracy: {correct_seqs}/{total_seqs} = {correct_seqs/total_seqs:.4f}"
+    )
+    print(
+        f"Teacher-forcing token accuracy: {correct_tokens}/{total_tokens} = {correct_tokens/total_tokens:.4f}"
+    )
+
+
 if __name__ == "__main__":
     print("\n--- Setting up Dataset & DataLoader ---")
     dataset = SequenceReversalDataset(
@@ -279,7 +311,7 @@ if __name__ == "__main__":
     print("\n--- Starting Training with Professor Forcing ---")
     model.train()
     consistency_criterion = nn.MSELoss()
-    pf_lambda = 0.1
+    pf_lambda = 1.0  # Increased lambda for stronger consistency enforcement
     for epoch in range(NUM_EPOCHS):
         epoch_loss = 0.0
         progress_bar = tqdm(
@@ -337,5 +369,6 @@ if __name__ == "__main__":
         avg_loss = epoch_loss / len(dataloader)
         print(f"Epoch {epoch+1}/{NUM_EPOCHS} finished. Avg Loss: {avg_loss:.4f}")
     print("\n--- Training Complete ---")
+    teacher_forcing_eval(model, dataloader, DEVICE)
     evaluate_model(model, num_eval_samples=10, device=DEVICE)
     print("\n--- Script finished ---")
