@@ -7,7 +7,7 @@ name = "pytorch_gpt2_from_scratch"
 version = "0.1.0"
 description = "Learning PyTorch and building a GPT-2 like model from the ground up."
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = "==3.12.*"
 classifiers = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
@@ -50,7 +50,9 @@ dependencies = [
     "transformers>=4.35.0", # For loading and processing datasets
     "gradio>=4.39.0", # For creating web interfaces
     "pyarrow>=19.0.1",
+    "trl>=0.16.1",
     "peft>=0.15.2",
+    "bitsandbytes>=0.45.5",
 ]
 
 [project.urls]
