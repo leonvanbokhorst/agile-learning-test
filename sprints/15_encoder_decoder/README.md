@@ -24,9 +24,9 @@ Revisit the fundamental Transformer Encoder and Decoder blocks built in Sprint 7
   - [x] Implement a basic training loop for the `EncoderDecoder` model on the toy task (see `results/train_seq_reversal.py`).
   - [x] Provide a perfect direct implementation using tensor flipping (see `results/direct_reverse_demo.py`).
 - **Documentation:**
-  - [ ] Create notes explaining the assembled architecture and data flow (`notes/`).
-  - [ ] Document the implementation steps and results (`results/`).
-  - [ ] Update this README with progress and findings.
+  - [x] Create notes explaining the assembled architecture and data flow (`notes/01_encoder_decoder_flow.md`).
+  - [x] Document the implementation steps and results (`results/train_seq_reversal.py`, `results/direct_reverse_demo.py`).
+  - [x] Update this README with progress and findings.
 
 ## Resources
 
@@ -57,12 +57,26 @@ For the toy reversal task (where the reward is simply "did you get the exact rev
 
 ## Retrospective
 
-_(To be filled out at the end of the sprint)_
+**What went well?**
 
-- **What went well?**
-- **What could be improved?**
-- **What did we learn?**
+- Successfully assembled and tested Encoder-Decoder architecture from scratch.
+- Explored multiple advanced training strategies: scheduled sampling, professor forcing, REINFORCE.
+- Identified exposure bias and the limits of teacher forcing for autoregressive tasks.
+- Demonstrated a direct, perfect reversal solution using tensor flipping.
 
-## Demos
+**What could be improved?**
 
-- `python3 -u sprints/15_encoder_decoder/results/direct_reverse_demo.py`: run the direct sequence reversal demo.
+- Integrate a more robust copy-oriented architecture (pointer networks) for deterministic sequence tasks.
+- Explore sequence-level or RL-based training more deeply for tasks with clear reward definitions.
+- Improve training script modularity and configurability (e.g., command-line flags for different modes).
+
+**What did we learn?**
+
+- Standard next-token MLE is insufficient for deterministic autoregressive tasks due to exposure bias.
+- Curriculum learning and consistency losses help but may not fully resolve train/inference mismatches.
+- Direct algorithmic solutions (e.g., tensor operations) can be more appropriate than deep models for simple tasks.
+
+## Demos & Experiments
+
+- `python3 -u sprints/15_encoder_decoder/results/direct_reverse_demo.py`: Run direct sequence reversal demo (perfect flip).
+- `python3 -u sprints/15_encoder_decoder/results/train_seq_reversal.py`: Run full training script (supervised, professor forcing, REINFORCE) and evaluations.
