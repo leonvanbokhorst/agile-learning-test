@@ -196,12 +196,12 @@ def main():
 
     # PPO Config
     ppo_output_dir = "flirty_llama_ppo_model"
-    ppo_batch_size = 4 # Adjust based on GPU memory
+    ppo_batch_size = 8 # Adjust based on GPU memory
     ppo_epochs = 4 # Number of optimization epochs per batch
     learning_rate = 1.41e-5 # TRL default / common starting point
     target_kl = 0.1 # Target KL divergence
     log_with = "tensorboard" # Log metrics for TensorBoard
-    gradient_accumulation_steps = 2
+    gradient_accumulation_steps = 4
     seed = 42
 
     # Generation Config
@@ -313,6 +313,10 @@ def main():
         trust_remote_code=True,
         device_map="auto" # Add this for automatic device placement with quantization
     )
+    # Enable gradient checkpointing BEFORE adding the head
+    policy_model.gradient_checkpointing_enable()
+    print("Gradient checkpointing enabled.")
+
     # Add a value head for PPO AFTER loading the quantized model
     policy_model.score = nn.Linear(policy_model.config.hidden_size, 1, bias=False)
     # Ensure the head matches compute dtype (though accelerate might handle this)
@@ -323,29 +327,28 @@ def main():
     print("Policy model loaded (quantized) with value head initialized.")
     # Use the same model for both policy & value
     value_model = policy_model
-    # Enable gradient checkpointing for further memory savings
-    policy_model.gradient_checkpointing_enable()
-    print("Gradient checkpointing enabled.")
 
     # --- Patch PolicyAndValueWrapper forward for dtype consistency ---
-    # PolicyAndValueWrapper class is defined within ppo_trainer module
-    PolicyAndValueWrapper = ppo_mod.PolicyAndValueWrapper # Get the class
+    # Ensure ppo_mod is imported
+    PolicyAndValueWrapper = ppo_mod.PolicyAndValueWrapper
     orig_wrapper_forward = PolicyAndValueWrapper.forward
 
     def patched_wrapper_forward(self, **kwargs):
-        # print("***** DEBUG PolicyAndValueWrapper.forward *****") # DEBUG
-        # Call the policy model (handles potential quantization/checkpointing internally)
-        policy_output = self.policy(**kwargs)
+        # Force output_hidden_states=True for policy call
+        policy_kwargs = kwargs.copy()
+        policy_kwargs['output_hidden_states'] = True
+        policy_output = self.policy(**policy_kwargs)
 
-        # Ensure hidden state passed to value head matches its dtype (bfloat16)
+        if not hasattr(policy_output, 'hidden_states') or policy_output.hidden_states is None:
+             raise ValueError("Policy model output missing 'hidden_states'. Ensure model returns them.")
+
         value_head_input = policy_output.hidden_states[-1].to(torch.bfloat16)
         value_logits = self.value_model.score(value_head_input)
 
-        # Return original policy output structure and the value logits
         return policy_output, value_logits
 
     PolicyAndValueWrapper.forward = patched_wrapper_forward
-    # print("Patched PolicyAndValueWrapper.forward to ensure bfloat16 consistency for value head.") # DEBUG
+    print("Re-applied patch to PolicyAndValueWrapper.forward for bfloat16 consistency.")
     # --- End Patch ---
 
     # Setup chat format if needed (apply to policy_tokenizer only)
@@ -367,7 +370,7 @@ def main():
     ppo_config = PPOConfig(
         # Inherited TrainingArguments
         output_dir=ppo_output_dir,
-        learning_rate=1e-6, # Even lower LR
+        learning_rate=5e-6, # Increased LR
         per_device_train_batch_size=ppo_batch_size,
         gradient_accumulation_steps=gradient_accumulation_steps,
         report_to=log_with,  # Use 'report_to' for logging
@@ -375,12 +378,13 @@ def main():
         save_steps=100,        # Save every 100 steps
         max_grad_norm=1.0, # Added gradient clipping
         adam_epsilon=1e-7, # Increase Adam epsilon
+        num_train_epochs=5, # Increase training duration
         # PPO-specific arguments from 0.16.1/matching 0.17 structure
         exp_name=ppo_output_dir,
         reward_model_path=rm_adapter_path,
         num_ppo_epochs=ppo_epochs,
         whiten_rewards=False, # Default
-        kl_coef=0.0,       # Temporarily disable KL penalty
+        kl_coef=0.2,      # Increased KL penalty
         cliprange=0.2,        # Default
         vf_coef=0.1,        # Default
         cliprange_value=0.2,  # Default
@@ -403,6 +407,9 @@ def main():
         "What's a fun way to ask for someone's number?",
         "Compose a short, intriguing message for a dating app profile visit."
     ]
+    # Create multiple copies for a larger dataset feel
+    num_copies = 500 # Massively increased copies
+    dataset_dict = {"query": prompts * num_copies}
 
     # ---------- 6. Tokenize Prompts and Create Dataset ----------
     # Moved dataset tokenization here as policy_tokenizer is now available
@@ -475,6 +482,18 @@ def main():
         seq_lengths = seq_lengths.to(device)
         return reward_logits, final_rewards, seq_lengths
     ppo_mod.get_reward = patched_get_reward
+
+    generation_kwargs = {
+        "min_length": -1, # Default
+        "top_k": top_k,
+        "top_p": 0.9, # Added top_p sampling
+        "do_sample": do_sample,
+        "pad_token_id": policy_tokenizer.pad_token_id,
+        "eos_token_id": policy_tokenizer.eos_token_id if policy_tokenizer.eos_token_id is not None else "!", # Fallback needed?
+        "max_new_tokens": max_new_tokens,
+        "temperature": temperature,
+    }
+    print(f"Generation kwargs: {generation_kwargs}")
 
 if __name__ == "__main__":
     main() 
