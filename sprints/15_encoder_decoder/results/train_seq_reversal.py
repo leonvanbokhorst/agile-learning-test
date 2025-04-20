@@ -5,6 +5,7 @@ from torch.utils.data import Dataset, DataLoader
 import random
 from tqdm import tqdm
 import math
+from torch.distributions import Categorical
 
 # Assuming the model is in the same directory
 from encoder_decoder_model import EncoderDecoder
@@ -37,6 +38,9 @@ DROPOUT_PROB = 0.1
 LEARNING_RATE = 1e-4
 NUM_EPOCHS = 50
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+# Add RL hyperparameter
+RL_EPOCHS = 30  # Number of epochs for REINFORCE
 
 print(f"Using device: {DEVICE}")
 print(f"Vocabulary Size: {VOCAB_SIZE}")
@@ -252,6 +256,56 @@ def teacher_forcing_eval(model, dataloader, device):
     )
 
 
+def train_reinforce(model, dataloader, device):
+    """Train the model using REINFORCE to maximize token-level reversal accuracy."""
+    model.train()
+    optimizer = optim.AdamW(model.parameters(), lr=LEARNING_RATE)
+    for epoch in range(RL_EPOCHS):
+        total_reward = 0.0
+        total_loss = 0.0
+        for batch in tqdm(dataloader, desc=f"RL Epoch {epoch+1}/{RL_EPOCHS}"):
+            src = batch["src"].to(device)
+            tgt = batch["tgt_output"].to(device)
+            batch_size, seq_len = tgt.shape
+            # Encoder outputs
+            enc_mask = model._create_padding_mask(src)
+            enc_out = model.encoder(src, enc_mask)
+            # Initialize decoder input
+            dec_in = torch.full(
+                (batch_size, 1), BOS_TOKEN, dtype=torch.long, device=device
+            )
+            log_probs = torch.zeros(batch_size, device=device)
+            preds = torch.zeros_like(tgt)
+            # Autoregressive sampling
+            for t in range(seq_len):
+                mask = model._create_look_ahead_mask(dec_in.size(1), device)
+                hid = model.decoder(dec_in, enc_out, mask, enc_mask)
+                logits = model.final_linear(hid[:, -1, :])
+                dist = Categorical(logits=logits)
+                tok = dist.sample()
+                log_probs += dist.log_prob(tok)
+                preds[:, t] = tok
+                dec_in = torch.cat([dec_in, tok.unsqueeze(1)], dim=1)
+            # Compute token-level reward
+            mask_tgt = tgt != PAD_TOKEN
+            correct_tokens = ((preds == tgt) & mask_tgt).sum(dim=1).float()
+            lengths = mask_tgt.sum(dim=1).float().clamp(min=1)
+            rewards = correct_tokens / lengths
+            # REINFORCE loss
+            loss = -(rewards * log_probs).mean()
+            optimizer.zero_grad()
+            loss.backward()
+            torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+            optimizer.step()
+            total_loss += loss.item()
+            total_reward += rewards.sum().item()
+        avg_reward = total_reward / (len(dataloader.dataset))
+        avg_loss = total_loss / len(dataloader)
+        print(
+            f"RL Epoch {epoch+1}/{RL_EPOCHS} - Avg Reward: {avg_reward:.4f}, Avg Loss: {avg_loss:.4f}"
+        )
+
+
 if __name__ == "__main__":
     print("\n--- Setting up Dataset & DataLoader ---")
     dataset = SequenceReversalDataset(
@@ -372,3 +426,12 @@ if __name__ == "__main__":
     teacher_forcing_eval(model, dataloader, DEVICE)
     evaluate_model(model, num_eval_samples=10, device=DEVICE)
     print("\n--- Script finished ---")
+
+    # Now experiment with REINFORCE training
+    print("\n--- Starting REINFORCE Training Experiment ---")
+    train_reinforce(model, dataloader, DEVICE)
+    # Re-evaluate after RL
+    print("\n--- Post-RL Evaluation ---")
+    teacher_forcing_eval(model, dataloader, DEVICE)
+    evaluate_model(model, num_eval_samples=10, device=DEVICE)
+    print("\n--- RL Experiment Complete ---")
