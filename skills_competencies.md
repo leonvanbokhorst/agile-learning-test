@@ -480,6 +480,30 @@ _(Self-assessment: Gained practical understanding and implementation skills for 
   - Compared inference speed (CPU) between FP32, dynamic INT8, and static INT8 models, observing expected speedups (~1.2x).
   - Understood why `state_dict` size might not decrease (or even increase) with PTQ due to overhead, emphasizing runtime metrics.
 
-## Sprint 15 Progress (Encoder-Decoder Architecture)
+## Sprint 15 Progress (Encoder-Decoder Architecture & Training Challenges)
 
-_(To be added...)_
+- **Encoder-Decoder Assembly:**
+  - [x] Reused `EncoderBlock` and `DecoderBlock` from previous sprints.
+  - [x] Built `Encoder` module stacking `EncoderBlock`s, including embeddings and positional encoding (initially Learned, later Sinusoidal).
+  - [x] Built `Decoder` module stacking `DecoderBlock`s, handling target embeddings, PE, and encoder output.
+  - [x] Assembled the full `EncoderDecoder` model with a final linear projection layer.
+  - [x] Implemented helper methods for creating padding and look-ahead masks.
+  - [x] Documented the training and inference data flow ([notes/01_encoder_decoder_flow.md](./sprints/15_encoder_decoder/notes/01_encoder_decoder_flow.md)).
+- **Seq2Seq Training & Evaluation:**
+  - [x] Implemented a toy sequence reversal task (`SequenceReversalDataset`, `train_seq_reversal.py`).
+  - [x] Implemented standard teacher-forcing training loop (`CrossEntropyLoss` with padding ignored).
+  - [x] Implemented autoregressive (free-running) evaluation for sequence generation.
+- **Addressing Exposure Bias:**
+  - [x] Identified severe exposure bias: high teacher-forcing accuracy (100%) but near-zero free-running accuracy (model collapsing to simple loops).
+  - [x] Experimented with hyperparameter tuning (epochs, LR, capacity, heads) - insufficient.
+  - [x] Experimented with regularization (Dropout, Label Smoothing) - insufficient.
+  - [x] Experimented with architectural changes (Pre-Layer Normalization) - insufficient.
+  - [x] Implemented and tested Scheduled Sampling (linear & inverse sigmoid schedules) - insufficient.
+  - [x] Implemented and tested Professor Forcing (MSE on hidden states) - insufficient.
+  - [x] Implemented and tested REINFORCE (policy gradient on token accuracy) - insufficient for full reversal.
+- **Problem/Tool Mismatch Analysis:**
+  - [x] Concluded that standard MLE/Seq2Seq training is ill-suited for deterministic, brittle tasks like sequence reversal due to inherent exposure bias.
+  - [x] Recognized that sequence-level RL (e.g., 0/1 reward for perfect reversal) or different architectures (Pointer Networks) might be needed.
+  - [x] Implemented a direct, non-ML solution using `torch.flip` as the correct tool for the specific reversal task ([results/direct_reverse_demo.py](./sprints/15_encoder_decoder/results/direct_reverse_demo.py)).
+
+_(Update this section as sprints are completed or significant learning occurs. Add specific skills or concepts learned under relevant headings.)_
