@@ -134,29 +134,46 @@
   - [x] Achieved ~1.2x inference speedup on CPU vs FP32 for both methods.
   - [x] Documented process and learnings in notes and README.
 
-## Next Sprint Focus (Sprint 15)
+### Sprint 15: Encoder-Decoder Architecture & Exposure Bias
 
-### Sprint 15: Exploring Other Architectures (Encoder-Decoder)
+- **Goal:** Assemble an Encoder-Decoder model and investigate training dynamics for seq2seq tasks.
+- **Status:** Completed (See `sprints/15_encoder_decoder/README.md`)
+- **Key Outcomes:**
+  - [x] Built a functional Encoder-Decoder model from components.
+  - [x] Identified and deeply analyzed exposure bias in a toy sequence reversal task.
+  - [x] Experimented with multiple advanced training techniques (Scheduled Sampling, Professor Forcing, REINFORCE).
+  - [x] Concluded standard MLE training is ill-suited for deterministic generation tasks.
+  - [x] Implemented a direct algorithmic alternative (`torch.flip`).
 
-- **Goal:** Implement or dissect a basic Encoder-Decoder Transformer architecture.
-- **Tasks:**
-  - [ ] Revisit `EncoderBlock` and `DecoderBlock` from Sprint 7.
-  - [ ] Assemble them into a full Encoder-Decoder model.
-  - [ ] Understand the data flow for sequence-to-sequence tasks.
-  - [ ] (Optional) Implement a simple training loop for a toy seq2seq task.
+## Next Sprint Focus (Sprint 16 - Tentative)
+
+- **Option A: Apply Encoder-Decoder to NLP Task:** Use the built Encoder-Decoder on a standard seq2seq task like translation or summarization (e.g., WMT, CNN/DailyMail subset) using appropriate metrics (BLEU/ROUGE).
+- **Option B: Explore Alternative Architectures:** Investigate architectures potentially better suited for certain tasks, like Pointer Networks for copying/sorting tasks.
+- **Option C: Deeper Dive into Advanced Training:** Implement sequence-level training (Minimum Risk Training) or KL-based consistency losses for the Encoder-Decoder.
 
 ## Future Considerations
 
-- Advanced Fine-tuning techniques (More PEFT methods, prompt tuning)
-- Advanced Model optimization and quantization (Weight-only, AWQ, GPTQ)
-- Deployment strategies (TorchServe, ONNX, Triton)
-- Model interpretability (Attention visualization)
-- More advanced generation techniques (Beam search, diverse beam search)
-- Building larger or different Transformer architectures
-- Advanced Evaluation Metrics (BLEU, ROUGE, etc.)
-- Knowledge Distillation
-- Self-Supervised Learning Concepts (Masked LM, etc.)
-- Scaling Training (DistributedDataParallel basics)
-- BERT (Encoder-Only Architecture): Explore MLM/NSP pre-training and applications like sequence/token classification.
-- T5 (Text-to-Text Framework): Understand the unified text-to-text approach for diverse NLP tasks using an encoder-decoder model.
-- MoE Layers (Conceptual): Investigate Mixture-of-Experts layers, sparsity, and routing mechanisms, potentially implementing a basic MoE FFN replacement layer.
+- **Training Strategies:**
+  - Sequence-Level Objectives (MRT, REINFORCE with 0/1 rewards)
+  - Advanced Consistency Losses (KL divergence on output distributions)
+  - Curriculum Learning (more sophisticated schedules)
+- **Architectures:**
+  - Pointer Networks
+  - BERT (Encoder-Only)
+  - T5 (Text-to-Text Framework)
+  - Mixture-of-Experts (MoE) Layers (Conceptual)
+- **Fine-tuning:**
+  - Advanced PEFT methods (Prompt Tuning, Prefix Tuning)
+- **Optimization/Deployment:**
+  - Advanced Quantization (Weight-only, AWQ, GPTQ)
+  - Deployment frameworks (TorchServe, ONNX, Triton)
+- **Evaluation & Interpretability:**
+  - Standard NLP metrics (BLEU, ROUGE)
+  - Attention visualization
+- **Generation:**
+  - Beam search, Diverse Beam Search
+- **Scaling:**
+  - DistributedDataParallel basics
+- **Other Learning Paradigms:**
+  - Knowledge Distillation
+  - Self-Supervised Learning (Masked LM, etc.)

@@ -522,16 +522,53 @@
 
 ### Next Steps
 
-- **Sprint 15: Exploring Other Architectures (Encoder-Decoder)** (Tentative)
-  - Revisit `EncoderBlock` and `DecoderBlock` from Sprint 7.
-  - Assemble them into a full Encoder-Decoder model.
-  - Understand the data flow for sequence-to-sequence tasks.
+- **Sprint 15: Encoder-Decoder Architecture & Exposure Bias** (Completed)
+  - Assemble a full Encoder-Decoder Transformer model from existing `EncoderBlock` and `DecoderBlock` components.
+  - Implement embeddings, Sinusoidal Positional Encoding, and mask creation logic.
+  - Document the architecture and data flow.
+  - Implement a sequence reversal task with teacher-forcing training.
+  - Implement autoregressive evaluation and identify severe exposure bias.
+  - Systematically explore techniques to combat exposure bias.
+  - Conclude standard MLE training is insufficient for this deterministic task.
+  - Implement a direct algorithmic solution using `torch.flip`.
 
 ### Documentation
 
-- Created notes on quantization concepts, types, data formats, and PyTorch API in [`sprints/14_quantization/notes/`](./sprints/14_quantization/notes/).
-- Created implementation scripts for dynamic and static quantization in [`sprints/14_quantization/results/`](./sprints/14_quantization/results/).
+- Created notes and results in [sprints/15_encoder_decoder/](./sprints/15_encoder_decoder/)
+- Updated Sprint 15 `README.md` with tasks, findings, and retrospective.
 
-## Sprint 15: Exploring Other Architectures (Encoder-Decoder)
+## Sprint 15: Encoder-Decoder Architecture & Exposure Bias
 
-_(To be added...)_
+### Completed
+
+- [x] Assembled a full Encoder-Decoder Transformer model from existing `EncoderBlock` and `DecoderBlock` components.
+- [x] Implemented embeddings, Sinusoidal Positional Encoding, and mask creation logic.
+- [x] Documented the architecture and data flow ([notes/01_encoder_decoder_flow.md](./sprints/15_encoder_decoder/notes/01_encoder_decoder_flow.md)).
+- [x] Implemented a sequence reversal task with teacher-forcing training (`train_seq_reversal.py`).
+- [x] Implemented autoregressive evaluation and identified severe exposure bias (0% accuracy).
+- [x] Systematically explored various techniques to combat exposure bias:
+  - Hyperparameter tuning (epochs, LR, model capacity, heads)
+  - Regularization (Dropout, Label Smoothing)
+  - Architecture (Pre-Layer Normalization vs. Post-Layer Normalization)
+  - Training Strategies (Scheduled Sampling, Professor Forcing, REINFORCE)
+- [x] Concluded standard MLE training is insufficient for this deterministic task.
+- [x] Implemented a direct algorithmic solution using `torch.flip` ([results/direct_reverse_demo.py](./sprints/15_encoder_decoder/results/direct_reverse_demo.py)).
+
+### Key Insights
+
+- Successfully built and tested a standard Encoder-Decoder architecture.
+- Gained deep, practical understanding of **exposure bias** in sequence generation tasks trained with teacher forcing.
+- Learned that common techniques (regularization, scheduling, consistency losses) may not fully resolve exposure bias, especially in brittle, deterministic tasks.
+- Reinforced the importance of choosing the right modeling approach (ML vs. direct algorithm) based on the task characteristics.
+- Understood the fundamental mismatch between token-level MLE objectives and sequence-level generation quality/correctness.
+
+### Next Steps (Based on Backlog)
+
+- Explore alternative architectures better suited for certain tasks (e.g., Pointer Networks for copying/sorting).
+- Dive deeper into sequence-level training objectives (e.g., Minimum Risk Training, advanced RL) for tasks requiring robust generation.
+- Apply Encoder-Decoder architecture to a more suitable NLP task (e.g., translation, summarization) using standard datasets and evaluation metrics (BLEU, ROUGE).
+
+### Documentation
+
+- Created notes and results in [sprints/15_encoder_decoder/](./sprints/15_encoder_decoder/)
+- Updated Sprint 15 `README.md` with tasks, findings, and retrospective.
