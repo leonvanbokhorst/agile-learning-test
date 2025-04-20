@@ -25,3 +25,5 @@ checkpoints/
 # Results
 finetuned_model/
 tokenized_data_split/
+flirty_reward_model_adapter/
+
