@@ -147,33 +147,5 @@
 
 ## Next Sprint Focus (Sprint 16 - Tentative)
 
-- **Option A: Apply Encoder-Decoder to NLP Task:** Use the built Encoder-Decoder on a standard seq2seq task like translation or summarization (e.g., WMT, CNN/DailyMail subset) using appropriate metrics (BLEU/ROUGE).
-- **Option B: Explore Alternative Architectures:** Investigate architectures potentially better suited for certain tasks, like Pointer Networks for copying/sorting tasks.
-- **Option C: Deeper Dive into Advanced Training:** Implement sequence-level training (Minimum Risk Training) or KL-based consistency losses for the Encoder-Decoder.
-
-## Future Considerations
-
-- **Training Strategies:**
-  - Sequence-Level Objectives (MRT, REINFORCE with 0/1 rewards)
-  - Advanced Consistency Losses (KL divergence on output distributions)
-  - Curriculum Learning (more sophisticated schedules)
-- **Architectures:**
-  - Pointer Networks
-  - BERT (Encoder-Only)
-  - T5 (Text-to-Text Framework)
-  - Mixture-of-Experts (MoE) Layers (Conceptual)
-- **Fine-tuning:**
-  - Advanced PEFT methods (Prompt Tuning, Prefix Tuning)
-- **Optimization/Deployment:**
-  - Advanced Quantization (Weight-only, AWQ, GPTQ)
-  - Deployment frameworks (TorchServe, ONNX, Triton)
-- **Evaluation & Interpretability:**
-  - Standard NLP metrics (BLEU, ROUGE)
-  - Attention visualization
-- **Generation:**
-  - Beam search, Diverse Beam Search
-- **Scaling:**
-  - DistributedDataParallel basics
-- **Other Learning Paradigms:**
-  - Knowledge Distillation
-  - Self-Supervised Learning (Masked LM, etc.)
+- TRL PPO 
+Use TRL to implement PPO to fine-tune llama3 to be flirty.
