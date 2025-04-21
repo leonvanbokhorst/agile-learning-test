@@ -147,14 +147,8 @@
 
 ### Sprint 16: Flirty Llama3
 
-- **Goal:** Use TRL to implement PPO to fine-tune llama3 to be flirty.
-- **Status:** In Progress (See `sprints/16_flirty_llama3/README.md`)
-- **Key Outcomes:**
-  - [x] Set up TRL environment.
-  - [x] Implemented PPO training loop.
-  - [x] Implemented flirty policy.
-  - [x] Implement reward model.
-  - [x] Implement evaluation loop.
+- **Goal:** Explores GRPO CoT Reasoning RL for cooking recipes.
+- **Status:** In Progress 
 
 ### Sprint 17: Graph Neural Networks
 
