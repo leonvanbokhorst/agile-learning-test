@@ -507,3 +507,13 @@ _(Self-assessment: Gained practical understanding and implementation skills for 
   - [x] Implemented a direct, non-ML solution using `torch.flip` as the correct tool for the specific reversal task ([results/direct_reverse_demo.py](./sprints/15_encoder_decoder/results/direct_reverse_demo.py)).
 
 _(Update this section as sprints are completed or significant learning occurs. Add specific skills or concepts learned under relevant headings.)_
+
+## Sprint 17 Progress (Graph Neural Networks)
+
+- **GNN Concepts & Message Passing (GCN, GraphSAGE):** Learned the core paradigm of aggregating and updating node features via neighbor messages.
+- **PyTorch Geometric:** Used `GCNConv` and `SAGEConv` for building graph convolution layers and GraphSAGE models.
+- **Semi-Supervised Node Classification:** Implemented a GCN on the Zachary's Karate Club dataset to predict community membership with few labeled nodes.
+- **Dimensionality Reduction & Visualization:** Applied t-SNE to node embeddings and saved visualizations.
+- **Dynamic Knowledge Graph Construction:** Integrated LLM-based triple extraction, `networkx` graph updates, and custom entity canonicalization.
+- **Faiss Vector Store:** Indexed node embeddings for similarity search, enabling retrieval of related entities.
+- **LLM Integration for Structured Data Extraction:** Used GPT-4.1-nano via `litellm` to extract SVO triples from text with prompt engineering and fallback logic.

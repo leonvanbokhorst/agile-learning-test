@@ -170,3 +170,23 @@
   - [ ] Implement GNN for arbitrary graph tasks.
   - [ ] Apply GNN to a more complex dataset (e.g. ZINC molecular dataset).
   - [ ] Apply GNN to a more complex task (e.g. node classification, graph classification).
+
+## Backlog / Future Sprint Ideas
+
+*(Items from previous sprints or new ideas)*
+
+- Implement advanced memory management for DataLoaders.
+- Explore alternative sequence modeling architectures (RNNs, LSTMs).
+- Dive deeper into specific Transformer variants (e.g., BERT, RoBERTa).
+- Implement Quantization Aware Training (QAT).
+- Implement advanced PEFT methods (Adapters, Prompt Tuning, etc.).
+- Build a more sophisticated RAG pipeline.
+- Explore multi-modal models.
+
+*(Ideas added from Sprint 17)*
+- Explore more complex GNN architectures (e.g., Graph Attention Networks - GAT).
+- Implement full RAG or graph querying capabilities using the dynamic KG embeddings stored in Faiss.
+- Investigate and implement more robust entity linking/canonicalization techniques for the dynamic KG.
+- Apply the dynamic KG pipeline to a larger, streaming text dataset.
+- Use GNN embeddings for downstream tasks beyond visualization/indexing (e.g., link prediction, community detection).
+- Integrate GNNs with other model types (e.g., GNN + Transformer for graph-based NLP).

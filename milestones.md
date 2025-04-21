@@ -547,3 +547,19 @@
 
 - Created notes and results in [sprints/15_encoder_decoder/](./sprints/15_encoder_decoder/)
 - Updated Sprint 15 `README.md` with tasks, findings, and retrospective.
+
+## Sprint 17: Graph Neural Networks
+
+- [x] Implemented GCN in PyTorch and trained on Karate Club dataset.
+- [x] Extracted and visualized node embeddings via t-SNE.
+- [x] Documented GCN concepts and code in `docs/gcn_explanation.md`.
+- [x] Developed dynamic KG + GraphSAGE pipeline, including entity extraction, graph update, embedding recomputation, and FAISS indexing.
+
+Notes and results in [sprints/17_graph_nn/](./sprints/17_graph_nn/)
+
+### Next Steps
+- Explore more complex GNNs (e.g., GAT).
+- Build RAG/querying capabilities from dynamic KG embeddings.
+- Improve entity linking/canonicalization in dynamic KG.
+- Scale the dynamic KG pipeline to streaming data.
+- Use GNN embeddings for tasks like link prediction or community detection.
