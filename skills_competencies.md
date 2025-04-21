@@ -506,7 +506,21 @@ _(Self-assessment: Gained practical understanding and implementation skills for 
   - [x] Recognized that sequence-level RL (e.g., 0/1 reward for perfect reversal) or different architectures (Pointer Networks) might be needed.
   - [x] Implemented a direct, non-ML solution using `torch.flip` as the correct tool for the specific reversal task ([results/direct_reverse_demo.py](./sprints/15_encoder_decoder/results/direct_reverse_demo.py)).
 
-_(Update this section as sprints are completed or significant learning occurs. Add specific skills or concepts learned under relevant headings.)_
+## Sprint 16 Progress (GRPO Fine-Tuning - Part 1: Setup & Data Prep)
+
+- **RLHF Data Preparation:**
+  - Understood the purpose of `prompt`, `chosen`, `rejected` data format for reward modeling.
+  - Implemented logic (`prepare_dataset.py`) to transform a source dataset (`moremilk/CoT_Reasoning_Cooking`) into this format.
+  - Correctly applied model-specific chat templates (Llama 3.2 Instruct) using special tokens and structure.
+- **LLM Generation (Batching for Data Prep):**
+  - Used a base model (`unsloth/Llama-3.2-3B-Instruct`) to generate synthetic 'rejected' responses.
+  - Implemented efficient batch generation using `transformers` tokenizer (with padding) and `model.generate()` within the data preparation script.
+  - Optimized batch size (`batch_size=16`) based on available VRAM for significant speedup (~20 min processing time).
+- **Hugging Face Hub Interaction (Datasets):**
+  - Programmatically uploaded the processed dataset to the Hugging Face Hub using `datasets.Dataset.push_to_hub()`.
+  - Utilized `python-dotenv` to load API keys/tokens from `.env` for Hub authentication.
+- **Python Environment (`uv`):**
+  - Successfully used `uv add` and `uv sync` to install required libraries (`transformers`, `datasets`, `accelerate`, `trl`, `python-dotenv`) after encountering `pip` environment restrictions.
 
 ## Sprint 17 Progress (Graph Neural Networks)
 

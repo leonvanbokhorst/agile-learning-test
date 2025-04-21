@@ -566,23 +566,29 @@
 
 ## Sprint 16: GRPO Fine-Tuning of Llama3.2 3B for Chain-of-Thought Reasoning
 
+### Completed (Ongoing Sprint)
+
+- [x] **Setup & Environment:** Configured Python environment with necessary libraries (`transformers`, `datasets`, `accelerate`, `trl`, `dotenv`) using `uv`.
+- [x] **Base Model Loading:** Successfully loaded the base policy model (`unsloth/Llama-3.2-3B-Instruct`) onto the GPU.
+- [x] **Dataset Preparation:** Processed the `moremilk/CoT_Reasoning_Cooking` dataset into the `prompt`/`chosen`/`rejected` format required for RLHF/Reward Model training. This involved implementing batch generation for efficiency and uploading the final dataset to Hugging Face Hub (`leonvanbokhorst/CoT_Reasoning_Cooking_GRPO_Formatted`).
+- [x] **Conceptual Documentation:** Documented core concepts (RLHF, Reward Models, GRPO) and detailed steps for setup and data prep in sprint notes.
+
 ### Current Focus
 
-- Explores GRPO CoT Reasoning RL for cooking recipes.
-- Fine-tuning the Llama 3.2 3B model using Group Relative Policy Optimization (GRPO).
-- Improving chain-of-thought (CoT) reasoning abilities on the `moremilk/CoT_Reasoning_Cooking` dataset.
+- Building and training the Reward Model (Task 4).
 
 ### Next Steps
 
-- Setting up the RLHF training environment.
-- Preparing the model and dataset.
-- Building the reward model.
-- Implementing and running the GRPO training loop.
-- Evaluating the results.
+- Implementing the GRPO algorithm (Task 5).
+- Running the GRPO fine-tuning loop (Task 6).
+- Evaluating the fine-tuned model's CoT reasoning performance (Task 7).
 
 ### Documentation
 
-- Plan documented in [sprints/16_grpo_cooking/ideation.md](sprints/16_grpo_cooking/ideation.md)
+- Conceptual Overview: [notes/00_concepts.md](sprints/16_grpo_cooking/notes/00_concepts.md)
+- Setup Notes: [notes/01_environment_setup.md](sprints/16_grpo_cooking/notes/01_environment_setup.md)
+- Model Loading Notes: [notes/02_model_loading.md](sprints/16_grpo_cooking/notes/02_model_loading.md)
+- Dataset Prep Notes: [notes/03_dataset_preparation.md](sprints/16_grpo_cooking/notes/03_dataset_preparation.md)
 - Sprint tasks outlined in [sprints/16_grpo_cooking/README.md](sprints/16_grpo_cooking/README.md)
 
 ## Archived Milestones
