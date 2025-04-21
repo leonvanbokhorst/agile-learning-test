@@ -11,7 +11,7 @@ load_dotenv()
 
 # --- Configuration ---
 # Use the same base model we prepared the dataset with
-model_id = "unsloth/Llama-3.2-3B-Instruct"
+model_id = "unsloth/Llama-3.2-1B-Instruct"
 # Load our pre-processed dataset from the Hub
 hub_dataset_id = "leonvanbokhorst/CoT_Reasoning_Cooking_GRPO_Formatted"
 # Where to save the trained reward model
@@ -19,6 +19,8 @@ output_dir = "sprints/16_grpo_cooking/results/reward_model"
 per_device_train_batch_size = 2 # Adjust based on VRAM
 per_device_eval_batch_size = 2 # Adjust based on VRAM
 learning_rate = 1e-5
+cosine_scheduler = True
+warmup_steps = 100
 gradient_accumulation_steps = 4
 logging_steps = 10
 eval_steps = 50 # Evaluate periodically
@@ -55,9 +57,9 @@ print("Model and tokenizer loaded.")
 peft_config = LoraConfig(
     task_type=TaskType.SEQ_CLS,
     inference_mode=False,
-    r=8, # LoRA rank
-    lora_alpha=32, # LoRA alpha
-    lora_dropout=0.1, # LoRA dropout
+    r=4, # LoRA rank
+    lora_alpha=4, # LoRA alpha
+    lora_dropout=0.2, # LoRA dropout
     # Target modules based on common Llama architectures (might need adjustment)
     target_modules=[
         "q_proj",
@@ -152,7 +154,11 @@ training_args = RewardConfig(
     bf16=torch.cuda.is_bf16_supported(),
     report_to="tensorboard",
     max_length=max_length,
-    
+    warmup_steps=warmup_steps,
+    lr_scheduler_type="cosine_with_restarts" if cosine_scheduler else "linear",
+    weight_decay=0.01,
+    max_grad_norm=1.0,
+    optim="adamw_torch_fused",
 )
 # --- --- --- ---
 
