@@ -564,18 +564,19 @@
 - Finalized updates in [sprints/15_docs_cleanup/](./sprints/15_docs_cleanup/)
 - Updated `skills_competencies.md` and `milestones.md`.
 
-## Sprint 16: GRPO Fine-Tuning of Llama3.2 3B for Chain-of-Thought Reasoning
+## Sprint 16: GRPO Fine-Tuning of Llama3.2 1B for Chain-of-Thought Reasoning
 
 ### Completed (Ongoing Sprint)
 
 - [x] **Setup & Environment:** Configured Python environment with necessary libraries (`transformers`, `datasets`, `accelerate`, `trl`, `dotenv`) using `uv`.
-- [x] **Base Model Loading:** Successfully loaded the base policy model (`unsloth/Llama-3.2-3B-Instruct`) onto the GPU.
+- [x] **Base Model Loading:** Successfully loaded the base policy model (`unsloth/Llama-3.2-3B-Instruct`) onto the GPU for initial testing.
 - [x] **Dataset Preparation:** Processed the `moremilk/CoT_Reasoning_Cooking` dataset into the `prompt`/`chosen`/`rejected` format required for RLHF/Reward Model training. This involved implementing batch generation for efficiency and uploading the final dataset to Hugging Face Hub (`leonvanbokhorst/CoT_Reasoning_Cooking_GRPO_Formatted`).
+- [x] **Reward Model Training:** Trained a reward model based on the 3B architecture using the processed dataset.
 - [x] **Conceptual Documentation:** Documented core concepts (RLHF, Reward Models, GRPO) and detailed steps for setup and data prep in sprint notes.
 
 ### Current Focus
 
-- Building and training the Reward Model (Task 4).
+- Implementing and running GRPO fine-tuning loop using the **Llama 3.2 1B model** (switched from 3B due to resource constraints for practical RLHF training).
 
 ### Next Steps
 

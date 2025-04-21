@@ -10,15 +10,15 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # --- Configuration ---
-policy_model_id = "unsloth/Llama-3.2-3B-Instruct" # Base model for policy
+policy_model_id = "unsloth/Llama-3.2-1B-Instruct" # Base model for policy
 reward_model_path = "sprints/16_grpo_cooking/results/reward_model" # Path to our trained RM
 hub_dataset_id = "leonvanbokhorst/CoT_Reasoning_Cooking_GRPO_Formatted" # Dataset with prompts
 output_dir = "sprints/16_grpo_cooking/results/grpo_adapter" # Where to save the PEFT adapter
 
 # Training Hyperparameters (adjust as needed)
 num_train_epochs = 1
-batch_size = 4 # Number of prompts per batch
-gradient_accumulation_steps = 4 # Accumulate gradients for effective batch size
+batch_size = 16 # Number of prompts per batch
+gradient_accumulation_steps = 1 # Accumulate gradients for effective batch size
 learning_rate = 1e-5 # Learning rate for the policy model adapters
 logging_steps = 10
 save_steps = 100 # Save adapter checkpoints periodically

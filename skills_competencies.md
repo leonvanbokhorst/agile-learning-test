@@ -521,6 +521,7 @@ _(Self-assessment: Gained practical understanding and implementation skills for 
   - Utilized `python-dotenv` to load API keys/tokens from `.env` for Hub authentication.
 - **Python Environment (`uv`):**
   - Successfully used `uv add` and `uv sync` to install required libraries (`transformers`, `datasets`, `accelerate`, `trl`, `python-dotenv`) after encountering `pip` environment restrictions.
+- **Model Selection (RLHF):** Demonstrated ability to adapt model choice (3B -> 1B) based on practical resource constraints and training time considerations during RLHF setup.
 
 ## Sprint 17 Progress (Graph Neural Networks)
 
