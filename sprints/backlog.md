@@ -145,7 +145,28 @@
   - [x] Concluded standard MLE training is ill-suited for deterministic generation tasks.
   - [x] Implemented a direct algorithmic alternative (`torch.flip`).
 
-## Next Sprint Focus (Sprint 16 - Tentative)
+### Sprint 16: Flirty Llama3
 
-- TRL PPO 
-Use TRL to implement PPO to fine-tune llama3 to be flirty.
+- **Goal:** Use TRL to implement PPO to fine-tune llama3 to be flirty.
+- **Status:** In Progress (See `sprints/16_flirty_llama3/README.md`)
+- **Key Outcomes:**
+  - [x] Set up TRL environment.
+  - [x] Implemented PPO training loop.
+  - [x] Implemented flirty policy.
+  - [x] Implement reward model.
+  - [x] Implement evaluation loop.
+
+### Sprint 17: Graph Neural Networks
+
+- **Goal:** Implement a Graph Neural Network (GCN) in PyTorch.
+- **Status:** In Progress (See `sprints/17_gnn_/README.md`)
+- **Key Outcomes:**
+  - [x] Implemented GCN in PyTorch.
+  - [x] Trained GCN on Zachary's Karate Club social graph.
+  - [ ] Extract node embeddings and cluster them using UMAP.
+  - [ ] Feed embeddings to GPT-2 for generation.
+
+- **Possible Extras:**
+  - [ ] Implement GNN for arbitrary graph tasks.
+  - [ ] Apply GNN to a more complex dataset (e.g. ZINC molecular dataset).
+  - [ ] Apply GNN to a more complex task (e.g. node classification, graph classification).
