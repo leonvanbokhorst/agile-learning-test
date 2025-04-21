@@ -145,35 +145,48 @@
   - [x] Concluded standard MLE training is ill-suited for deterministic generation tasks.
   - [x] Implemented a direct algorithmic alternative (`torch.flip`).
 
-## Next Sprint Focus (Sprint 16 - Tentative)
+### Sprint 16: Flirty Llama3
 
-- **Option A: Apply Encoder-Decoder to NLP Task:** Use the built Encoder-Decoder on a standard seq2seq task like translation or summarization (e.g., WMT, CNN/DailyMail subset) using appropriate metrics (BLEU/ROUGE).
-- **Option B: Explore Alternative Architectures:** Investigate architectures potentially better suited for certain tasks, like Pointer Networks for copying/sorting tasks.
-- **Option C: Deeper Dive into Advanced Training:** Implement sequence-level training (Minimum Risk Training) or KL-based consistency losses for the Encoder-Decoder.
+- **Goal:** Use TRL to implement PPO to fine-tune llama3 to be flirty.
+- **Status:** In Progress (See `sprints/16_flirty_llama3/README.md`)
+- **Key Outcomes:**
+  - [x] Set up TRL environment.
+  - [x] Implemented PPO training loop.
+  - [x] Implemented flirty policy.
+  - [x] Implement reward model.
+  - [x] Implement evaluation loop.
 
-## Future Considerations
+### Sprint 17: Graph Neural Networks
 
-- **Training Strategies:**
-  - Sequence-Level Objectives (MRT, REINFORCE with 0/1 rewards)
-  - Advanced Consistency Losses (KL divergence on output distributions)
-  - Curriculum Learning (more sophisticated schedules)
-- **Architectures:**
-  - Pointer Networks
-  - BERT (Encoder-Only)
-  - T5 (Text-to-Text Framework)
-  - Mixture-of-Experts (MoE) Layers (Conceptual)
-- **Fine-tuning:**
-  - Advanced PEFT methods (Prompt Tuning, Prefix Tuning)
-- **Optimization/Deployment:**
-  - Advanced Quantization (Weight-only, AWQ, GPTQ)
-  - Deployment frameworks (TorchServe, ONNX, Triton)
-- **Evaluation & Interpretability:**
-  - Standard NLP metrics (BLEU, ROUGE)
-  - Attention visualization
-- **Generation:**
-  - Beam search, Diverse Beam Search
-- **Scaling:**
-  - DistributedDataParallel basics
-- **Other Learning Paradigms:**
-  - Knowledge Distillation
-  - Self-Supervised Learning (Masked LM, etc.)
+- **Goal:** Implement a Graph Neural Network (GCN) in PyTorch.
+- **Status:** In Progress (See `sprints/17_gnn_/README.md`)
+- **Key Outcomes:**
+  - [x] Implemented GCN in PyTorch.
+  - [x] Trained GCN on Zachary's Karate Club social graph.
+  - [ ] Extract node embeddings and cluster them using UMAP.
+  - [ ] Feed embeddings to GPT-2 for generation.
+
+- **Possible Extras:**
+  - [ ] Implement GNN for arbitrary graph tasks.
+  - [ ] Apply GNN to a more complex dataset (e.g. ZINC molecular dataset).
+  - [ ] Apply GNN to a more complex task (e.g. node classification, graph classification).
+
+## Backlog / Future Sprint Ideas
+
+*(Items from previous sprints or new ideas)*
+
+- Implement advanced memory management for DataLoaders.
+- Explore alternative sequence modeling architectures (RNNs, LSTMs).
+- Dive deeper into specific Transformer variants (e.g., BERT, RoBERTa).
+- Implement Quantization Aware Training (QAT).
+- Implement advanced PEFT methods (Adapters, Prompt Tuning, etc.).
+- Build a more sophisticated RAG pipeline.
+- Explore multi-modal models.
+
+*(Ideas added from Sprint 17)*
+- Explore more complex GNN architectures (e.g., Graph Attention Networks - GAT).
+- Implement full RAG or graph querying capabilities using the dynamic KG embeddings stored in Faiss.
+- Investigate and implement more robust entity linking/canonicalization techniques for the dynamic KG.
+- Apply the dynamic KG pipeline to a larger, streaming text dataset.
+- Use GNN embeddings for downstream tasks beyond visualization/indexing (e.g., link prediction, community detection).
+- Integrate GNNs with other model types (e.g., GNN + Transformer for graph-based NLP).

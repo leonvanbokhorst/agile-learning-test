@@ -487,13 +487,6 @@
 - Observed the trade-off between parameter efficiency and performance (LoRA achieved comparable, slightly higher perplexity with vastly fewer parameters).
 - Understood how LoRA adapters are saved independently of the base model.
 
-### Next Steps
-
-- **Sprint 14: Model Optimization (Quantization - PoC Level)** (Tentative)
-  - Learn quantization concepts (INT8).
-  - Apply post-training quantization to a model.
-  - Evaluate impact on size and performance.
-
 ### Documentation
 
 - Created notes and results in [sprints/13_peft_lora/](./sprints/13_peft_lora/)
@@ -519,18 +512,6 @@
 - Understood the workflow and common pitfalls of Eager Mode quantization, particularly the need for careful backend selection and targeted QConfig application.
 - Recognized that `state_dict` size is not a reliable indicator of PTQ success; runtime performance (latency) is key.
 - Learned the importance of identifying the correct internal layer types (e.g., `Conv1D` vs `nn.Linear`) in pre-built models for effective quantization.
-
-### Next Steps
-
-- **Sprint 15: Encoder-Decoder Architecture & Exposure Bias** (Completed)
-  - Assemble a full Encoder-Decoder Transformer model from existing `EncoderBlock` and `DecoderBlock` components.
-  - Implement embeddings, Sinusoidal Positional Encoding, and mask creation logic.
-  - Document the architecture and data flow.
-  - Implement a sequence reversal task with teacher-forcing training.
-  - Implement autoregressive evaluation and identify severe exposure bias.
-  - Systematically explore techniques to combat exposure bias.
-  - Conclude standard MLE training is insufficient for this deterministic task.
-  - Implement a direct algorithmic solution using `torch.flip`.
 
 ### Documentation
 
@@ -562,13 +543,23 @@
 - Reinforced the importance of choosing the right modeling approach (ML vs. direct algorithm) based on the task characteristics.
 - Understood the fundamental mismatch between token-level MLE objectives and sequence-level generation quality/correctness.
 
-### Next Steps (Based on Backlog)
-
-- Explore alternative architectures better suited for certain tasks (e.g., Pointer Networks for copying/sorting).
-- Dive deeper into sequence-level training objectives (e.g., Minimum Risk Training, advanced RL) for tasks requiring robust generation.
-- Apply Encoder-Decoder architecture to a more suitable NLP task (e.g., translation, summarization) using standard datasets and evaluation metrics (BLEU, ROUGE).
-
 ### Documentation
 
 - Created notes and results in [sprints/15_encoder_decoder/](./sprints/15_encoder_decoder/)
 - Updated Sprint 15 `README.md` with tasks, findings, and retrospective.
+
+## Sprint 17: Graph Neural Networks
+
+- [x] Implemented GCN in PyTorch and trained on Karate Club dataset.
+- [x] Extracted and visualized node embeddings via t-SNE.
+- [x] Documented GCN concepts and code in `docs/gcn_explanation.md`.
+- [x] Developed dynamic KG + GraphSAGE pipeline, including entity extraction, graph update, embedding recomputation, and FAISS indexing.
+
+Notes and results in [sprints/17_graph_nn/](./sprints/17_graph_nn/)
+
+### Next Steps
+- Explore more complex GNNs (e.g., GAT).
+- Build RAG/querying capabilities from dynamic KG embeddings.
+- Improve entity linking/canonicalization in dynamic KG.
+- Scale the dynamic KG pipeline to streaming data.
+- Use GNN embeddings for tasks like link prediction or community detection.
