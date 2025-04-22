@@ -548,7 +548,53 @@
 - Created notes and results in [sprints/15_encoder_decoder/](./sprints/15_encoder_decoder/)
 - Updated Sprint 15 `README.md` with tasks, findings, and retrospective.
 
-## Sprint 17: Graph Neural Networks
+## Sprint 15: Documentation & Project Structure Cleanup
+
+### Completed
+
+- [x] Reviewed and cleaned up all sprint directories.
+- [x] Ensured consistent README structure across sprints.
+- [x] Updated `skills_competencies.md` to reflect current status.
+- [x] Updated `milestones.md` to reflect sprint completions and learnings.
+- [x] Cleaned up the root directory structure.
+- [x] Improved overall project documentation clarity.
+
+### Documentation
+
+- Finalized updates in [sprints/15_docs_cleanup/](./sprints/15_docs_cleanup/)
+- Updated `skills_competencies.md` and `milestones.md`.
+
+## Sprint 16: GRPO Fine-Tuning of Llama3.2 1B for Chain-of-Thought Reasoning
+
+### Completed (Ongoing Sprint)
+
+- [x] **Setup & Environment:** Configured Python environment with necessary libraries (`transformers`, `datasets`, `accelerate`, `trl`, `dotenv`) using `uv`.
+- [x] **Base Model Loading:** Successfully loaded the base policy model (`unsloth/Llama-3.2-3B-Instruct`) onto the GPU for initial testing.
+- [x] **Dataset Preparation:** Processed the `moremilk/CoT_Reasoning_Cooking` dataset into the `prompt`/`chosen`/`rejected` format required for RLHF/Reward Model training. This involved implementing batch generation for efficiency and uploading the final dataset to Hugging Face Hub (`leonvanbokhorst/CoT_Reasoning_Cooking_GRPO_Formatted`).
+- [x] **Reward Model Training:** Trained a reward model based on the 3B architecture using the processed dataset.
+- [x] **Conceptual Documentation:** Documented core concepts (RLHF, Reward Models, GRPO) and detailed steps for setup and data prep in sprint notes.
+
+### Current Focus
+
+- Implementing and running GRPO fine-tuning loop using the **Llama 3.2 1B model** (switched from 3B due to resource constraints for practical RLHF training).
+- Monitoring initial training progress (rewards, KL divergence, stability).
+- Understanding GRPO hyperparameters (`k`, `beta`) and their impact.
+
+### Next Steps
+
+- Continue monitoring GRPO training (Task 6).
+- If reward stagnates, potentially experiment with hyperparameters (e.g., `beta`, learning rate).
+- Evaluating the fine-tuned model's CoT reasoning performance (Task 7).
+
+### Documentation
+
+- Conceptual Overview: [notes/00_concepts.md](sprints/16_grpo_cooking/notes/00_concepts.md)
+- Setup Notes: [notes/01_environment_setup.md](sprints/16_grpo_cooking/notes/01_environment_setup.md)
+- Model Loading Notes: [notes/02_model_loading.md](sprints/16_grpo_cooking/notes/02_model_loading.md)
+- Dataset Prep Notes: [notes/03_dataset_preparation.md](sprints/16_grpo_cooking/notes/03_dataset_preparation.md)
+- Sprint tasks outlined in [sprints/16_grpo_cooking/README.md](sprints/16_grpo_cooking/README.md)
+
+## Archived Milestones
 
 - [x] Implemented GCN in PyTorch and trained on Karate Club dataset.
 - [x] Extracted and visualized node embeddings via t-SNE.
@@ -558,6 +604,7 @@
 Notes and results in [sprints/17_graph_nn/](./sprints/17_graph_nn/)
 
 ### Next Steps
+
 - Explore more complex GNNs (e.g., GAT).
 - Build RAG/querying capabilities from dynamic KG embeddings.
 - Improve entity linking/canonicalization in dynamic KG.

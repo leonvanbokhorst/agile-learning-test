@@ -28,4 +28,6 @@ tokenized_data_split/
 flirty_reward_model_adapter/
 flirty_reward_model_adapter_v2/
 flirty_llama_ppo_model/
+reward_model/
+grpo_adapter/
 

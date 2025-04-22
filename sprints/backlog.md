@@ -147,14 +147,8 @@
 
 ### Sprint 16: Flirty Llama3
 
-- **Goal:** Use TRL to implement PPO to fine-tune llama3 to be flirty.
-- **Status:** In Progress (See `sprints/16_flirty_llama3/README.md`)
-- **Key Outcomes:**
-  - [x] Set up TRL environment.
-  - [x] Implemented PPO training loop.
-  - [x] Implemented flirty policy.
-  - [x] Implement reward model.
-  - [x] Implement evaluation loop.
+- **Goal:** Explores GRPO CoT Reasoning RL for cooking recipes.
+- **Status:** In Progress (GRPO training with 1B model running; monitoring initial metrics)
 
 ### Sprint 17: Graph Neural Networks
 
@@ -182,6 +176,9 @@
 - Implement advanced PEFT methods (Adapters, Prompt Tuning, etc.).
 - Build a more sophisticated RAG pipeline.
 - Explore multi-modal models.
+
+*(Ideas added from Sprint 16)*
+- Experiment with GRPO hyperparameters (e.g., `beta`, learning rate, `k`) if reward progress stalls.
 
 *(Ideas added from Sprint 17)*
 - Explore more complex GNN architectures (e.g., Graph Attention Networks - GAT).
