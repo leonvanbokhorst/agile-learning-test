@@ -506,23 +506,6 @@ _(Self-assessment: Gained practical understanding and implementation skills for 
   - [x] Recognized that sequence-level RL (e.g., 0/1 reward for perfect reversal) or different architectures (Pointer Networks) might be needed.
   - [x] Implemented a direct, non-ML solution using `torch.flip` as the correct tool for the specific reversal task ([results/direct_reverse_demo.py](./sprints/15_encoder_decoder/results/direct_reverse_demo.py)).
 
-## Sprint 16 Progress (GRPO Fine-Tuning - Part 1: Setup & Data Prep)
-
-- **RLHF Data Preparation:**
-  - Understood the purpose of `prompt`, `chosen`, `rejected` data format for reward modeling.
-  - Implemented logic (`prepare_dataset.py`) to transform a source dataset (`moremilk/CoT_Reasoning_Cooking`) into this format.
-  - Correctly applied model-specific chat templates (Llama 3.2 Instruct) using special tokens and structure.
-- **LLM Generation (Batching for Data Prep):**
-  - Used a base model (`unsloth/Llama-3.2-3B-Instruct`) to generate synthetic 'rejected' responses.
-  - Implemented efficient batch generation using `transformers` tokenizer (with padding) and `model.generate()` within the data preparation script.
-  - Optimized batch size (`batch_size=16`) based on available VRAM for significant speedup (~20 min processing time).
-- **Hugging Face Hub Interaction (Datasets):**
-  - Programmatically uploaded the processed dataset to the Hugging Face Hub using `datasets.Dataset.push_to_hub()`.
-  - Utilized `python-dotenv` to load API keys/tokens from `.env` for Hub authentication.
-- **Python Environment (`uv`):**
-  - Successfully used `uv add` and `uv sync` to install required libraries (`transformers`, `datasets`, `accelerate`, `trl`, `python-dotenv`) after encountering `pip` environment restrictions.
-- **Model Selection (RLHF):** Demonstrated ability to adapt model choice (3B -> 1B) based on practical resource constraints and training time considerations during RLHF setup.
-
 ## Sprint 17 Progress (Graph Neural Networks)
 
 - **GNN Concepts & Message Passing (GCN, GraphSAGE):** Learned the core paradigm of aggregating and updating node features via neighbor messages.
