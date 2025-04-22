@@ -17,17 +17,17 @@ output_dir = "sprints/16_grpo_cooking/results/grpo_adapter" # Where to save the 
 
 # Training Hyperparameters (adjust as needed)
 num_train_epochs = 1
-batch_size = 16 # Number of prompts per batch
+batch_size = 3 # Number of prompts per batch
 gradient_accumulation_steps = 1 # Accumulate gradients for effective batch size
 learning_rate = 1e-5 # Learning rate for the policy model adapters
 logging_steps = 10
 save_steps = 100 # Save adapter checkpoints periodically
 max_prompt_length = 512 # Max length for the prompt part
-max_completion_length = 512 # Max tokens to generate during training rollouts (generation_max_new_tokens)
+max_completion_length = 1024 # Max tokens to generate during training rollouts (generation_max_new_tokens)
 
 # GRPO specific parameters
 beta = 0.1  # KL divergence coefficient (controls how much policy deviates from reference)
-k = 4       # Group size (number of responses generated per prompt)
+k = 3       # Group size (number of responses generated per prompt)
 # --- --- --- ---
 
 # --- Load Tokenizer, Policy Model, Reward Model ---
@@ -81,7 +81,7 @@ print(f"Dataset prepared with {len(dataset)} prompts. Columns: {dataset.column_n
 policy_peft_config = LoraConfig(
     task_type=TaskType.CAUSAL_LM, # Important: Set to CAUSAL_LM for the policy model
     inference_mode=False,
-    r=8,
+    r=32,
     lora_alpha=32,
     lora_dropout=0.1,
     target_modules=[

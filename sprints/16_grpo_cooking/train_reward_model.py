@@ -16,12 +16,12 @@ model_id = "unsloth/Llama-3.2-1B-Instruct"
 hub_dataset_id = "leonvanbokhorst/CoT_Reasoning_Cooking_GRPO_Formatted"
 # Where to save the trained reward model
 output_dir = "sprints/16_grpo_cooking/results/reward_model"
-per_device_train_batch_size = 2 # Adjust based on VRAM
-per_device_eval_batch_size = 2 # Adjust based on VRAM
-learning_rate = 1e-5
+per_device_train_batch_size = 4 # Adjust based on VRAM
+per_device_eval_batch_size = 4 # Adjust based on VRAM
+learning_rate = 1e-6
 cosine_scheduler = True
 warmup_steps = 100
-gradient_accumulation_steps = 4
+gradient_accumulation_steps = 1
 logging_steps = 10
 eval_steps = 50 # Evaluate periodically
 save_steps = 100 # Save checkpoints periodically
@@ -57,8 +57,8 @@ print("Model and tokenizer loaded.")
 peft_config = LoraConfig(
     task_type=TaskType.SEQ_CLS,
     inference_mode=False,
-    r=4, # LoRA rank
-    lora_alpha=4, # LoRA alpha
+    r=32, # LoRA rank
+    lora_alpha=32, # LoRA alpha
     lora_dropout=0.2, # LoRA dropout
     # Target modules based on common Llama architectures (might need adjustment)
     target_modules=[

@@ -10,7 +10,7 @@ load_dotenv()
 
 # --- Configuration ---
 dataset_id = "moremilk/CoT_Reasoning_Cooking"
-model_id = "unsloth/Llama-3.2-3B-Instruct"
+model_id = "unsloth/Llama-3.2-1B-Instruct"
 # Get HF username from environment variable
 hf_username = os.getenv("HF_USERNAME")
 if not hf_username:
@@ -23,7 +23,7 @@ hub_dataset_id = f"{hf_username}/CoT_Reasoning_Cooking_GRPO_Formatted"
 # Correct format based on https://llama.meta.com/docs/model-cards-and-prompt-formats/meta-llama-3/
 prompt_template = (
     "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n"
-    "You are a helpful assistant skilled in cooking and explaining your reasoning step-by-step."
+    "You are an expert cooking assistant. You explain your reasoning between <think> and </think> tags before providing your answer to the user."
     "<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n"
     "{question}"
     "<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"
@@ -32,13 +32,13 @@ prompt_template = (
 # System prompt for generating the *direct* answer (without CoT instruction)
 direct_answer_system_prompt = (
     "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n"
-    "You are a helpful assistant skilled in cooking. Provide clear and concise answers."
+    "You are an expert cooking assistant. You provide your answer to the user."
     "<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n"
     "{question}"
     "<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"
     # NO assistant response here, model generates from this point
 )
-max_new_tokens_rejected = 256 # Max tokens for the generated rejected response
+max_new_tokens_rejected = 512 # Max tokens for the generated rejected response
 # --- --- --- ---
 
 # --- Load Model and Tokenizer ---
@@ -121,7 +121,7 @@ def format_chosen_and_prompts(example):
 print(f"Loading dataset: {dataset_id}")
 
 # Define batch size (adjust based on VRAM)
-batch_size = 16 # Let's start with 8
+batch_size = 32 # Let's start with 8
 print(f"Using batch size: {batch_size}")
 
 try:
