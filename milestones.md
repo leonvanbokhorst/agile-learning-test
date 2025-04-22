@@ -577,11 +577,13 @@
 ### Current Focus
 
 - Implementing and running GRPO fine-tuning loop using the **Llama 3.2 1B model** (switched from 3B due to resource constraints for practical RLHF training).
+- Monitoring initial training progress (rewards, KL divergence, stability).
+- Understanding GRPO hyperparameters (`k`, `beta`) and their impact.
 
 ### Next Steps
 
-- Implementing the GRPO algorithm (Task 5).
-- Running the GRPO fine-tuning loop (Task 6).
+- Continue monitoring GRPO training (Task 6).
+- If reward stagnates, potentially experiment with hyperparameters (e.g., `beta`, learning rate).
 - Evaluating the fine-tuned model's CoT reasoning performance (Task 7).
 
 ### Documentation

@@ -532,3 +532,16 @@ _(Self-assessment: Gained practical understanding and implementation skills for 
 - **Dynamic Knowledge Graph Construction:** Integrated LLM-based triple extraction, `networkx` graph updates, and custom entity canonicalization.
 - **Faiss Vector Store:** Indexed node embeddings for similarity search, enabling retrieval of related entities.
 - **LLM Integration for Structured Data Extraction:** Used GPT-4.1-nano via `litellm` to extract SVO triples from text with prompt engineering and fallback logic.
+
+## Sprint 16 Progress (GRPO Fine-Tuning - Part 2: Training & Analysis - Ongoing)
+
+- **RLHF Concepts:** Understanding Reward Modeling, Reinforcement Learning from Human Feedback (RLHF) workflow.
+- **GRPO Algorithm:** Understanding Group Relative Policy Optimization concepts (group size `k`, KL divergence, `beta` coefficient).
+- **TRL Library:** Using `RewardTrainer` for RM training, `GRPOConfig` and `GRPOTrainer` for policy fine-tuning.
+- **PEFT Integration:** Applying LoRA (`PeftConfig`) within `RewardTrainer` and `GRPOTrainer`.
+- **Dataset Formatting:** Preparing datasets in `prompt`/`chosen`/`rejected` format for RM/RLHF.
+- **Hyperparameter Tuning (RLHF):** Understanding the roles and interplay of `batch_size`, `gradient_accumulation_steps`, `num_generations` (`k`), and `beta` in GRPO.
+- **Training Monitoring (RLHF):** Analyzing key metrics like loss, reward scores, reward standard deviation, KL divergence, gradient norm, and clip ratio during training. Initial observations: stable gradients, low KL, fluctuating rewards without strong upward trend yet.
+- **Troubleshooting RLHF:** Diagnosing potential issues like reward stagnation, KL divergence behavior, batch size/sampler interactions, and interpreting library warnings (e.g., `score.weight` message).
+- **Model Selection/Adaptation:** Adapting training scripts and configurations for different base model sizes (3B vs 1B) based on resource constraints.
+- **Documentation:** Maintaining clear documentation of RLHF setup, experiments, and results.
